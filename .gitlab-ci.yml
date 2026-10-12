@@ -1,0 +1,86 @@
+# Phase 1: validates evidence and holds a release candidate for human review.
+# No production deployment, Runtime authorization or invented Duo job is present.
+image: python:3.12.13-slim
+
+stages: [validation, tests, security, policy, evidence, release_gate]
+
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
+      when: never
+    - if: '$CI_COMMIT_BRANCH'
+
+default:
+  before_script:
+    - python -m pip install uv==0.11.16
+    - uv sync --frozen --extra dev
+  artifacts:
+    when: always
+    expire_in: 14 days
+
+validate:
+  stage: validation
+  script:
+    - uv run --no-sync ruff check .
+    - uv run --no-sync ruff format --check .
+
+tests:
+  stage: tests
+  script:
+    - uv run --no-sync python -m releasegate run-check tests --sha "$CI_COMMIT_SHA"
+  artifacts:
+    when: always
+    expire_in: 14 days
+    paths: [evidence/tests.json, evidence/tests.junit.xml]
+    reports:
+      junit: evidence/tests.junit.xml
+
+security:
+  stage: security
+  when: always
+  script:
+    - uv run --no-sync python -m releasegate run-check security --sha "$CI_COMMIT_SHA"
+  artifacts:
+    when: always
+    expire_in: 14 days
+    paths: [evidence/security.json, evidence/security.bandit.json]
+
+release_policy:
+  stage: policy
+  when: always
+  dependencies: [tests, security]
+  script:
+    - uv run --no-sync python -m releasegate evaluate --sha "$CI_COMMIT_SHA" --target staging
+  artifacts:
+    when: always
+    expire_in: 14 days
+    paths: [evidence/]
+
+evidence_bundle:
+  stage: evidence
+  when: always
+  dependencies: [release_policy]
+  script:
+    # Regenerate the decision from raw artifacts; never trust a prior ALLOW string.
+    - uv run --no-sync python -m releasegate evaluate --sha "$CI_COMMIT_SHA" --target staging --output evidence/bundle-decision.json
+  artifacts:
+    when: always
+    expire_in: 14 days
+    paths: [evidence/]
+
+review_release_candidate:
+  stage: release_gate
+  dependencies: [evidence_bundle]
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true"'
+      when: manual
+      allow_failure: false
+    - when: never
+  manual_confirmation: "Review this candidate's evidence. This job does not deploy or authorize production."
+  script:
+    - uv run --no-sync python -m releasegate evaluate --sha "$CI_COMMIT_SHA" --target production --gate eligibility --output evidence/reviewed-candidate.json
+  artifacts:
+    when: always
+    expire_in: 14 days
+    paths: [evidence/]
