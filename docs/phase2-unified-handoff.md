@@ -108,12 +108,32 @@ GitLab CI attestation. SHA-256 of the saved demo transcript is
 
 ## Hosted CI attempt and remaining access — BLOCKED
 
-Public project reads and remote fetch succeeded. Public APIs returned empty current
+At the initial attempt, public project reads and remote fetch succeeded. Public APIs returned empty current
 pipeline and open-MR lists; this does not prove authenticated permissions. Preflight
 found no usable process GitLab token, existing glab configuration or Git credential;
-noninteractive credential lookup exited 128. `glab` is not installed and the approved
+noninteractive credential lookup exited 128. `glab` was not yet installed and the approved
 computer-use inventory had no browser surfaces. Anonymous `/api/v4/user` returned
 **HTTP 401**. No signed-in account or project role was established.
+
+**Authentication retry after the user's installation report:** the specified
+`C:\Users\weila\AppData\Local\Programs\glab\glab.exe` is VERIFIED as 1.123.0.
+It resolves configuration to
+`C:\Users\weila\AppData\Local\glab-cli\config.yml`. In the current Windows account,
+that host's `token`, `user` and `use_keyring` settings are empty. No process, user
+or machine authentication variables were present. Actual glab calls to `user`,
+project metadata, project runners, protected branches and open MRs all returned
+HTTP 401; repeating identity lookup without environment token overrides did too.
+`glab auth status --hostname gitlab.com --output json` reports state `error`.
+The user-reported `weilai-wang` login therefore remains NOT VERIFIED in this
+agent's context. The controlled-browser inventory is still empty. This is a
+persistent-authentication/context blocker, not an inferred lack of project role.
+No credential value was logged or requested in chat. Filtered results are saved
+in `.artifacts/phase2/authenticated/preflight.json`; the existing source commits,
+clean worktrees, remote configuration and local import branch are preserved.
+A refreshed noninteractive Git Credential Manager lookup also exited 128 with no
+credential available; `.artifacts/phase2/authenticated/git-credential-preflight.json`
+records only that outcome. No GitLab write, MR or pipeline was attempted during
+this failed authenticated preflight.
 
 The actual anonymous project CI Lint request, using the source YAML and documented
 `POST /projects/87602765/ci/lint`, returned **HTTP 403 Forbidden**. Server-supported
@@ -150,10 +170,19 @@ The current schema supports `context:project_id` and trigger-specific `context:g
 it restricts environment to ambient, excludes prompt model overrides and
 `response_schema_id`, and lets the configured group/instance provider choose the
 model. Actual entitlement/model availability is not established by these docs.
-The prepared flow has no unsupported fields. Mention/Assign reviewer is the first
+The prepared flow omits these restricted fields. Mention/Assign reviewer is the first
 strategy; selected MR or pipeline events need project-specific verification.
 [Custom-flow schema](https://docs.gitlab.com/user/duo_agent_platform/flows/custom_flows_schema/),
 [triggers](https://docs.gitlab.com/user/duo_agent_platform/triggers/).
+
+An independent anonymous read of GitLab's public GraphQL schema also confirmed
+`aiCatalogFlowCreate`, `aiCatalogItemConsumerCreate`, `aiFlowTriggerCreate` and
+`aiDuoWorkflowCreate` and their input contracts. Selected schema metadata is saved
+locally in `.artifacts/phase2/authenticated/duo-registration-schema.json`.
+This supplies a possible API route after identity, project permissions and real
+MR/pipeline context are verified; no mutation was attempted. A public schema is
+not proof of account entitlement, successful registration or model execution.
+[GitLab GraphQL API](https://docs.gitlab.com/api/graphql/).
 
 No registration, service account, trigger, server validation, actual invocation,
 agent output or session/log URL exists from this run. Authentication blocks the UI;
@@ -186,8 +215,11 @@ the source snapshot plus the preserved initial README and explicit README additi
 `.gitlab-ci.yml`, AGENTS.md, Python requirements and uv.lock were carried unchanged;
 no environments, credentials, databases, caches or generated outputs were staged.
 
-**Single most valuable next action:** configure usable GitLab authentication locally
-or connect a controllable, signed-in GitLab browser; do not paste a token into chat.
+**Single most valuable next action:** persist the successful glab authentication in
+the current Windows account's actual configuration/keyring, or provide the custom
+configuration-directory path used by the authenticated terminal. Verify status
+with the specified executable; do not paste a token into chat. A controllable,
+signed-in GitLab browser remains an alternative.
 Then verify identity/role/runners, refresh GitLab main, normally publish the prepared
 branch, open and leave an MR, qualify genuine hosted CI, and register/run the Duo
 reviewer against that real context. Record real URLs/statuses and update this handoff.
