@@ -69,6 +69,24 @@ evidence_bundle:
     expire_in: 14 days
     paths: [evidence/]
 
+# Execute safe negative suites on the real runner. Their derived snapshots remain
+# explicitly local-working-tree evidence; baseline jobs above retain gitlab-ci provenance.
+release_boundary_demo:
+  stage: evidence
+  dependencies: []
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: always
+    - when: never
+  script:
+    - uv run --no-sync python scripts/demo.py --output-dir evidence/boundaries
+  artifacts:
+    when: always
+    expire_in: 14 days
+    paths:
+      - evidence/boundaries/*/verification.json
+      - evidence/boundaries/*/*/evidence/
+
 review_release_candidate:
   stage: release_gate
   dependencies: [evidence_bundle]

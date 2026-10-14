@@ -52,18 +52,18 @@ def main():
         env.pop(name, None)
     results = {}
     records = []
-    for scenario in ("allow", "deny", "skipped", "missing"):
+    for scenario in ("allow", "deny", "skipped", "missing", "failed"):
         root = directory / scenario
         root.mkdir()
         for folder in ("src", ".gitlab"):
             shutil.copytree(
                 ROOT / folder, root / folder, ignore=shutil.ignore_patterns("__pycache__")
             )
-        if scenario in {"skipped", "missing"}:
+        if scenario in {"skipped", "missing", "failed"}:
             # Safe negative suites run real pytest. Their fixed mandatory manifest
             # belongs only to this isolated fixture, never to the application's suite.
             (root / "tests").mkdir()
-            cases = 84 if scenario == "skipped" else 83
+            cases = 83 if scenario == "missing" else 84
             (root / "tests" / "test_required.py").write_text(
                 "import pytest\n\n"
                 f"@pytest.mark.parametrize('case', range({cases}))\n"
@@ -73,7 +73,7 @@ def main():
                     if scenario == "skipped"
                     else ""
                 )
-                + "    assert case >= 0\n",
+                + ("    assert case > 0\n" if scenario == "failed" else "    assert case >= 0\n"),
                 encoding="utf-8",
             )
             write_json(
@@ -98,7 +98,13 @@ def main():
                 '    return subprocess.run("echo " + value, shell=True, check=True)\n',
                 encoding="utf-8",
             )
-        command(["run-check", "tests", "--sha", sha], root, env, records, expected=0)
+        command(
+            ["run-check", "tests", "--sha", sha],
+            root,
+            env,
+            records,
+            expected=1 if scenario == "failed" else 0,
+        )
         command(
             ["run-check", "security", "--sha", sha],
             root,
@@ -122,6 +128,32 @@ def main():
         raise RuntimeError("One pass and 83 unapproved skips did not produce DENY")
     if "MISSING_MANDATORY_TESTS" not in results["missing"]["reasons"]:
         raise RuntimeError("83 passes cannot replace the 84 mandatory tests")
+    if "TESTS_FAILED" not in results["failed"]["reasons"]:
+        raise RuntimeError("An actual failed required test did not produce DENY")
+    root = directory / "allow"
+    missing_reports = root / "missing-evidence"
+    missing_reports.mkdir()
+    for name in ("tests.json", "tests.junit.xml"):
+        shutil.copy2(root / "evidence" / name, missing_reports / name)
+    for scenario, arguments, required_reason in (
+        (
+            "missing_evidence",
+            ["--sha", sha, "--evidence-dir", "missing-evidence"],
+            "MISSING_SECURITY_EVIDENCE",
+        ),
+        ("wrong_sha", ["--sha", "b" * 40], "TESTS_COMMIT_MISMATCH"),
+    ):
+        output = f"evidence/{scenario}-deny.json"
+        command(
+            ["evaluate", *arguments, "--target", "staging", "--output", output],
+            root,
+            env,
+            records,
+            expected=1,
+        )
+        results[scenario] = read_json(root / output)
+        if required_reason not in results[scenario]["reasons"]:
+            raise RuntimeError(f"{scenario} did not produce the expected DENY")
     command(
         [
             "evaluate",
@@ -159,6 +191,7 @@ def main():
                 "deny": results["deny"]["decision"],
                 "skipped": results["skipped"]["decision"],
                 "missing": results["missing"]["decision"],
+                "failed": results["failed"]["decision"],
                 "gitlab_duo": "NOT VERIFIED",
                 "deployment": "NOT RUN",
             }
