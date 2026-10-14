@@ -1,11 +1,75 @@
 # ReleaseGate — unified Phase 2 handoff
 
-Date: **2026-10-14**, Pacific/Auckland. Final verdict: **PARTIAL**.
+Updated: **2026-10-15**, Pacific/Auckland, after VS Code restart.
+Final verdict: **PARTIAL**; authenticated remote stages remain **BLOCKED**.
 
 GitHub publication, mandatory-test hardening and the isolated local GitLab import
 are VERIFIED. GitLab publication, MR creation, hosted CI and genuine Duo execution
-are BLOCKED by unavailable authentication. They are NOT VERIFIED; Phase 2 is not
+are BLOCKED by unusable authentication. They are NOT VERIFIED; Phase 2 is not
 complete. No model result, approval or platform execution has been fabricated.
+
+## Recovered checkpoint and current authentication diagnosis
+
+The resumed primary checkout was clean on `main` at
+`34a2b4f69b0ee3a6192f5a557cfe11dbdafcad70`, equal to `origin/main` and the live
+GitHub main ref. Phase 1.2 commit `ba1690d787312d642e8bee2680f46d5d9f4a572c`
+was verified as an ancestor of published main, so publication was skipped.
+No completed import or commit was repeated. The existing isolated worktree remains
+on `import/releasegate-phase2a` at `6b1b8c04ec9e770cf59e9bbff264e7454b52092b`.
+All 28 unmodified source files still match the validated GitHub snapshot after
+line-ending normalization; the initialization README remains preserved. Both
+worktrees were clean at recovery, and the remote/upstream configuration is unchanged.
+Fresh GitLab fetch/ref checks still show only initialization main at
+`e4239c704040e427ef6ded36a4163113f995cef9`. Anonymous open-MR and pipeline lists
+are empty; these reads do not establish authenticated permissions.
+
+The specified glab executable is still 1.123.0. The fresh Codex process's explicit
+`auth status` and identity request return HTTP 401. Host selection is correctly
+`gitlab.com` over HTTPS. The actual Local AppData configuration lacks an account,
+OAuth type/expiry metadata and keyring-mode setting. No authentication environment
+override was present at process, user or machine level, and no legacy Roaming or
+`.config` glab configuration was found.
+
+**Correction to the earlier incomplete credential diagnosis:** targeted native
+Windows Credential Manager enumeration succeeded in the current Windows session.
+The `glab:gitlab.com:token:` and `glab:gitlab.com:oauth2_refresh_token:` entries
+exist with credential blobs. This is not a demonstrated keyring-access denial.
+A child-process keyring-mode check still returned 401. A documented Bearer request
+using only the stored access token also returned 401; `/oauth/token/info` explicitly
+returned `invalid_token`, with description `The access token is invalid`.
+Expiration, revocation and the reason for the missing CLI metadata are not proven.
+The ChatGPT Work PASS report therefore has not been reproduced in this execution
+context, and the authenticated GitLab identity remains NOT VERIFIED.
+[CLI authentication/storage](https://docs.gitlab.com/cli/authentication/),
+[OAuth token information](https://docs.gitlab.com/api/oauth2/).
+
+Credential values were used only transiently in memory for those GitLab GETs;
+none were printed, saved, staged or sent in URLs. No credentials were removed,
+rewritten, refreshed or regenerated. No personal access token was created. A secure
+interactive login under the current Windows account has been requested, followed
+by status/identity verification. Repeating identical failing requests was avoided.
+Identity, role, runner, MR/write permissions and Duo entitlement remain unresolved,
+so no branch push, MR, CI job or Duo mutation was attempted on this resume.
+
+Fresh independent local qualification passed frozen sync/lock checks and Ruff
+check/format checks. The imported full suite passed **96 tests in 0.71s**, with
+zero failures/errors/skips and all 96 mandatory identities verified against JUnit.
+Real local pytest/Bandit demonstrations again yielded ALLOW for the baseline and
+DENY for HIGH findings, 1 pass/83 skips and one missing mandatory case. Production
+final approval remained required and the release command remained DENY/exit 3.
+The source distribution and wheel rebuilt successfully; a fresh Python 3.12.13
+wheel probe imported `releasegate==0.1.0` from its installed site-packages and passed
+`uv pip check`. These results are local, not hosted CI or Duo execution.
+
+New sanitized diagnostics and qualification outputs are under
+`.artifacts/phase2/resume-20261015/`; the imported JUnit is
+`.artifacts/phase2/resume-20261015.junit.xml` in its own worktree. The new local demo
+transcript is `demo/8bd53426-fc56-4fc2-87ee-a5bacd9e657d/verification.json` under
+the primary resume directory. Earlier evidence was preserved. Only this handoff
+changed during recovery; application, tests, CI, flow configuration and Runtime
+source remain unchanged. GitHub publication of this new factual report does not
+repeat any earlier publication. Server CI/Duo documentation was refreshed; server
+qualification and actual project feature access still require successful identity.
 
 ## Publication and repository identity
 
@@ -215,11 +279,18 @@ the source snapshot plus the preserved initial README and explicit README additi
 `.gitlab-ci.yml`, AGENTS.md, Python requirements and uv.lock were carried unchanged;
 no environments, credentials, databases, caches or generated outputs were staged.
 
-**Single most valuable next action:** persist the successful glab authentication in
-the current Windows account's actual configuration/keyring, or provide the custom
-configuration-directory path used by the authenticated terminal. Verify status
-with the specified executable; do not paste a token into chat. A controllable,
-signed-in GitLab browser remains an alternative.
+**Single most valuable next action:** complete secure interactive login in the
+current Windows account using the installed executable, which defaults to native
+keyring storage, and verify status before continuing:
+
+```powershell
+& 'C:\Users\weila\AppData\Local\Programs\glab\glab.exe' auth login --hostname gitlab.com --web --git-protocol https
+& 'C:\Users\weila\AppData\Local\Programs\glab\glab.exe' auth status --hostname gitlab.com
+```
+
+Report only PASS/FAIL, not a token or token-bearing output. A controllable,
+signed-in GitLab browser remains an alternative. Do not log out or delete existing
+credentials as a troubleshooting step.
 Then verify identity/role/runners, refresh GitLab main, normally publish the prepared
 branch, open and leave an MR, qualify genuine hosted CI, and register/run the Duo
 reviewer against that real context. Record real URLs/statuses and update this handoff.
