@@ -7,7 +7,8 @@ reports, blocks unsafe candidates, and produces JSON evidence for human review.
 **Status:** local implementation runnable; GitLab pipelines NOT RUN; GitLab Duo
 NOT VERIFIED (onboarding pending). Production execution is disabled. ALLOW means
 eligible for the next gate, never execution authorization. The pinned shared
-Runtime integration is blocked by licensing and Python compatibility; see
+Runtime v0.2.0 is MIT licensed and verified separately on Python 3.13. Its execution
+integration is deferred until after genuine GitLab Duo/CI verification; see
 [feasibility](docs/runtime-feasibility.md).
 
 ## Run locally
@@ -52,6 +53,7 @@ the file alone does not install a flow. See [Duo setup](docs/duo-integration.md)
 - [Hackathon requirements](docs/hackathon-requirements.md)
 - [Implementation and Phase 2 plan](docs/implementation-plan.md)
 - [Phase 1 handoff and actual verification](docs/phase1-handoff.md)
+- [Phase 1.1 Runtime compatibility update](docs/phase1.1-handoff.md)
 
 MIT licensed. AGENTS.md is preserved. No commit, push, tag, deployment or submission
 is performed by this phase.

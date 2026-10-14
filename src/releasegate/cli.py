@@ -28,7 +28,7 @@ def main(argv=None) -> int:
                     "decision": "DENY",
                     "reasons": ["EXECUTION_NOT_CONFIGURED"],
                     "execution_authorized": False,
-                    "runtime": "BLOCKED_LICENSE_AND_PINNED_INSTALL_UNVERIFIED",
+                    "runtime": "NOT_INTEGRATED",
                 }
             )
         )

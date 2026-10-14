@@ -1,6 +1,7 @@
 # ReleaseGate architecture — Phase 0 / Phase 1
 
-Assessment date: 2026-10-13. Scope: a new Path A application. The completed local
+Initial assessment: 2026-10-13; Runtime compatibility updated 2026-10-14 (Phase 1.1).
+Scope: a new Path A application. The completed local
 slice makes release eligibility decisions; the competition integration and release
 execution remain pending. It consumes no previous application's implementation.
 
@@ -63,10 +64,11 @@ in the local DENY demonstration is never imported or executed.
 
 ## GitLab capabilities versus this environment
 
-The current checkout has only GitHub `origin`; no GitLab project URL, glab command,
-GitLab credential environment variable or connected browser surface was found.
-The user confirmed onboarding is incomplete and is handling it in the web UI.
-Account/project access, edition, credits, runner and permissions are **NOT VERIFIED**.
+The checkout still has only GitHub `origin`. At the Phase 1 assessment no GitLab
+project URL, glab command, credential environment variable or connected browser
+surface was found; the user then confirmed onboarding was incomplete. Phase 1.1
+does not refresh account/onboarding state. Account/project access, edition, credits,
+runner and permissions remain **NOT VERIFIED** without new platform evidence.
 
 | Capability | Official support | Competition project validation |
 |---|---|---|
@@ -107,26 +109,33 @@ and approving a deployment does not itself start its job. [Job artifacts](https:
 [manual jobs](https://docs.gitlab.com/ci/jobs/job_control/),
 [deployment approvals](https://docs.gitlab.com/ci/environments/deployment_approvals/).
 
-## Shared Runtime constraint discovered before implementation
+## Shared Runtime compatibility and milestone ordering
 
-`AGENTS.md` remains byte-for-byte intact. Its required runtime is
-`agentic-intent-gate` v0.1.0 at
-`fd742b783058a53400c465b4ab59c6e80715895a`. Live `git ls-remote` confirmed the
-annotated tag and peeled commit. The pinned tree contains no LICENSE/COPYING/NOTICE,
-no licensing field in `pyproject.toml`, and no license declaration in README/docs.
-The task expressly forbids depending on this package without independently verified
-license compatibility. Consequently it is **not installed as this application's
-dependency** and no runtime code is copied or reimplemented.
+Phase 1.1 qualifies `agentic-intent-gate` v0.2.0 at
+`7261fdd2f47d2b15fabe8faac527eeee37338eb1`. The annotated tag, pinned MIT license
+and Python `>=3.13,<3.14` requirement were checked independently. A fresh non-editable
+Git installation in a separate 3.13 environment verified package version, exact
+source commit and installed public imports. The v0.1.0 licensing concern in the
+historical Phase 1 handoff no longer blocks this new release. See
+[feasibility evidence](runtime-feasibility.md).
 
-The pinned metadata also requires Python `>=3.13,<3.14`, incompatible with the
-preferred 3.12 baseline. The exact pinned `examples/consumer/app.py` was read from
-Git. Existing installed public API signatures were inspected separately; that
-installation is editable from a later checkout, so it does **not** qualify as a
-verified pinned install. See `runtime-feasibility.md` for concrete evidence and the
-activation checklist. This is an explicit unresolved deviation from the dependency
-instruction, rather than a silently substituted execution framework.
+Keep the application and CI on 3.12 for the next milestone. Its existing metadata
+already permits 3.13; no requirement or dependency check needs to be bypassed.
+The Runtime cannot be installed on 3.12. It is not added to the current dependency
+set, lockfile or pipeline because none of the eligibility jobs dispatches an effect.
 
-Once licensing and Python are resolved, compose one trusted `SIDE_EFFECT` tool
-through the published Runtime. GitLab owns CI scheduling and Duo review; the shared
-Runtime owns persistent Plan/Run/Approval/authorization/Action/receipt execution.
-Its single-step scope cannot be treated as a generic multi-tool orchestration engine.
+**Verify GitLab Duo and CI first; integrate Runtime execution afterward.** Duo owns
+AI-assisted review, CI owns tests/scanning/policy scheduling, and ReleaseGate owns
+deterministic eligibility. Runtime belongs at the future persistent Run, exact
+human approval, independent authorization, durable Action and receipt boundary.
+Installation alone does not implement that boundary, authenticate a human or grant
+execution. The `release` command remains DENY/exit 3; its diagnostic now correctly
+says `NOT_INTEGRATED` instead of an obsolete license/install blocker.
+
+Future trusted composition supports one single-step `SIDE_EFFECT` tool, not generic
+multi-tool orchestration. Use the default five-second adapter budget unless a reviewed
+use case requires an extension (at most fifteen seconds), a fresh binding/profile and
+separate scope/ledger. Never elevate old approvals, grants or Actions. Preserve
+terminal Unknown/no blind retry. The bundled HTTP deadline remains ten seconds, so
+a full fifteen-second profile needs a consumer-owned request envelope.
+[Pinned adapter guide](https://github.com/miku-wwl/agentic-intent-gate/blob/v0.2.0/docs/ADAPTER_GUIDE.md).

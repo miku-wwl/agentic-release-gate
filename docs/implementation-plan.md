@@ -5,8 +5,8 @@
 1. Read/preserve AGENTS.md and inspect the fresh repository/remotes.
 2. Research the six official event/platform sources and the documented v1 flow
    specification, CI artifacts, manual jobs, tools, prerequisites and sessions.
-3. Verify the shared release tag and inspect pinned package metadata and consumer
-   reference. Record missing license and the Python 3.13 requirement.
+3. Verify the initial shared release tag and inspect pinned metadata/reference.
+   The historical v0.1.0 licensing concern is superseded by Phase 1.1 below.
 4. Choose a Python 3.12 CLI with real pytest/Bandit evidence and no release execution.
 5. Record onboarding as incomplete following the user's confirmation.
 
@@ -24,7 +24,19 @@
   function executes, no cloud resources and no simulated Duo result.
 - MIT license, README and factual handoff with command evidence.
 
-## Phase 2 — after onboarding and explicit delivery authorization
+## Phase 1.1 — compatibility qualification (2026-10-14)
+
+- Verify annotated v0.2.0 and immutable commit
+  `7261fdd2f47d2b15fabe8faac527eeee37338eb1`, MIT terms and Python 3.13 metadata.
+- Inspect the pinned handoff, adapter guide, consumer example and dependency
+  template; record the template's stale v0.1.0 reference inside the release tag.
+- Validate a separate non-editable Python 3.13 installation, source provenance,
+  installed public API and dependencies. Confirm normal rejection on Python 3.12.
+- Keep application dependencies, lockfile, 3.12 CI and execution policy unchanged.
+  Correct only the release command's obsolete informational Runtime status.
+- Rerun existing local validation and document results in `phase1.1-handoff.md`.
+
+## Phase 2a — genuine GitLab Duo/CI verification first
 
 1. Obtain the official provisioned project URL and inspect roles, settings, runner,
    credits and available AI tools. Add the GitLab remote only when delivery is agreed.
@@ -35,19 +47,31 @@
    actual session URL, flow version, input SHA, tool calls and output without secrets.
 4. Add Passed/Failed pipeline triggers only after validating their payloads. Keep
    deterministic CI policy independent of AI risk text. Do not invent a Duo API job.
-5. Resolve the shared Runtime license explicitly for the pinned code. Use Python
-   3.13 if that exact release remains required; do not bypass package metadata.
-6. Install the immutable Git pin in an isolated environment; verify `direct_url.json`
-   and inspect the installed public API. Compose one narrow release executor via
+5. Demonstrate one real passing candidate and one real blocked candidate, with AI
+   session, pipeline/job URLs and raw artifacts. Runtime execution is not required
+   to qualify these eligibility and human-review boundaries.
+
+## Phase 2b — persistent release execution after platform verification
+
+1. Select an actual, explicitly authorized release effect and human-identity adapter.
+   Decide whether the future execution composition and its CI should use Python 3.13
+   together or a separately scoped 3.13 environment. Update metadata and the lock
+   explicitly at that milestone; the new Runtime's MIT license is already verified.
+2. Add only the immutable v0.2.0 dependency, verify the exact installed commit again,
+   and compose one narrow release executor via
    the core reference pattern. Add the core-required acceptance cases: unregistered
    tool; target/binding/scope mismatch; no authorization; stale approval; duplicate
    effect and payload conflict; ambiguous outcome/no blind retry; persisted receipt.
-7. Build a trusted GitLab human-approval identity adapter and independently scoped
+3. Build a trusted GitLab human-approval identity adapter and independently scoped
    authorization. Only then consider a protected-environment production workflow.
    No mock deployment may be reported as production.
-8. Record a video showing real MR context, autonomous risk assessment, CI tests and
+4. Retain the default five-second budget unless a measured use case needs an extended
+   profile. Extended profiles need fresh binding/scope/ledger, approval and independent
+   authorization; include profile/non-escalation/deadline/recovery acceptance tests.
+5. Record a video showing real MR context, autonomous risk assessment, CI tests and
    scanning, DENY reasons, human gate and auditable outcome. Submit only on request.
 
 The critical path is genuine GitLab integration, not frontend or infrastructure.
-Until the Runtime blockers are resolved, the authentic demo can show the eligibility
-and human-review boundary, with production execution transparently unavailable.
+The next milestone is platform verification. Installation and licensing are qualified,
+but trusted approval identity, authorization, executor and receipt verification still
+need implementation before any production execution can be shown.

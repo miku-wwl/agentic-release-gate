@@ -9,8 +9,9 @@ The official rules require a new Path A project created on or after October 5, 2
 using GitLab Duo Agent Platform. The target autonomy delegates workflow steps while
 a human reviews the outcome. Our new consumer app follows that direction; final
 Supervised eligibility still needs a real automated Duo workflow and demonstration.
-Dependency reuse is distinguished from copying a previous application, but the
-shared Runtime's license must first be resolved. [Official rules](https://gitlab-transcend.devpost.com/rules).
+Dependency reuse is distinguished from copying a previous application.
+[Official rules](https://gitlab-transcend.devpost.com/rules). Phase 1.1 independently
+verified the shared Runtime v0.2.0 MIT license; execution integration remains deferred.
 
 | Submission requirement | ReleaseGate evidence / remaining work |
 |---|---|
@@ -46,7 +47,7 @@ do not infer permissions or credits until the provisioned project can be inspect
 | LLM recommendation is not authorization | No model input to policy or CLI approval; tested |
 | Persisted JSON evidence bundle | Raw JUnit/Bandit, per-check envelopes, decisions, demo transcript |
 | Real successful and blocked GitLab workflows | NOT RUN; local counterparts are explicitly labeled |
-| Runtime integration without core modifications | BLOCKED by missing licensing and Python compatibility |
+| Runtime integration without core modifications | v0.2.0 MIT/install verified on 3.13; execution deferred until after GitLab verification |
 
 ## Platform validation required after onboarding
 

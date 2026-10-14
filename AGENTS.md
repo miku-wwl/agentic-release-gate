@@ -12,11 +12,18 @@ This repository is a **Hackathon application that consumes an existing Python Ag
 
 The annotated tag `v0.2.0` peels to the pinned commit above. This is a **Git release, not a PyPI publication**. Use the immutable full commit SHA, **not** a moving `main` branch. When upgrading in the future, verify the tag, peeled commit, installed version, and lockfile. Never embed private Git credentials or external-service secrets in URLs, code, screenshots, or logs.
 
+**ReleaseGate verification (2026-10-14):** The live annotated tag object
+`b193d38a4804725d44ca536a3bd9778679cc7b4c` peels to the pin above. Its MIT license,
+Python `>=3.13,<3.14` metadata, installed version/source identity and public imports
+were independently verified in a separate Python 3.13 environment. Installation
+verification does not establish a working ReleaseGate execution adapter.
+
 **Template use:** Copy this document into a **new consumer repository** as its root `AGENTS.md`. Add the competition's own scope, security rules, environment constraints, and human-approval requirements. If that repository already has `AGENTS.md`, **merge** the instructions instead of overwriting its product-specific rules. Do not copy the core repository's developer-only root `AGENTS.md` into a consumer project.
 
 ## Dependency Setup
 
-Declare this exact dependency in the consumer's existing `pyproject.toml` and update its lockfile:
+When the persistent execution milestone is explicitly in scope, declare this exact
+dependency in the consumer's existing `pyproject.toml` and update its lockfile:
 
 ```toml
 [project]
@@ -25,7 +32,23 @@ dependencies = [
 ]
 ```
 
-**Merge the dependency entry**; do not replace an existing `[project]` section or other dependencies blindly. Verify the installed distribution reports `agentic-intent-gate==0.2.0`, resolves to the pinned source commit, and is imported from the installed environment, **not an adjacent source checkout**. Use the [v0.2.0 consumer handoff](https://github.com/miku-wwl/agentic-intent-gate/blob/main/docs/V0.2.0-CONSUMER-HANDOFF.md) and [adapter guide](https://github.com/miku-wwl/agentic-intent-gate/blob/v0.2.0/docs/ADAPTER_GUIDE.md) as the detailed integration references.
+**Merge the dependency entry**; do not replace an existing `[project]` section or other dependencies blindly. Verify the installed distribution reports `agentic-intent-gate==0.2.0`, resolves to the pinned source commit, and is imported from the installed environment, **not an adjacent source checkout**. Use the [v0.2.0 consumer handoff](https://github.com/miku-wwl/agentic-intent-gate/blob/v0.2.0/docs/V0.2.0-CONSUMER-HANDOFF.md) and [adapter guide](https://github.com/miku-wwl/agentic-intent-gate/blob/v0.2.0/docs/ADAPTER_GUIDE.md) as the detailed integration references. The dependency template inside the release tag still references v0.1.0; its [corrected v0.2.0 template](https://github.com/miku-wwl/agentic-intent-gate/blob/65767556f6de78e3fb7c2e6141a3769d20c76a99/docs/AGENTS-dependence.md) is a later documentation commit, not a different Runtime release.
+
+## ReleaseGate Milestone Boundary
+
+- GitLab Duo owns AI-assisted MR risk review; GitLab CI owns tests, scanning and
+  policy jobs; ReleaseGate owns deterministic release eligibility.
+- Verify the real GitLab Duo session and CI pipeline before introducing Runtime
+  execution. No Runtime dependency, database or executor is needed for that milestone.
+- Phase 1.1 retains `.python-version`/CI on 3.12 and the existing application lock.
+  Runtime validation lives in an ignored, separate 3.13 environment. Do not add its
+  incompatible dependency to the 3.12 baseline or ignore `Requires-Python`.
+- `ALLOW` means eligible for the next gate. Preserve `execution_authorized=false`,
+  required final production approval and the closed `release` command (DENY, exit 3).
+- Future persistent Approval/Authorization/Action/Receipt execution must reuse the
+  pinned Runtime. Default to five seconds; extended budgets need a reviewed use case.
+- A local test, scripted approval or prepared YAML is never a real Duo session,
+  authenticated approval, hosted pipeline or production deployment.
 
 ## Reuse the Core
 
