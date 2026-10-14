@@ -7,6 +7,7 @@ from releasegate.evidence import (
     EvidenceError,
     context_for,
     load_evidence,
+    load_required_tests,
     parse_bandit,
     parse_junit,
     read_json,
@@ -15,7 +16,14 @@ from releasegate.evidence import (
 )
 
 
-def junit(cases='<testcase name="example"/>', *, tests=1, failures=0, errors=0, skipped=0):
+def junit(
+    cases='<testcase classname="tests.example" name="example"/>',
+    *,
+    tests=1,
+    failures=0,
+    errors=0,
+    skipped=0,
+):
     return (
         f'<testsuites><testsuite tests="{tests}" failures="{failures}" '
         f'errors="{errors}" skipped="{skipped}">{cases}</testsuite></testsuites>'
@@ -40,12 +48,21 @@ def bandit():
 
 def test_realistic_junit_counts():
     raw = junit(
-        "<testcase/><testcase><failure/></testcase><testcase><skipped/></testcase>",
+        '<testcase classname="tests.example" name="pass"/>'
+        '<testcase classname="tests.example" name="fail"><failure/></testcase>'
+        '<testcase classname="tests.example" name="skip"><skipped/></testcase>',
         tests=3,
         failures=1,
         skipped=1,
     )
-    assert parse_junit(raw) == {"total": 3, "passed": 1, "failed": 1, "errors": 0, "skipped": 1}
+    assert parse_junit(raw) == {
+        "total": 3,
+        "passed": 1,
+        "failed": 1,
+        "errors": 0,
+        "skipped": 1,
+        "case_ids": ["tests.example::pass", "tests.example::fail", "tests.example::skip"],
+    }
 
 
 @pytest.mark.parametrize(
@@ -161,3 +178,23 @@ def test_tampered_evidence_rejected(tmp_path, evidence, tamper):
     write_json(path, check)
     with pytest.raises(EvidenceError):
         load_evidence(directory, root=tmp_path)
+
+
+def test_duplicate_junit_ids_are_rejected():
+    raw = junit('<testcase classname="same" name="case"/>' * 2, tests=2)
+    with pytest.raises(EvidenceError, match="DUPLICATE_JUNIT_TEST_IDENTITY"):
+        parse_junit(raw)
+
+
+def test_missing_mandatory_manifest_fails_closed(tmp_path):
+    with pytest.raises(FileNotFoundError):
+        load_required_tests(tmp_path)
+
+
+@pytest.mark.parametrize("case_ids", [[], ["same", "same"], [True], "case"])
+def test_unusable_mandatory_manifest_fails_closed(tmp_path, case_ids):
+    write_json(
+        tmp_path / "tests/required-tests.json", {"schema_version": 1, "required_case_ids": case_ids}
+    )
+    with pytest.raises(EvidenceError, match="UNUSABLE_MANDATORY_TEST_MANIFEST"):
+        load_required_tests(tmp_path)

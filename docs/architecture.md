@@ -1,6 +1,6 @@
-# ReleaseGate architecture — Phase 0 / Phase 1
+# ReleaseGate architecture — Phase 2 preparation
 
-Initial assessment: 2026-10-13; Runtime compatibility updated 2026-10-14 (Phase 1.1).
+Initial assessment: 2026-10-13; policy hardening updated 2026-10-14 (Phase 2A).
 Scope: a new Path A application. The completed local
 slice makes release eligibility decisions; the competition integration and release
 execution remain pending. It consumes no previous application's implementation.
@@ -30,6 +30,12 @@ database, deployment endpoint or cloud account is required.
 
 - `run-check tests` executes pytest and parses its actual JUnit XML. Failed command,
   test failure, test error, inconsistent counts, or no passing tests is denied.
+  Policy v2 also requires the reviewed `tests/required-tests.json` identity set.
+  JUnit `classname::name` identities must be unique; all mandatory cases must be
+  present. Extra passing tests cannot replace missing cases. Any skip denies; no
+  allowlist is currently justified. Neither artifacts nor model output may choose
+  required cases or waive skips. The trusted pure-policy caller supplies the set;
+  the CLI reads only the fixed repository manifest and fails closed if unavailable.
 - `run-check security` executes Bandit over every Python file under `src`, with
   `--ignore-nosec`. Its JSON findings and metrics must agree. Parse errors, missing
   results, no scanned files, unsupported severities and unexpected exits fail closed.
@@ -52,7 +58,7 @@ database, deployment endpoint or cloud account is required.
 The local SHA is a reference to Git HEAD, **not proof of a clean committed tree**.
 Local artifacts explicitly say `local-working-tree`; the digest binds uncommitted
 source too. Source identity covers Python files in `src` and `tests`, plus
-`pyproject.toml`, `.gitlab-ci.yml` and `uv.lock`. Filesystem hashes detect accidental
+`pyproject.toml`, `.gitlab-ci.yml`, `uv.lock` and `tests/required-tests.json`. Filesystem hashes detect accidental
 mixing or modification; they are not signed attestations and cannot stop an attacker
 who controls the code, reports and runner. Phase 2 must protect the default branch,
 policy changes, runner, CI variables, artifacts and approver identity.
@@ -64,11 +70,13 @@ in the local DENY demonstration is never imported or executed.
 
 ## GitLab capabilities versus this environment
 
-The checkout still has only GitHub `origin`. At the Phase 1 assessment no GitLab
-project URL, glab command, credential environment variable or connected browser
-surface was found; the user then confirmed onboarding was incomplete. Phase 1.1
-does not refresh account/onboarding state. Account/project access, edition, credits,
-runner and permissions remain **NOT VERIFIED** without new platform evidence.
+The checkout retains GitHub `origin` and a separate official `gitlab` remote.
+The workspace and welcome issue are provisioned. Phase 2 preflight found no usable
+local GitLab credential or controllable signed-in browser; `/api/v4/user` returned
+401 anonymously. Public project reads do not establish membership. Authentication
+is BLOCKED; account role, edition, credits, runner and write permissions remain
+**NOT VERIFIED**. An isolated content import preserves the GitLab initialization
+ancestor and README; GitHub retains its independent history and upstream.
 
 | Capability | Official support | Competition project validation |
 |---|---|---|

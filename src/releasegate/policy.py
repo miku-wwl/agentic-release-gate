@@ -43,7 +43,7 @@ class Decision:
     next_gate: str | None
     evidence_digest: str | None
     execution_authorized: bool = False
-    policy_version: str = "releasegate-policy-v1"
+    policy_version: str = "releasegate-policy-v2"
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -60,10 +60,18 @@ def evaluate(
     target: str,
     gate: str = "eligibility",
     approval: ApprovalFacts | None = None,
+    required_test_ids: frozenset[str] | None = None,
 ) -> Decision:
     """Fail closed. Caller must independently establish artifact provenance and human identity."""
     reasons = []
     evidence_digest = None
+    if (
+        type(required_test_ids) is not frozenset
+        or not required_test_ids
+        or any(type(value) is not str or not 1 <= len(value) <= 1024 for value in required_test_ids)
+    ):
+        reasons.append("MANDATORY_TEST_SET_NOT_CONFIGURED")
+        required_test_ids = frozenset()
     if type(expected_commit) is not str or not SHA.fullmatch(expected_commit):
         reasons.append("INVALID_COMMIT_SHA")
     if type(target) is not str or target not in TARGETS:
@@ -143,8 +151,10 @@ def evaluate(
         if kind == "tests":
             if (
                 type(summary) is not dict
-                or set(summary) != {"total", "passed", "failed", "errors", "skipped"}
-                or not all(_count(v) for v in summary.values())
+                or set(summary) != {"total", "passed", "failed", "errors", "skipped", "case_ids"}
+                or not all(
+                    _count(summary[k]) for k in ("total", "passed", "failed", "errors", "skipped")
+                )
                 or summary["total"]
                 != sum(summary[k] for k in ("passed", "failed", "errors", "skipped"))
             ):
@@ -158,6 +168,21 @@ def evaluate(
                 reasons.append("TESTS_FAILED")
             elif summary["passed"] == 0:
                 reasons.append("NO_PASSING_TESTS")
+            if type(summary) is dict and "case_ids" in summary:
+                case_ids = summary["case_ids"]
+                if (
+                    type(case_ids) is not list
+                    or any(
+                        type(value) is not str or not 1 <= len(value) <= 1024 for value in case_ids
+                    )
+                    or len(case_ids) != summary.get("total")
+                    or len(set(case_ids)) != len(case_ids)
+                ):
+                    reasons.append("UNUSABLE_TEST_IDENTITIES")
+                elif not required_test_ids <= set(case_ids):
+                    reasons.append("MISSING_MANDATORY_TESTS")
+                if _count(summary.get("skipped")) and summary["skipped"]:
+                    reasons.append("UNAPPROVED_TEST_SKIPS")
         else:
             if (
                 type(summary) is not dict

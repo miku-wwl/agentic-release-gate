@@ -6,6 +6,9 @@ from releasegate.policy import ApprovalFacts, digest, evaluate
 
 
 def assess(evidence, sha, **kwargs):
+    kwargs.setdefault(
+        "required_test_ids", frozenset({"fixture::required_one", "fixture::required_two"})
+    )
     return evaluate(evidence, expected_commit=sha, target=kwargs.pop("target", "staging"), **kwargs)
 
 
@@ -192,3 +195,46 @@ def test_evidence_digest_changes_on_new_finding(evidence, sha):
     old = assess(evidence, sha).evidence_digest
     evidence["checks"]["security"]["summary"]["scanned_files"] += 1
     assert assess(evidence, sha).evidence_digest != old
+
+
+def test_one_pass_and_83_skips_is_denied(evidence, sha):
+    ids = [f"fixture::required_{i}" for i in range(84)]
+    evidence["checks"]["tests"]["summary"] = {
+        "total": 84,
+        "passed": 1,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 83,
+        "case_ids": ids,
+    }
+    result = assess(evidence, sha, required_test_ids=frozenset(ids))
+    assert result.decision == "DENY"
+    assert "UNAPPROVED_TEST_SKIPS" in result.reasons
+    assert result.next_gate is None and result.execution_authorized is False
+
+
+def test_missing_mandatory_test_cannot_be_replaced_by_extra_pass(evidence, sha):
+    evidence["checks"]["tests"]["summary"]["case_ids"][1] = "fixture::extra_pass"
+    result = assess(evidence, sha)
+    assert result.decision == "DENY" and "MISSING_MANDATORY_TESTS" in result.reasons
+
+
+def test_one_unapproved_skip_denies(evidence, sha):
+    evidence["checks"]["tests"]["summary"].update(passed=1, skipped=1)
+    assert "UNAPPROVED_TEST_SKIPS" in assess(evidence, sha).reasons
+
+
+def test_passing_subset_does_not_replace_mandatory_suite(evidence, sha):
+    required = frozenset({"fixture::required_one", "fixture::required_two", "fixture::missing"})
+    assert "MISSING_MANDATORY_TESTS" in assess(evidence, sha, required_test_ids=required).reasons
+
+
+def test_mandatory_policy_is_not_optional(evidence, sha):
+    result = evaluate(evidence, expected_commit=sha, target="staging")
+    assert result.decision == "DENY"
+    assert "MANDATORY_TEST_SET_NOT_CONFIGURED" in result.reasons
+
+
+def test_duplicate_identities_cannot_satisfy_mandatory_suite(evidence, sha):
+    evidence["checks"]["tests"]["summary"]["case_ids"] = ["fixture::required_one"] * 2
+    assert "UNUSABLE_TEST_IDENTITIES" in assess(evidence, sha).reasons

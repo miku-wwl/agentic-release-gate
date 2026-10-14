@@ -17,7 +17,7 @@ verified the shared Runtime v0.2.0 MIT license; execution integration remains de
 |---|---|
 | New app and pipeline, post-code automation | New Python package, tests, CI and Duo flow |
 | Genuine Duo Agent Platform use | Mandatory; NOT VERIFIED until actual session |
-| Public GitLab project with full source/instructions | BLOCKED: onboarding incomplete; GitHub origin alone is insufficient |
+| Public GitLab project with full source/instructions | Workspace provisioned; source publication BLOCKED by local authentication |
 | MIT license visible in GitLab About | Root LICENSE added; GitLab visibility NOT VERIFIED |
 | Visible CI execution history | NOT RUN on GitLab; local pytest is not a substitute |
 | Text description of problem, product and GitLab use | README / architecture foundation; final submission pending |
@@ -30,8 +30,8 @@ Path A; there is no need to provision infrastructure in Phase 1.
 [Submission requirements](https://gitlab-transcend.devpost.com/).
 
 Contributor approval provisions a group, subgroup, project and welcome issue.
-Onboarding typically takes about 24 business hours. The user is completing it;
-do not infer permissions or credits until the provisioned project can be inspected.
+Onboarding typically takes about 24 business hours. The workspace is now provisioned;
+public read access does not establish authenticated permissions or credits.
 [Official onboarding resources](https://gitlab-transcend.devpost.com/resources).
 
 ## Phase 1 acceptance
@@ -39,6 +39,7 @@ do not infer permissions or credits until the provisioned project can be inspect
 | Requirement | Status |
 |---|---|
 | Failed tests deny | Implemented; tested locally |
+| Missing mandatory tests / unapproved skips deny | Policy v2; reviewed 96-case manifest; tested locally |
 | HIGH/CRITICAL findings deny | Implemented; real Bandit HIGH demo plus policy CRITICAL tests |
 | Missing/malformed evidence denies | Implemented; tested locally |
 | Wrong commit denies | Implemented; tested locally |
@@ -49,7 +50,7 @@ do not infer permissions or credits until the provisioned project can be inspect
 | Real successful and blocked GitLab workflows | NOT RUN; local counterparts are explicitly labeled |
 | Runtime integration without core modifications | v0.2.0 MIT/install verified on 3.13; execution deferred until after GitLab verification |
 
-## Platform validation required after onboarding
+## Platform validation required after authentication
 
 Verify project membership (Maintainer for Catalog/trigger setup), Duo/Core/Agent
 Platform enablement, custom-flow enablement, available credits, runner availability,

@@ -52,12 +52,42 @@ def main():
         env.pop(name, None)
     results = {}
     records = []
-    for scenario in ("allow", "deny"):
+    for scenario in ("allow", "deny", "skipped", "missing"):
         root = directory / scenario
         root.mkdir()
-        for folder in ("src", "tests", ".gitlab"):
+        for folder in ("src", ".gitlab"):
             shutil.copytree(
                 ROOT / folder, root / folder, ignore=shutil.ignore_patterns("__pycache__")
+            )
+        if scenario in {"skipped", "missing"}:
+            # Safe negative suites run real pytest. Their fixed mandatory manifest
+            # belongs only to this isolated fixture, never to the application's suite.
+            (root / "tests").mkdir()
+            cases = 84 if scenario == "skipped" else 83
+            (root / "tests" / "test_required.py").write_text(
+                "import pytest\n\n"
+                f"@pytest.mark.parametrize('case', range({cases}))\n"
+                "def test_required(case):\n"
+                + (
+                    "    if case:\n        pytest.skip('Unapproved negative fixture')\n"
+                    if scenario == "skipped"
+                    else ""
+                )
+                + "    assert case >= 0\n",
+                encoding="utf-8",
+            )
+            write_json(
+                root / "tests" / "required-tests.json",
+                {
+                    "schema_version": 1,
+                    "required_case_ids": [
+                        f"tests.test_required::test_required[{case}]" for case in range(84)
+                    ],
+                },
+            )
+        else:
+            shutil.copytree(
+                ROOT / "tests", root / "tests", ignore=shutil.ignore_patterns("__pycache__")
             )
         for name in ("pyproject.toml", ".gitlab-ci.yml", "uv.lock"):
             shutil.copy2(ROOT / name, root / name)
@@ -74,7 +104,7 @@ def main():
             root,
             env,
             records,
-            expected=0 if scenario == "allow" else 1,
+            expected=1 if scenario == "deny" else 0,
         )
         command(
             ["evaluate", "--sha", sha, "--target", "staging"],
@@ -88,6 +118,10 @@ def main():
         raise RuntimeError("ALLOW did not stop at human approval")
     if "SECURITY_HIGH" not in results["deny"]["reasons"]:
         raise RuntimeError("Real scanner finding did not produce DENY")
+    if "UNAPPROVED_TEST_SKIPS" not in results["skipped"]["reasons"]:
+        raise RuntimeError("One pass and 83 unapproved skips did not produce DENY")
+    if "MISSING_MANDATORY_TESTS" not in results["missing"]["reasons"]:
+        raise RuntimeError("83 passes cannot replace the 84 mandatory tests")
     command(
         [
             "evaluate",
@@ -123,6 +157,8 @@ def main():
                 "verification": str(directory / "verification.json"),
                 "allow": results["allow"]["decision"],
                 "deny": results["deny"]["decision"],
+                "skipped": results["skipped"]["decision"],
+                "missing": results["missing"]["decision"],
                 "gitlab_duo": "NOT VERIFIED",
                 "deployment": "NOT RUN",
             }

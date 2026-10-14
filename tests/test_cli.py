@@ -16,6 +16,10 @@ def test_missing_reports_emit_durable_deny(tmp_path, monkeypatch, sha, capsys):
     monkeypatch.chdir(tmp_path)
     (tmp_path / "src").mkdir()
     (tmp_path / "src" / "example.py").write_text("value = 1\n")
+    (tmp_path / "tests").mkdir()
+    (tmp_path / "tests/required-tests.json").write_text(
+        json.dumps({"schema_version": 1, "required_case_ids": ["tests.example::example"]})
+    )
     assert main(["evaluate", "--sha", sha, "--target", "staging"]) == 1
     result = json.loads((tmp_path / "evidence" / "decision.json").read_text())
     assert result["decision"] == "DENY"

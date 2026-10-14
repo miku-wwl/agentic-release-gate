@@ -36,22 +36,55 @@
   Correct only the release command's obsolete informational Runtime status.
 - Rerun existing local validation and document results in `phase1.1-handoff.md`.
 
-## Phase 2a — genuine GitLab Duo/CI verification first
+## Phase 2A — controlled GitLab import and genuine CI verification
 
-1. Obtain the official provisioned project URL and inspect roles, settings, runner,
-   credits and available AI tools. Add the GitLab remote only when delivery is agreed.
-2. Validate `.gitlab-ci.yml` with that project's GitLab CI Lint, publish the scoped
-   changes when authorized, and preserve real passing/blocked pipeline histories.
-3. Import and enable the prepared flow. Run Mention or Assign reviewer on a real MR.
+1. Phase 1.2 added the provisioned project's separate GitLab remote. Its handoff was
+   published to GitHub as `ba1690d787312d642e8bee2680f46d5d9f4a572c`. Preserve
+   GitHub origin and `main -> origin/main`; refresh GitLab main before importing.
+2. Verify authenticated identity, membership, branch/MR rights and runners. Current
+   anonymous identity request returned HTTP 401; local authentication is BLOCKED.
+   Complete independent local preparation while this external dependency is missing.
+3. Policy v2 adds a reviewed, source-bound mandatory-test identity manifest and
+   denies all skips. Qualify existing behavior and regression cases with real pytest,
+   Bandit, ALLOW/DENY demos, frozen dependencies, static and package checks. Normally
+   publish the reviewed preparation to GitHub and record its immutable source SHA.
+4. Create `import/releasegate-phase2a` in an isolated worktree based on GitLab main.
+   Transfer only tracked files from that GitHub SHA, archive the official initial
+   README and add its workspace/welcome links to the product README. Validate the
+   combined tree, commit locally, then push that branch and open an MR only after
+   authenticated permissions are verified. Never merge unrelated histories or
+   overwrite GitLab main; leave the MR open.
+5. Use the project's documented `POST /projects/87602765/ci/lint` with the YAML
+   `content` and `include_jobs: true`; after the branch exists, use `dry_run: true`
+   and its `ref` to inspect pipeline creation. Lint/simulation is not job execution.
+   [CI Lint API](https://docs.gitlab.com/api/lint/).
+6. Observe actual validate/tests/security/release_policy/evidence_bundle jobs, their
+   URLs, statuses, SHA, raw artifacts and decisions. Confirm runner context and
+   artifact availability rather than inferring success from local checks.
+7. Use isolated, safe negative branches for failing tests, mandatory omissions/skips,
+   high findings and evidence/SHA mismatches. Preserve expected denial job failures
+   separately from baseline defects. The existing tests and local demo prepare these
+   checks; they do not prove hosted execution.
+8. MR pipelines cannot demonstrate the protected-default-branch manual review rule.
+   Inspect branch protection and server lint/job inclusion; defer actual protected
+   main manual-job observation until a human authorizes/merges the MR. Do not weaken
+   the rule, merge automatically, grant approval or perform production deployment.
+
+## Phase 2B — genuine GitLab Duo release-risk workflow
+
+1. After real MR/pipeline context exists, inspect existing feature entitlement,
+   credits, custom-flow enablement and Maintainer/Owner permissions. Authentication
+   currently blocks inspection; no paid resource activation is authorized.
+2. Import and enable the prepared flow. Run Mention or Assign reviewer on a real MR.
    Resolve observed schema/tool differences using official documentation. Store the
    actual session URL, flow version, input SHA, tool calls and output without secrets.
-4. Add Passed/Failed pipeline triggers only after validating their payloads. Keep
+3. Add Passed/Failed pipeline triggers only after validating their payloads. Keep
    deterministic CI policy independent of AI risk text. Do not invent a Duo API job.
-5. Demonstrate one real passing candidate and one real blocked candidate, with AI
+4. Demonstrate one real passing candidate and one real blocked candidate, with AI
    session, pipeline/job URLs and raw artifacts. Runtime execution is not required
    to qualify these eligibility and human-review boundaries.
 
-## Phase 2b — persistent release execution after platform verification
+## Future milestone — persistent release execution after platform verification
 
 1. Select an actual, explicitly authorized release effect and human-identity adapter.
    Decide whether the future execution composition and its CI should use Python 3.13

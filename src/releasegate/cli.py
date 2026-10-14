@@ -2,7 +2,13 @@ import argparse
 import json
 from pathlib import Path
 
-from releasegate.evidence import EvidenceError, load_evidence, run_check, write_json
+from releasegate.evidence import (
+    EvidenceError,
+    load_evidence,
+    load_required_tests,
+    run_check,
+    write_json,
+)
 from releasegate.policy import Decision, evaluate
 
 
@@ -59,7 +65,13 @@ def main(argv=None) -> int:
             return result["exit_code"] if result["exit_code"] in range(0, 6) else 2
         evidence = load_evidence(args.evidence_dir.resolve(), root=Path.cwd())
         # No JSON/env/LLM approval input. Production final gate requires a future trusted adapter.
-        result = evaluate(evidence, expected_commit=args.sha, target=args.target, gate=args.gate)
+        result = evaluate(
+            evidence,
+            expected_commit=args.sha,
+            target=args.target,
+            gate=args.gate,
+            required_test_ids=load_required_tests(Path.cwd()),
+        )
     except (EvidenceError, OSError, ValueError, TypeError, KeyError) as exc:
         if args.command == "run-check":
             print(

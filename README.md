@@ -4,8 +4,9 @@ Commit-bound release evidence and deterministic policy for GitLab Transcend
 **Life After Code**, Path A / Supervised. Phase 1 evaluates actual pytest and Bandit
 reports, blocks unsafe candidates, and produces JSON evidence for human review.
 
-**Status:** local implementation runnable; GitLab pipelines NOT RUN; GitLab Duo
-NOT VERIFIED (onboarding pending). Production execution is disabled. ALLOW means
+**Status:** Phase 2A preparation validated locally (96 tests). The official GitLab
+workspace is provisioned; authenticated access is BLOCKED in this environment.
+GitLab pipelines and Duo execution are NOT VERIFIED. Production execution is disabled. ALLOW means
 eligible for the next gate, never execution authorization. The pinned shared
 Runtime v0.2.0 is MIT licensed and verified separately on Python 3.13. Its execution
 integration is deferred until after genuine GitLab Duo/CI verification; see
@@ -42,6 +43,14 @@ DENY exits 1; unusable check collection exits 2. Security collection records Ban
 actual exit, and applies the HIGH threshold to its own command exit; LOW/MEDIUM
 findings remain in evidence. Checks cannot be waived by LLM recommendations.
 
+Policy v2 requires every test identity in the reviewed `tests/required-tests.json`
+manifest and denies any skipped test. There are no skip exceptions. Missing or
+duplicate identities, substituted extra tests and absent/malformed policy fail closed.
+Manifest changes require human review, like changes to tests or policy code; the
+collector includes the manifest in its source digest. The demo also runs actual
+isolated pytest suites with 1 pass/83 skips and 83 passes/1 missing mandatory case;
+both must produce DENY. These are local negative fixtures, not GitLab executions.
+
 ## GitLab setup
 
 The initial `.gitlab-ci.yml` runs validation, tests, security, policy, evidence
@@ -55,5 +64,5 @@ the file alone does not install a flow. See [Duo setup](docs/duo-integration.md)
 - [Phase 1 handoff and actual verification](docs/phase1-handoff.md)
 - [Phase 1.1 Runtime compatibility update](docs/phase1.1-handoff.md)
 
-MIT licensed. AGENTS.md is preserved. No commit, push, tag, deployment or submission
-is performed by this phase.
+MIT licensed. AGENTS.md is preserved. GitHub publication and a GitLab import branch
+are authorized for this milestone; deployment and automatic MR merge are excluded.

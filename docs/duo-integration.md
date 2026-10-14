@@ -17,7 +17,7 @@ flow uses one AgentComponent, an inline prompt, a final-answer log event and `en
 routing. JSON is requested in the prompt; Phase 1 never trusts this text as policy
 input. [Custom-flow schema](https://docs.gitlab.com/user/duo_agent_platform/flows/custom_flows_schema/).
 
-## Exact setup after onboarding
+## Exact setup after authenticated access is available
 
 1. Open the provisioned project and welcome issue. Verify runner access and Duo
    enablement/credits; note the actual roles and supported features.
@@ -55,5 +55,24 @@ Do not save tokens or full sensitive job logs to the public repository.
 
 After successful initial runs, consider pipeline Passed/Failed triggers with a
 separate prompt handling the documented webhook payload. No generic MR-updated
-trigger is assumed. No live registration, session, server schema validation or
-pipeline execution occurred in Phase 1 because onboarding is still incomplete.
+trigger is assumed. The current trigger documentation also lists selected MR
+actions, such as Created and Marked ready; verify the actual project's supported
+actions before selecting one. Mention/Assign reviewer remains the minimal first run.
+
+## Phase 2 access and qualification (2026-10-14)
+
+Onboarding is complete and the official workspace is publicly readable. Local
+GitLab authentication returned HTTP 401 and no controllable browser was connected.
+Registration, project schema acceptance, trigger configuration, model execution and
+sessions are **NOT VERIFIED**, blocked by authentication. No Codex output substitutes
+for Duo evidence. Roles and existing credits/entitlements must be inspected after
+login; do not purchase credits or change paid/security settings to unblock a run.
+The current custom-flow schema chooses its model through group/instance settings;
+our YAML deliberately has no `model` override. Platform documentation describes
+credit consumption, but does not establish this hackathon project's entitlement.
+[Platform prerequisites](https://docs.gitlab.com/user/duo_agent_platform/).
+
+The reviewer must inspect mandatory-test coverage and unapproved skips in addition
+to counts, findings and SHA. Its JSON remains advisory text even if valid: it cannot
+produce `ApprovalFacts`, grant execution authorization or override a DENY. Record a
+real session only after an MR and genuine pipeline context exist.

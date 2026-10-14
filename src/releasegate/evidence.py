@@ -58,6 +58,7 @@ def parse_junit(raw: bytes) -> dict:
         if not suites or any(list(s.iter("testsuite"))[1:] for s in suites):
             raise EvidenceError("UNSUPPORTED_JUNIT_STRUCTURE")
         result = dict.fromkeys(("total", "passed", "failed", "errors", "skipped"), 0)
+        case_ids = []
         for suite in suites:
             cases = suite.findall("testcase")
             declared = {k: int(suite.attrib[k]) for k in ("tests", "failures", "errors", "skipped")}
@@ -65,6 +66,10 @@ def parse_junit(raw: bytes) -> dict:
                 raise EvidenceError("JUNIT_COUNT_MISMATCH")
             actual = {k: 0 for k in ("failures", "errors", "skipped")}
             for case in cases:
+                classname, name = case.get("classname"), case.get("name")
+                if not classname or not name or len(classname + "::" + name) > 1024:
+                    raise EvidenceError("MISSING_JUNIT_TEST_IDENTITY")
+                case_ids.append(classname + "::" + name)
                 flags = [bool(case.findall(tag)) for tag in ("failure", "error", "skipped")]
                 if sum(flags) > 1:
                     raise EvidenceError("AMBIGUOUS_JUNIT_CASE")
@@ -77,6 +82,9 @@ def parse_junit(raw: bytes) -> dict:
             result["errors"] += actual["errors"]
             result["skipped"] += actual["skipped"]
         result["passed"] = result["total"] - sum(result[k] for k in ("failed", "errors", "skipped"))
+        if len(set(case_ids)) != len(case_ids):
+            raise EvidenceError("DUPLICATE_JUNIT_TEST_IDENTITY")
+        result["case_ids"] = case_ids
         return result
     except EvidenceError:
         raise
@@ -157,7 +165,7 @@ def source_digest(root: Path) -> str:
         [p for folder in ("src", "tests") for p in (root / folder).rglob("*.py")]
         + [
             root / name
-            for name in ("pyproject.toml", ".gitlab-ci.yml", "uv.lock")
+            for name in ("pyproject.toml", ".gitlab-ci.yml", "uv.lock", "tests/required-tests.json")
             if (root / name).is_file()
         ]
     )
@@ -167,6 +175,25 @@ def source_digest(root: Path) -> str:
         p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths
     }
     return digest(entries)
+
+
+def load_required_tests(root: Path) -> frozenset[str]:
+    """Trusted repository policy; never accept mandatory-test or skip rules from evidence/LLMs."""
+    value = read_json(root / "tests" / "required-tests.json")
+    if (
+        set(value) != {"schema_version", "required_case_ids"}
+        or type(value["schema_version"]) is not int
+        or value["schema_version"] != 1
+        or type(value["required_case_ids"]) is not list
+        or not value["required_case_ids"]
+        or any(
+            type(case_id) is not str or not 1 <= len(case_id) <= 1024
+            for case_id in value["required_case_ids"]
+        )
+        or len(set(value["required_case_ids"])) != len(value["required_case_ids"])
+    ):
+        raise EvidenceError("UNUSABLE_MANDATORY_TEST_MANIFEST")
+    return frozenset(value["required_case_ids"])
 
 
 def context_for(root: Path) -> dict:
