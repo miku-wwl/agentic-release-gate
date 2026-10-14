@@ -49,12 +49,14 @@ inferred from these flags.
 | Phase 2A mandatory-policy source | `98d81957f19afa8d7de8843236b7497d5baac2b3` |
 | Hosted-boundary preparation, GitHub | `5cc2f679bef1160b507cca02b094a876c7448e00` |
 | Gitless CI correction, GitHub | `3b6b27765fb0eed36b5f86ac90a6a5dca04d985e` |
+| Reviewed documentation source, GitHub | `7a692fbba0139fd4805fc9c2bce95eda35d5eebf` |
 | GitLab remote | `https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase.git` — unchanged |
 | Isolated worktree | `D:\workshop\oct\agentic-release-gate-phase2a` |
 | Integration branch / upstream | `import/releasegate-phase2a -> gitlab/import/releasegate-phase2a` |
 | Initial imported snapshot | `6b1b8c04ec9e770cf59e9bbff264e7454b52092b` |
 | Hosted-boundary commit reviewed by Duo | `4182deb55678382c0a99f7b1fd8e2232d17a0611` |
 | Corrected, CI-qualified GitLab code | `d05e8bb205a0411c5f7b5bc5c6fc68b0b367a7cf` |
+| Final GitLab MR head, including documentation | `559c47fa7a645795cd6ca46f91825445d29d70a6` — local/tracking/live refs match |
 | GitLab main | `e4239c704040e427ef6ded36a4163113f995cef9` — initialization retained |
 | Merge Request | [!1, opened](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/1), import branch → main; auto-merge disabled |
 
@@ -71,6 +73,9 @@ SSH origin or primary upstream. GitLab pushes target only the integration branch
 This report records qualified code SHAs. Subsequent documentation-only publication
 SHAs and the final matching local/tracking/live refs are recorded in the delivery
 response, avoiding an impossible self-referential report commit.
+GitLab's final documentation-head pipeline was verified after publication. This
+final observation is added to the GitHub handoff; the GitLab copy remains at the
+reviewed documentation source above, avoiding a new commit merely to name itself.
 
 ## Local and genuine hosted CI qualification
 
@@ -97,6 +102,7 @@ no errors/warnings, including `review_release_candidate`. Hosted jobs use
 | [2946763436 — initial MR](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2946763436) | `6b1b8c0…`; SUCCESS, five jobs |
 | [2946803065 — first boundary job](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2946803065) | `4182deb…`; FAILED: demo called unavailable `git`; five other jobs passed |
 | [2946878007 — reviewed correction](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2946878007) | `d05e8bb…`; SUCCESS, all six MR jobs |
+| [2946935881 — final documentation head](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2946935881) | `559c47f…`; SUCCESS, all six MR jobs; fresh reports verified for this exact SHA |
 
 Pipeline `2946803065` was a real integration defect, not an expected policy DENY.
 Its failure log is retained. The reviewed correction uses validated `CI_COMMIT_SHA`
@@ -120,6 +126,14 @@ collector applies the existing HIGH threshold. Both envelopes bind `origin=gitla
 project `87602765`, pipeline `2946878007`, SHA `d05e8bb…` and matching source digest.
 The actual policy and evidence-bundle decisions are **ALLOW**, next gate
 **HUMAN_APPROVAL**, always `execution_authorized=false`.
+
+The final MR head's pipeline `2946935881` was independently qualified again from
+its actual logs/artifacts: **96 passed**, the same two LOW findings, ALLOW to human
+review, all expected boundary DENYs, production-final DENY/exit 1 and release
+DENY/exit 3. Jobs `17172029784` through `17172029789` all succeeded. Both hosted
+envelopes bind project `87602765`, this new pipeline and SHA `559c47f…`; earlier
+pipeline success was not substituted for current-head evidence. MR !1 remains
+opened with auto-merge disabled, and the sole observed Duo session remains finished.
 
 ## Actual ALLOW/DENY boundaries
 
@@ -212,6 +226,9 @@ are retained. No shared Runtime source was modified. Existing root `main` and
 integration worktree were clean after code correction publication. Reviewed
 report changes are separately committed; final status/ref equality is checked
 again and reported with the documentation publication SHAs.
+After GitLab documentation publication, both worktrees were CLEAN with matching
+local/tracking/live branch SHAs; GitLab main remained the initialization commit.
+Only this final observation subsequently updates the GitHub handoff.
 
 Raw API receipts, traces, logs, actual artifacts and bounded qualification metadata
 remain ignored under `.artifacts/phase2/auth-refresh-retry/`. Earlier evidence under
@@ -227,6 +244,9 @@ Key retained receipts: `preflight.json`, `project-access.json`, `ci-boundaries-l
 `36ae41bfc350c4d4d79d342a8fc40eaf4f41f9441f59e43ecc3191e07777912f`;
 its real verification transcript SHA-256:
 `50d8d98efcfb3aa015c901c59cbe947ff1a91fbb29152c6e0275c067ce0bf403`.
+The final-head receipt is `ci-verification-2946935881.json`; its boundary ZIP
+SHA-256 is `bfe7ca667e99e758ea0e49ee2ffb3e95b6d4d2b991bf7b720445dab150bd412c`,
+and transcript SHA-256 is `63b0e980f1ba189096129e6e4b7d3519ce5926596493d8fca7315d7f042fa2a5`.
 
 ## Remaining blockers and next action
 
