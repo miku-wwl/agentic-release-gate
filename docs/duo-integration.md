@@ -1,7 +1,40 @@
-# GitLab Duo release-risk flow — prepared, NOT VERIFIED
+# GitLab Duo integration — genuine foundational review, custom flow pending
+
+Updated: 2026-10-15. Authentication is VERIFIED in the actual glab execution
+environment as `weilai-wang`, Developer (30). The project has enabled foundational
+and remote flows and an available Duo workflow runner. The existing Code Review
+Catalog consumer `12590001` (item `1796`, executed version `2514`) was invoked once
+on real MR !1 through the supported Flows API, after a real pipeline existed.
+[Flows API](https://docs.gitlab.com/api/duo_agent_platform_flows/).
+
+- [Session 9451709](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/automate/agent-sessions/9451709): `code_review/v1`, **finished**.
+- [Duo pipeline 2946840620](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2946840620): genuine `duo_workflow`, **success**, reviewed SHA `4182deb55678382c0a99f7b1fd8e2232d17a0611`.
+- [Actual Duo recommendation](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/1#note_4012466889): `git` is absent in the slim CI image; use CI commit identity for the demo. The failed job log independently confirms this defect.
+- Reviewed correction `d05e8bb205a0411c5f7b5bc5c6fc68b0b367a7cf` uses validated `CI_COMMIT_SHA` only in GitLab CI, retaining local Git lookup. [Corrected MR CI 2946878007](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2946878007) passed all six jobs.
+
+The actual trace includes structured model prescan JSON (`project_structure`,
+`custom_instructions_summary`, `related_files`, `key_patterns`, `recommendations`),
+MR context/file reads and `post_duo_code_review`. Its final advice is in MR comments.
+This is real Agent Platform execution, not Codex output. It does **not** qualify the
+prepared custom release-risk JSON contract or prove that Duo read CI artifacts.
+The invocation supplied the actual failed pipeline as additional context; observed
+tools prove MR/diff/file reads, not retrieval or interpretation of that pipeline.
+
+The Catalog resolved `environment=web` with approved privileges
+`read_write_gitlab`, `run_commands`, `use_git`, `read_only_files`, despite the
+request's ambient/read-only selection. Only context/file reads and MR review posts
+were observed; a hard read-only restriction is **NOT VERIFIED**. The trace also
+records access denial for `.gitlab/duo/mr-review-instructions.yaml` because
+`.gitlab/duo` matches Duo Context Exclusion. That file is not present in this
+repository; no group exclusion or security setting was changed. Do not claim the
+prepared YAML or AGENTS.md governed this foundational review.
+[Code Review Flow behavior](https://docs.gitlab.com/user/duo_agent_platform/flows/foundational_flows/code_review/).
 
 File: `.gitlab/duo/flows/release-risk.yaml`. This is a documented custom-flow body
-for the AI Catalog editor, not a promised automatic repository integration.
+for the AI Catalog editor; registration and execution remain **NOT VERIFIED**.
+Creating/enabling it is **BLOCKED** by the current Developer role: the supported
+setup requires Maintainer/Owner. Existing foundational execution did not register
+this file. [Custom-flow permissions](https://docs.gitlab.com/user/duo_agent_platform/flows/custom/).
 
 ## Purpose and boundaries
 
@@ -17,7 +50,7 @@ flow uses one AgentComponent, an inline prompt, a final-answer log event and `en
 routing. JSON is requested in the prompt; Phase 1 never trusts this text as policy
 input. [Custom-flow schema](https://docs.gitlab.com/user/duo_agent_platform/flows/custom_flows_schema/).
 
-## Exact setup after authenticated access is available
+## Remaining custom-flow setup by a Maintainer/Owner
 
 1. Open the provisioned project and welcome issue. Verify runner access and Duo
    enablement/credits; note the actual roles and supported features.
@@ -59,14 +92,13 @@ trigger is assumed. The current trigger documentation also lists selected MR
 actions, such as Created and Marked ready; verify the actual project's supported
 actions before selecting one. Mention/Assign reviewer remains the minimal first run.
 
-## Phase 2 access and qualification (2026-10-14)
+## Remaining qualification
 
-Onboarding is complete and the official workspace is publicly readable. Local
-GitLab authentication returned HTTP 401 and no controllable browser was connected.
-Registration, project schema acceptance, trigger configuration, model execution and
-sessions are **NOT VERIFIED**, blocked by authentication. No Codex output substitutes
-for Duo evidence. Roles and existing credits/entitlements must be inspected after
-login; do not purchase credits or change paid/security settings to unblock a run.
+Onboarding and authentication are complete. Foundational execution, its session,
+pipeline and model recommendation are VERIFIED. Custom registration, server schema
+acceptance, event trigger, strict read-tool allowlist and final risk JSON remain
+NOT VERIFIED. No paid feature or model purchase was made; credit balance and the
+specific model identifier are not established by the captured session.
 The current custom-flow schema chooses its model through group/instance settings;
 our YAML deliberately has no `model` override. Platform documentation describes
 credit consumption, but does not establish this hackathon project's entitlement.

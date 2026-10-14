@@ -1,19 +1,20 @@
-# ReleaseGate architecture — Phase 2 preparation
+# ReleaseGate architecture — Phase 2 platform qualification
 
-Initial assessment: 2026-10-13; policy hardening updated 2026-10-14 (Phase 2A).
+Initial assessment: 2026-10-13; platform evidence updated 2026-10-15.
 Scope: a new Path A application. The completed local
-slice makes release eligibility decisions; the competition integration and release
-execution remain pending. It consumes no previous application's implementation.
+slice makes release eligibility decisions. Real GitLab CI and foundational Duo
+review are qualified; custom risk-flow registration and release execution remain
+pending. It consumes no previous application's implementation.
 
 ## Smallest useful system
 
 ```mermaid
 flowchart LR
     MR[GitLab merge request] --> CI[pytest and Bandit jobs]
-    MR --> DUO[Duo release-risk flow]
+    MR --> DUO[Verified Duo Code Review Flow]
     CI --> RAW[Raw reports and provenance envelopes]
     RAW --> POLICY[Deterministic ReleaseGate policy]
-    DUO --> ADVICE[Advisory JSON and session evidence]
+    DUO --> ADVICE[MR advice, prescan JSON and session evidence]
     POLICY --> DENY[DENY with reasons]
     POLICY --> HUMAN[ALLOW to human review]
     HUMAN --> AUTH[Future independent execution authorization]
@@ -71,26 +72,30 @@ in the local DENY demonstration is never imported or executed.
 ## GitLab capabilities versus this environment
 
 The checkout retains GitHub `origin` and a separate official `gitlab` remote.
-The workspace and welcome issue are provisioned. Phase 2 preflight found no usable
-local GitLab credential or controllable signed-in browser; `/api/v4/user` returned
-401 anonymously. Public project reads do not establish membership. Authentication
-is BLOCKED; account role, edition, credits, runner and write permissions remain
-**NOT VERIFIED**. An isolated content import preserves the GitLab initialization
-ancestor and README; GitHub retains its independent history and upstream.
+After the user's secure OAuth refresh, the actual glab process authenticated as
+`weilai-wang`, with Developer (30) group access. The isolated import is published
+as MR !1, preserving the GitLab initialization ancestor and README. GitHub retains
+its independent history and upstream. Runner inventory access returned 403, but
+successful hosted jobs independently prove shared-runner execution. Project Duo
+remote/foundational flows and workflow-runner availability are enabled. Actual
+execution proves this review was available; no paid tier or credit balance is inferred.
+See [the SHA-bound qualification record](phase2-unified-handoff.md).
 
 | Capability | Official support | Competition project validation |
 |---|---|---|
 | Custom agents | UI/AI Catalog prompt and explicit tool selection | NOT VERIFIED |
-| Custom flows | Catalog-managed v1 YAML; own AgentComponents | Prepared YAML; platform NOT VERIFIED |
-| Event triggers | Flows/external agents, not custom agents | Mention/Assign reviewer first; NOT VERIFIED |
-| Read tools | MR, diffs, repository file, job logs, REST GET | Selected only; availability NOT VERIFIED |
-| GitLab CI artifacts | Raw paths and pytest JUnit report | Local collection PASS; server NOT RUN |
-| Manual job | Blocking with `allow_failure: false` | Config prepared; server NOT RUN |
+| Custom flows | Catalog-managed v1 YAML; own AgentComponents | Prepared YAML; registration BLOCKED by Developer role |
+| Foundational Code Review Flow | Existing project Catalog configuration; supported Flows API | Session 9451709 finished; genuine MR review VERIFIED |
+| Event triggers | Flows/external agents, not custom agents | Explicit API invocation VERIFIED; custom event trigger NOT VERIFIED |
+| Read tools | MR context, repository files and diffs | Real calls observed; pipeline artifact reads by Duo NOT VERIFIED |
+| GitLab CI artifacts | Raw paths and pytest JUnit report | Hosted 96-case suite, Bandit, decisions and boundary artifacts VERIFIED |
+| Manual job | Blocking with `allow_failure: false` | Server lint accepted; protected-main execution NOT VERIFIED while MR stays open |
 | Protected deployment approval | Premium/Ultimate; separate approval and job run | Deferred; edition/rules NOT VERIFIED |
-| Agent sessions | AI > Sessions, execution logs | NOT VERIFIED; no session fabricated |
+| Agent sessions | AI > Sessions, execution logs | Session, trace, model output, MR notes and Duo pipeline VERIFIED |
 
-Custom agents are created/enabled by Maintainers or Owners. For Phase 1, a custom
-flow is preferable because it can later receive MR triggers. Custom flows cannot
+Custom agents/flows are created/enabled by Maintainers or Owners. The current
+Developer role can invoke the already enabled foundational flow but cannot register
+the prepared custom flow. Custom flows cannot
 call a separately created custom agent. [Custom agents](https://docs.gitlab.com/user/duo_agent_platform/agents/custom/),
 [custom flows](https://docs.gitlab.com/user/duo_agent_platform/flows/custom/).
 
@@ -101,14 +106,24 @@ phase does not require. [AI Catalog](https://docs.gitlab.com/user/duo_agent_plat
 
 The flow uses `version: v1`, `environment: ambient`, inline prompts and a single
 AgentComponent. It requests JSON text; server-enforced `response_schema_id` is
-unsupported for custom flows, so it is deliberately absent. No guessed Duo REST
-invocation or custom-agent YAML import is provided. [Custom flow restrictions](https://docs.gitlab.com/user/duo_agent_platform/flows/custom_flows_schema/),
+unsupported for custom flows, so it is deliberately absent. The real foundational
+invocation used the documented `POST /ai/duo_workflows/workflows` with the existing
+Code Review Catalog consumer. [Flows API](https://docs.gitlab.com/api/duo_agent_platform_flows/),
+[custom flow restrictions](https://docs.gitlab.com/user/duo_agent_platform/flows/custom_flows_schema/),
 [v1 specification](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/blob/main/docs/flow_registry/v1.md).
 
 Triggers are separately configured. Mention or Assign reviewer provides MR context;
 pipeline events provide a webhook payload. Do not assume a universal MR-update event
 or repository-config-path availability. Later automate pipeline Passed/Failed events
 after validating their actual availability and payload. [Triggers](https://docs.gitlab.com/user/duo_agent_platform/triggers/).
+
+The actual Catalog session resolved to `web` and privileges
+`read_write_gitlab`, `run_commands`, `use_git`, `read_only_files`, overriding the
+requested ambient/read-only profile. Observed tools read context/files and posted
+review notes; restricted read-only enforcement is NOT VERIFIED. The model's
+prescan JSON and final MR comments are genuine, but do not establish the custom
+release-risk JSON contract. A trace records `.gitlab/duo` context exclusion; no
+group security setting was changed. [Code Review Flow](https://docs.gitlab.com/user/duo_agent_platform/flows/foundational_flows/code_review/).
 
 Artifacts are retained on failures; a blocking manual job holds default-branch
 candidates. It is a review of evidence, not authenticated production approval or a
@@ -132,7 +147,7 @@ already permits 3.13; no requirement or dependency check needs to be bypassed.
 The Runtime cannot be installed on 3.12. It is not added to the current dependency
 set, lockfile or pipeline because none of the eligibility jobs dispatches an effect.
 
-**Verify GitLab Duo and CI first; integrate Runtime execution afterward.** Duo owns
+**CI and foundational Duo are verified; Runtime execution remains a future milestone.** Duo owns
 AI-assisted review, CI owns tests/scanning/policy scheduling, and ReleaseGate owns
 deterministic eligibility. Runtime belongs at the future persistent Run, exact
 human approval, independent authorization, durable Action and receipt boundary.

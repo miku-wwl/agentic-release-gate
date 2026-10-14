@@ -8,7 +8,7 @@ Selected category: **Path A / Supervised**; secondary objective: Most Stages Cov
 The official rules require a new Path A project created on or after October 5, 2026,
 using GitLab Duo Agent Platform. The target autonomy delegates workflow steps while
 a human reviews the outcome. Our new consumer app follows that direction; final
-Supervised eligibility still needs a real automated Duo workflow and demonstration.
+Supervised submission still needs its public demonstration and final evidence review.
 Dependency reuse is distinguished from copying a previous application.
 [Official rules](https://gitlab-transcend.devpost.com/rules). Phase 1.1 independently
 verified the shared Runtime v0.2.0 MIT license; execution integration remains deferred.
@@ -16,10 +16,10 @@ verified the shared Runtime v0.2.0 MIT license; execution integration remains de
 | Submission requirement | ReleaseGate evidence / remaining work |
 |---|---|
 | New app and pipeline, post-code automation | New Python package, tests, CI and Duo flow |
-| Genuine Duo Agent Platform use | Mandatory; NOT VERIFIED until actual session |
-| Public GitLab project with full source/instructions | Workspace provisioned; source publication BLOCKED by local authentication |
-| MIT license visible in GitLab About | Root LICENSE added; GitLab visibility NOT VERIFIED |
-| Visible CI execution history | NOT RUN on GitLab; local pytest is not a substitute |
+| Genuine Duo Agent Platform use | VERIFIED: finished Code Review session 9451709, real notes and Duo pipeline; custom risk contract pending |
+| Public GitLab project with full source/instructions | VERIFIED on import branch and open MR !1; default main remains initialization |
+| MIT license visible in GitLab About | LICENSE exists in published import branch; default-branch detection/About NOT VERIFIED (project API license is null) |
+| Visible CI execution history | VERIFIED: hosted MR suite, scanning, policy, artifacts and safe boundary job |
 | Text description of problem, product and GitLab use | README / architecture foundation; final submission pending |
 | Public YouTube demo under 3 minutes | NOT CREATED; show real automated ALLOW and DENY |
 | Google Cloud deployment | Optional for Path A; NOT RUN; no bonus claimed |
@@ -47,15 +47,18 @@ public read access does not establish authenticated permissions or credits.
 | Passing evidence reaches next configured gate | ALLOW to HUMAN_APPROVAL; no execution authority |
 | LLM recommendation is not authorization | No model input to policy or CLI approval; tested |
 | Persisted JSON evidence bundle | Raw JUnit/Bandit, per-check envelopes, decisions, demo transcript |
-| Real successful and blocked GitLab workflows | NOT RUN; local counterparts are explicitly labeled |
+| Real successful and blocked GitLab workflows | Real MR CI and expected DENY cases VERIFIED; negative fixtures run as derived snapshots inside CI, not separate branch pipelines |
 | Runtime integration without core modifications | v0.2.0 MIT/install verified on 3.13; execution deferred until after GitLab verification |
 
-## Platform validation required after authentication
+## Current platform qualification and remaining work (2026-10-15)
 
-Verify project membership (Maintainer for Catalog/trigger setup), Duo/Core/Agent
-Platform enablement, custom-flow enablement, available credits, runner availability,
-and protected-branch settings. These are independent prerequisites; public docs do
-not prove a participant project's configuration. [Agent Platform prerequisites](https://docs.gitlab.com/user/duo_agent_platform/).
+Actual glab authentication, Developer membership, branch/MR access, hosted shared
+runner execution, project Duo enablement and a genuine foundational review are
+VERIFIED. Custom Catalog/trigger setup remains BLOCKED by the Developer role;
+Maintainer/Owner setup is required. Specific model and credit balance remain
+NOT VERIFIED; no paid settings changed. Protected main is unchanged and the MR is
+open, so its manual gate and default-branch license detection still await human
+review/merge. [Custom-flow prerequisites](https://docs.gitlab.com/user/duo_agent_platform/flows/custom/).
 
 Supported read-only tools are selected explicitly in the prepared flow. Artifact
 retrieval through the generic REST GET tool needs a real test; failure must become

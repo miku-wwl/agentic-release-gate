@@ -4,12 +4,13 @@ Commit-bound release evidence and deterministic policy for GitLab Transcend
 **Life After Code**, Path A / Supervised. Phase 1 evaluates actual pytest and Bandit
 reports, blocks unsafe candidates, and produces JSON evidence for human review.
 
-**Status:** Phase 2A preparation validated locally (96 tests). The official GitLab
-workspace is provisioned; authenticated access is BLOCKED in this environment.
-GitLab pipelines and Duo execution are NOT VERIFIED. Production execution is disabled. ALLOW means
-eligible for the next gate, never execution authorization. The pinned shared
+**Status (2026-10-15):** GitLab import, real MR CI (96 tests) and a genuine Duo
+Code Review Flow are VERIFIED. [MR !1](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/1)
+remains open. Phase 2 is PARTIAL: custom risk-flow registration and its final risk
+JSON contract remain unverified. See the [actual CI/Duo evidence and handoff](docs/phase2-unified-handoff.md).
+Production execution is disabled. ALLOW means eligible for the next gate, never execution authorization. The pinned shared
 Runtime v0.2.0 is MIT licensed and verified separately on Python 3.13. Its execution
-integration is deferred until after genuine GitLab Duo/CI verification; see
+integration belongs to a separately authorized persistent-execution milestone; see
 [feasibility](docs/runtime-feasibility.md).
 
 ## Run locally
@@ -49,14 +50,19 @@ duplicate identities, substituted extra tests and absent/malformed policy fail c
 Manifest changes require human review, like changes to tests or policy code; the
 collector includes the manifest in its source digest. The demo also runs actual
 isolated pytest suites with 1 pass/83 skips and 83 passes/1 missing mandatory case;
-both must produce DENY. These are local negative fixtures, not GitLab executions.
+both must produce DENY. The MR's `release_boundary_demo` also runs these derived
+snapshots on a genuine GitLab runner, including failed-test, missing-evidence and
+wrong-SHA cases. Their inner reports retain `local-working-tree` provenance;
+the baseline test/security jobs record actual `gitlab-ci` context.
 
 ## GitLab setup
 
-The initial `.gitlab-ci.yml` runs validation, tests, security, policy, evidence
+The `.gitlab-ci.yml` runs validation, tests, security, policy, evidence
 generation and a blocking manual candidate review on the protected default branch.
-It does not deploy. Import `.gitlab/duo/flows/release-risk.yaml` through AI Catalog;
-the file alone does not install a flow. See [Duo setup](docs/duo-integration.md).
+It does not deploy. The existing foundational Duo Code Review Flow produced a real
+MR recommendation that was reviewed, fixed and verified by CI. The prepared
+`.gitlab/duo/flows/release-risk.yaml` still needs Maintainer/Owner registration
+through AI Catalog; the file alone does not install a flow. See [Duo setup and limitations](docs/duo-integration.md).
 
 - [Architecture and trust boundaries](docs/architecture.md)
 - [Hackathon requirements](docs/hackathon-requirements.md)

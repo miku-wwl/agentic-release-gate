@@ -1,298 +1,255 @@
 # ReleaseGate — unified Phase 2 handoff
 
-Updated: **2026-10-15**, Pacific/Auckland, after VS Code restart.
-Final verdict: **PARTIAL**; authenticated remote stages remain **BLOCKED**.
+Updated: **2026-10-15**, Pacific/Auckland. Overall verdict: **PARTIAL**.
 
-GitHub publication, mandatory-test hardening and the isolated local GitLab import
-are VERIFIED. GitLab publication, MR creation, hosted CI and genuine Duo execution
-are BLOCKED by unusable authentication. They are NOT VERIFIED; Phase 2 is not
-complete. No model result, approval or platform execution has been fabricated.
+GitHub publication, controlled GitLab import/MR, genuine hosted CI and a genuine
+GitLab Duo Agent Platform Code Review Flow are **VERIFIED**. The prepared custom
+Release Risk Reviewer, its bounded execution profile and final release-risk JSON
+contract are **NOT VERIFIED**; registration is **BLOCKED** by the current Developer
+role. Production execution remains closed. This is not a claim that the custom
+flow or every competition requirement is complete.
 
-## Recovered checkpoint and current authentication diagnosis
+## Recovery and authentication
 
-The resumed primary checkout was clean on `main` at
-`34a2b4f69b0ee3a6192f5a557cfe11dbdafcad70`, equal to `origin/main` and the live
-GitHub main ref. Phase 1.2 commit `ba1690d787312d642e8bee2680f46d5d9f4a572c`
-was verified as an ancestor of published main, so publication was skipped.
-No completed import or commit was repeated. The existing isolated worktree remains
-on `import/releasegate-phase2a` at `6b1b8c04ec9e770cf59e9bbff264e7454b52092b`.
-All 28 unmodified source files still match the validated GitHub snapshot after
-line-ending normalization; the initialization README remains preserved. Both
-worktrees were clean at recovery, and the remote/upstream configuration is unchanged.
-Fresh GitLab fetch/ref checks still show only initialization main at
-`e4239c704040e427ef6ded36a4163113f995cef9`. Anonymous open-MR and pipeline lists
-are empty; these reads do not establish authenticated permissions.
+The latest authentication retry resumed clean GitHub `main` at
+`72c23e4f86af9cb0426a17cdcca1a0cded606606` and the existing isolated GitLab import
+at `6b1b8c04ec9e770cf59e9bbff264e7454b52092b`. The earlier VS Code restart recovery
+at `34a2b4f69b0ee3a6192f5a557cfe11dbdafcad70` is preserved in Git history.
+Phase 1.2 publication `ba1690d787312d642e8bee2680f46d5d9f4a572c` was already an
+ancestor of published main; it was verified and skipped. The original 14 Phase 2A
+modified files were retained in the previously published hardening commit. No
+completed import, commit or MR was recreated; no reset, clean, stash or rebase ran.
 
-The specified glab executable is still 1.123.0. The fresh Codex process's explicit
-`auth status` and identity request return HTTP 401. Host selection is correctly
-`gitlab.com` over HTTPS. The actual Local AppData configuration lacks an account,
-OAuth type/expiry metadata and keyring-mode setting. No authentication environment
-override was present at process, user or machine level, and no legacy Roaming or
-`.config` glab configuration was found.
+Previous attempts returned HTTP 401 despite Credential Manager entries. A
+transient token-info check returned `invalid_token`; expiry/revocation cause was
+not established. After the user's secure OAuth refresh, this agent independently
+verified the specified glab **1.123.0** executable, `auth status`, `/user` and the
+project API in the actual execution environment. Authentication is now **VERIFIED**:
+`weilai-wang`, user ID `43343080`, active, group access **Developer (30)**.
+No credential values were printed, saved, staged or embedded in URLs. No PAT or
+replacement credential was created by the agent.
 
-**Correction to the earlier incomplete credential diagnosis:** targeted native
-Windows Credential Manager enumeration succeeded in the current Windows session.
-The `glab:gitlab.com:token:` and `glab:gitlab.com:oauth2_refresh_token:` entries
-exist with credential blobs. This is not a demonstrated keyring-access denial.
-A child-process keyring-mode check still returned 401. A documented Bearer request
-using only the stored access token also returned 401; `/oauth/token/info` explicitly
-returned `invalid_token`, with description `The access token is invalid`.
-Expiration, revocation and the reason for the missing CLI metadata are not proven.
-The ChatGPT Work PASS report therefore has not been reproduced in this execution
-context, and the authenticated GitLab identity remains NOT VERIFIED.
-[CLI authentication/storage](https://docs.gitlab.com/cli/authentication/),
-[OAuth token information](https://docs.gitlab.com/api/oauth2/).
-
-Credential values were used only transiently in memory for those GitLab GETs;
-none were printed, saved, staged or sent in URLs. No credentials were removed,
-rewritten, refreshed or regenerated. No personal access token was created. A secure
-interactive login under the current Windows account has been requested, followed
-by status/identity verification. Repeating identical failing requests was avoided.
-Identity, role, runner, MR/write permissions and Duo entitlement remain unresolved,
-so no branch push, MR, CI job or Duo mutation was attempted on this resume.
-
-Fresh independent local qualification passed frozen sync/lock checks and Ruff
-check/format checks. The imported full suite passed **96 tests in 0.71s**, with
-zero failures/errors/skips and all 96 mandatory identities verified against JUnit.
-Real local pytest/Bandit demonstrations again yielded ALLOW for the baseline and
-DENY for HIGH findings, 1 pass/83 skips and one missing mandatory case. Production
-final approval remained required and the release command remained DENY/exit 3.
-The source distribution and wheel rebuilt successfully; a fresh Python 3.12.13
-wheel probe imported `releasegate==0.1.0` from its installed site-packages and passed
-`uv pip check`. These results are local, not hosted CI or Duo execution.
-
-New sanitized diagnostics and qualification outputs are under
-`.artifacts/phase2/resume-20261015/`; the imported JUnit is
-`.artifacts/phase2/resume-20261015.junit.xml` in its own worktree. The new local demo
-transcript is `demo/8bd53426-fc56-4fc2-87ee-a5bacd9e657d/verification.json` under
-the primary resume directory. Earlier evidence was preserved. Only this handoff
-changed during recovery; application, tests, CI, flow configuration and Runtime
-source remain unchanged. GitHub publication of this new factual report does not
-repeat any earlier publication. Server CI/Duo documentation was refreshed; server
-qualification and actual project feature access still require successful identity.
+Authenticated project `87602765` has builds/MRs enabled, shared runners enabled,
+Duo remote/foundational flows enabled, and an available Duo workflow runner.
+Actual normal branch push and MR creation prove the necessary write operations.
+Runner inventory returned **403**; this is an inventory permission limitation,
+not unavailable CI: successful jobs independently identify shared instance runner
+`54907241`. Protected main settings were inspected and retained unchanged; force
+push is disabled. No paid entitlement, credit balance or model identifier is
+inferred from these flags.
 
 ## Publication and repository identity
 
-| Item | Actual result |
+| Item | Verified checkpoint |
 |---|---|
-| Phase 1.2 GitHub publication | `ba1690d787312d642e8bee2680f46d5d9f4a572c` — VERIFIED |
-| Validated Phase 2A GitHub source | `98d81957f19afa8d7de8843236b7497d5baac2b3` — VERIFIED on `main` |
-| GitHub origin, fetch/push | `git@github.com:miku-wwl/agentic-release-gate.git` — preserved |
-| GitHub upstream | `main -> origin/main` — preserved |
-| GitLab remote | `https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase.git` |
-| GitLab project API ID / visibility | `87602765` / public — VERIFIED by public project API |
-| Live GitLab main | `e4239c704040e427ef6ded36a4163113f995cef9` — initialization unchanged |
-| Integration branch | `import/releasegate-phase2a` — prepared locally, not pushed |
-| Local import commit | `6b1b8c04ec9e770cf59e9bbff264e7454b52092b` |
-| Merge Request URL / status | None created; BLOCKED |
-| GitLab pipeline URLs / IDs / jobs | None created or observed; NOT VERIFIED |
-| Duo registration / session URL / ID | None; NOT VERIFIED |
+| Primary checkout | `D:\workshop\oct\agentic-release-gate`, branch `main` |
+| GitHub origin, fetch/push | `git@github.com:miku-wwl/agentic-release-gate.git` — unchanged |
+| GitHub upstream | `main -> origin/main` — unchanged |
+| Phase 1.2 published commit | `ba1690d787312d642e8bee2680f46d5d9f4a572c` |
+| Phase 2A mandatory-policy source | `98d81957f19afa8d7de8843236b7497d5baac2b3` |
+| Hosted-boundary preparation, GitHub | `5cc2f679bef1160b507cca02b094a876c7448e00` |
+| Gitless CI correction, GitHub | `3b6b27765fb0eed36b5f86ac90a6a5dca04d985e` |
+| GitLab remote | `https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase.git` — unchanged |
+| Isolated worktree | `D:\workshop\oct\agentic-release-gate-phase2a` |
+| Integration branch / upstream | `import/releasegate-phase2a -> gitlab/import/releasegate-phase2a` |
+| Initial imported snapshot | `6b1b8c04ec9e770cf59e9bbff264e7454b52092b` |
+| Hosted-boundary commit reviewed by Duo | `4182deb55678382c0a99f7b1fd8e2232d17a0611` |
+| Corrected, CI-qualified GitLab code | `d05e8bb205a0411c5f7b5bc5c6fc68b0b367a7cf` |
+| GitLab main | `e4239c704040e427ef6ded36a4163113f995cef9` — initialization retained |
+| Merge Request | [!1, opened](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/1), import branch → main; auto-merge disabled |
 
-[Phase 1.2 commit](https://github.com/miku-wwl/agentic-release-gate/commit/ba1690d787312d642e8bee2680f46d5d9f4a572c),
-[Phase 2A source commit](https://github.com/miku-wwl/agentic-release-gate/commit/98d81957f19afa8d7de8843236b7497d5baac2b3),
-[official GitLab project](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase),
-[welcome issue](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/work_items/1).
+The existing import was pushed normally, then MR !1 was created once. It preserves
+the initialization ancestor, original README bytes in `docs/gitlab-initial-README.md`
+and official workspace/welcome links in the product README. The source consists of
+reviewed tracked files, not environments, databases, caches or local evidence.
+The initial import's 28 unchanged files matched the pinned source after line-ending
+normalization. Later CI/script corrections were transferred from exact GitHub
+blobs; unrelated histories were never merged. GitHub retains its original history.
+Normal HTTPS pushes addressed the intended GitHub repository without changing its
+SSH origin or primary upstream. GitLab pushes target only the integration branch.
 
-GitHub pushes were normal HTTPS pushes to the same repository, with no origin URL
-or upstream change. Local, tracking and live GitHub source SHAs matched after
-publication. This handoff is a subsequent documentation publication; its commit
-SHA is reported in the delivery response rather than embedded in its own contents.
+This report records qualified code SHAs. Subsequent documentation-only publication
+SHAs and the final matching local/tracking/live refs are recorded in the delivery
+response, avoiding an impossible self-referential report commit.
 
-The isolated worktree is `D:\workshop\oct\agentic-release-gate-phase2a`.
-Its two-commit history preserves the GitLab initialization ancestor. It imports
-29 tracked GitHub files, explicitly reconciles README.md with official workspace
-and welcome links, and adds `docs/gitlab-initial-README.md` containing the exact
-original README bytes. The other 28 files were checked against the source Git blobs.
-The archived template's origin/force-push instructions were not executed.
-GitHub retains its original, independent history; no unrelated-history merge occurred.
-Both worktrees were clean after their respective commits; ignored environments,
-evidence, builds and local artifacts remain local. GitLab still has only `main`.
+## Local and genuine hosted CI qualification
 
-## Policy hardening and local qualification — VERIFIED
+`releasegate-policy-v2` uses the reviewed 96-identity `tests/required-tests.json`.
+Every mandatory JUnit identity must occur exactly once; extra passing tests cannot
+replace missing cases. Any skip denies; no allowlist is justified. The fixed
+manifest is included in source identity. Existing failure, HIGH/CRITICAL, tampering,
+provenance, stale approval, cross-pipeline and LLM-boundary tests remain covered.
 
-`releasegate-policy-v2` uses a reviewed, versioned mandatory-test manifest at
-`tests/required-tests.json`. It contains 96 unique JUnit `classname::name` identities,
-independently matched to the real full-suite report. Additional passing cases cannot
-replace missing mandatory cases. Duplicate, absent or malformed identities/policy
-deny. Any skipped test denies; no exception or allowlist is currently justified.
-The manifest is included in source identity and read only from the fixed trusted
-repository path. Pure-policy callers must explicitly supply the trusted identity
-set; omitting it denies. Manifest/test/policy changes still require protected review:
-hashes do not defend against someone controlling both the code and its runner.
+Local frozen sync/lock checks, Ruff check/format and the complete suite passed.
+After the gitless CI correction: **96 passed**, no failures/errors/skips; the full
+real pytest/Bandit demo passed. Earlier packaging built sdist/wheel and imported
+installed `releasegate==0.1.0` from an isolated Python 3.12.13 environment with
+`uv pip check` passing. Package requirements, lockfile and the separate Runtime
+probe were unchanged. These local results do not substitute for hosted evidence.
 
-| Validation | Observed local result |
+Authenticated server CI Lint accepted the actual seven-job YAML with `valid=true`,
+no errors/warnings, including `review_release_candidate`. Hosted jobs use
+`python:3.12.13-slim`, `uv==0.11.16` and frozen dependencies.
+
+| Actual pipeline | SHA / observed result |
 |---|---|
-| Python / uv | 3.12.13 / 0.11.16 |
-| Frozen sync and lock check | Passed, unchanged dependency requirements/lockfile |
-| Ruff check and format check | Passed |
-| Complete suite in primary checkout | **96 passed**, 0 failed/errors/skipped, 0.95s |
-| Complete suite in imported tree | **96 passed**, 0 failed/errors/skipped, 1.01s |
-| Imported commit's actual collector | **96 passed**; SHA bound to local import commit |
-| Packaging | sdist and wheel built; mandatory manifest and MIT license in sdist; MIT license in wheel |
-| Isolated wheel installation | `releasegate==0.1.0`, policy v2; imported from probe site-packages; `uv pip check` passed |
-| Diff/secret review | Worktree and staged diff checks passed; bounded scan: 29 source / 30 import files, no matched secret or forbidden path patterns |
+| [2946760514 — initial branch](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2946760514) | `6b1b8c0…`; SUCCESS, five jobs |
+| [2946763436 — initial MR](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2946763436) | `6b1b8c0…`; SUCCESS, five jobs |
+| [2946803065 — first boundary job](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2946803065) | `4182deb…`; FAILED: demo called unavailable `git`; five other jobs passed |
+| [2946878007 — reviewed correction](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2946878007) | `d05e8bb…`; SUCCESS, all six MR jobs |
 
-The previous 84-test behavior remains covered, with 12 additional cases for
-mandatory policy, skips, substitutions, duplicates and invalid manifests. Existing
-failure, CRITICAL/HIGH severity, provenance, tampering, stale approval, context and
-LLM-boundary cases continue to pass. Local YAML tests check structure only, not
-GitLab's server acceptance. Secret-pattern review is bounded, not a certification.
+Pipeline `2946803065` was a real integration defect, not an expected policy DENY.
+Its failure log is retained. The reviewed correction uses validated `CI_COMMIT_SHA`
+in GitLab CI; local runs still use Git HEAD. No stale job was retried to disguise
+the defect. A new commit produced the successful correction pipeline.
 
-| Actual local demonstration | Result / evidence |
+| Job in corrected pipeline | Actual status / ID |
 |---|---|
-| Normal full suite + Bandit | ALLOW, `CHECKS_PASSED`, next gate `HUMAN_APPROVAL` |
-| Scanned-only unsafe fixture | DENY, `SECURITY_HIGH`; actual Bandit B602 HIGH |
-| Mandatory 84-case suite: 1 pass + 83 skips | DENY, `UNAPPROVED_TEST_SKIPS`, despite pytest exit 0 |
-| Mandatory 84-case suite: 83 passes, one absent | DENY, `MISSING_MANDATORY_TESTS`, despite pytest exit 0 |
-| Missing security envelope/report | DENY, `MISSING_SECURITY_EVIDENCE`, exit 1 |
-| Requested SHA differs from both reports | DENY, `TESTS_COMMIT_MISMATCH` and `SECURITY_COMMIT_MISMATCH`, exit 1 |
-| Production final gate without verified human approval | DENY, `PRODUCTION_APPROVAL_REQUIRED`, exit 1 |
-| Release command | DENY, `EXECUTION_NOT_CONFIGURED`, exit 3 |
+| validate | SUCCESS / [17171566655](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17171566655) |
+| tests | SUCCESS / [17171566656](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17171566656) |
+| security | SUCCESS / [17171566657](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17171566657) |
+| release_policy | SUCCESS / [17171566658](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17171566658) |
+| evidence_bundle | SUCCESS / [17171566659](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17171566659) |
+| release_boundary_demo | SUCCESS / [17171566660](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17171566660) |
 
-The baseline Bandit 1.8.6 scan covers all five source Python files, retaining
-B404 and B603 LOW findings and no MEDIUM/HIGH findings. Its raw exit is 1 because
-findings exist; security collection exits 0 under the existing HIGH threshold.
-The unsafe demonstration scans six files and records three LOW plus one HIGH;
-the fixture is never imported or executed. CRITICAL denial is a policy test, not
-a claimed Bandit CRITICAL result. All decisions retain `execution_authorized=false`.
+Downloaded real logs/ZIPs were hash-recorded and extracted after path checks.
+Raw hosted JUnit independently confirms **96 passed, 0 failures/errors/skips**, all
+96 mandatory identities. Bandit 1.8.6 scanned all five source Python files, retaining
+**B404/B603 LOW**, no MEDIUM/HIGH finding. Its raw exit 1 is recorded, while the
+collector applies the existing HIGH threshold. Both envelopes bind `origin=gitlab-ci`,
+project `87602765`, pipeline `2946878007`, SHA `d05e8bb…` and matching source digest.
+The actual policy and evidence-bundle decisions are **ALLOW**, next gate
+**HUMAN_APPROVAL**, always `execution_authorized=false`.
 
-Local evidence is ignored and was not uploaded as generated test output:
+## Actual ALLOW/DENY boundaries
 
-- Primary checkout `.artifacts/phase2/qualification.junit.xml`.
-- `.artifacts/phase2/demo/af9ed9f1-e521-4a95-8e36-c75b7948f955/verification.json`
-  and each scenario's raw JUnit/Bandit, normalized envelopes and decisions.
-- `.artifacts/phase2/dist/`, `wheel-probe/`, `artifact-hashes.json`.
-- Import worktree `evidence/` and `.artifacts/phase2/import-command-evidence.json`,
-  `import-validation.junit.xml`, `additional-denials.json`.
+The genuine boundary job executes real commands in isolated derived snapshots.
+Its outer `host_execution` records the actual project/pipeline/job IDs and SHA;
+its inner reports deliberately remain `local-working-tree` evidence with empty
+project/pipeline IDs. These are hosted demonstrations of safe negative fixtures,
+not independent committed negative-branch pipelines or fabricated baseline reports.
 
-The demo explicitly describes local snapshots with then-uncommitted preparation
-changes. The import collector records the committed import SHA. Neither is a
-GitLab CI attestation. SHA-256 of the saved demo transcript is
-`a41eceb8b6a93485aa744acf5aee9f890c190f66414b41e19ef9877b7c15e888`.
+| Observed case | Actual result |
+|---|---|
+| Full 96-case suite and normal scan | ALLOW → HUMAN_APPROVAL |
+| Scanned-only unsafe fixture, real Bandit HIGH | DENY / SECURITY_HIGH; fixture never imported or executed |
+| 83 passes plus one failed mandatory fixture test | DENY / TESTS_FAILED |
+| 1 pass and 83 skipped mandatory fixture cases | DENY / UNAPPROVED_TEST_SKIPS, despite pytest exit 0 |
+| 83 passes, one mandatory fixture case absent | DENY / MISSING_MANDATORY_TESTS, despite pytest exit 0 |
+| Missing security report/envelope | DENY / MISSING_SECURITY_EVIDENCE, exit 1 |
+| Both reports from another requested SHA | DENY / TESTS_COMMIT_MISMATCH + SECURITY_COMMIT_MISMATCH, exit 1 |
+| Final production gate without verified human approval | DENY / PRODUCTION_APPROVAL_REQUIRED, exit 1 |
+| Release command without executor | DENY / EXECUTION_NOT_CONFIGURED, exit 3 |
 
-## Hosted CI attempt and remaining access — BLOCKED
+CRITICAL denial is covered by actual policy tests, not a claimed Bandit CRITICAL
+finding. LLM recommendations cannot supply `ApprovalFacts` or override any DENY.
+Every decision retains `execution_authorized=false`.
 
-At the initial attempt, public project reads and remote fetch succeeded. Public APIs returned empty current
-pipeline and open-MR lists; this does not prove authenticated permissions. Preflight
-found no usable process GitLab token, existing glab configuration or Git credential;
-noninteractive credential lookup exited 128. `glab` was not yet installed and the approved
-computer-use inventory had no browser surfaces. Anonymous `/api/v4/user` returned
-**HTTP 401**. No signed-in account or project role was established.
+The protected-default-main manual job remains blocking (`allow_failure:false`) and
+contains only eligibility evaluation, no deployment. Server lint accepts it, but
+its actual protected-main execution is **NOT VERIFIED**: main still contains only
+the initialization README and the MR must remain open. No fake human approval,
+manual-job run or protected-environment deployment is claimed.
 
-**Authentication retry after the user's installation report:** the specified
-`C:\Users\weila\AppData\Local\Programs\glab\glab.exe` is VERIFIED as 1.123.0.
-It resolves configuration to
-`C:\Users\weila\AppData\Local\glab-cli\config.yml`. In the current Windows account,
-that host's `token`, `user` and `use_keyring` settings are empty. No process, user
-or machine authentication variables were present. Actual glab calls to `user`,
-project metadata, project runners, protected branches and open MRs all returned
-HTTP 401; repeating identity lookup without environment token overrides did too.
-`glab auth status --hostname gitlab.com --output json` reports state `error`.
-The user-reported `weilai-wang` login therefore remains NOT VERIFIED in this
-agent's context. The controlled-browser inventory is still empty. This is a
-persistent-authentication/context blocker, not an inferred lack of project role.
-No credential value was logged or requested in chat. Filtered results are saved
-in `.artifacts/phase2/authenticated/preflight.json`; the existing source commits,
-clean worktrees, remote configuration and local import branch are preserved.
-A refreshed noninteractive Git Credential Manager lookup also exited 128 with no
-credential available; `.artifacts/phase2/authenticated/git-credential-preflight.json`
-records only that outcome. No GitLab write, MR or pipeline was attempted during
-this failed authenticated preflight.
+## Genuine Duo Agent Platform execution — VERIFIED
 
-The actual anonymous project CI Lint request, using the source YAML and documented
-`POST /projects/87602765/ci/lint`, returned **HTTP 403 Forbidden**. Server-supported
-configuration acceptance is NOT VERIFIED. No runner job was started. Sanitized
-responses are in `.artifacts/phase2/gitlab-access.json`, `gitlab-ci-lint.json` and
-`public-project.json`; credentials were neither saved nor printed.
-[CI Lint API](https://docs.gitlab.com/api/lint/).
+The existing project Code Review Catalog consumer `12590001`, item `1796`, was
+invoked once through documented `POST /ai/duo_workflows/workflows`, with real MR !1,
+its source branch and the actual failed pipeline `2946803065` as additional context.
+No new service account, custom Catalog entry, paid setting or automatic trigger was
+created. [Supported Flows API](https://docs.gitlab.com/api/duo_agent_platform_flows/).
 
-Identity, membership, branch/MR rights, protected-branch settings, available runners
-and credits/entitlements remain NOT VERIFIED. A dry-run push was not used to bypass
-the identity check. Branch push and MR creation are PLANNED after that check passes.
-Hosted tests, scans, policy/artifacts and negative pipelines remain NOT VERIFIED.
+| Actual Duo evidence | Observed result |
+|---|---|
+| [Agent Session 9451709](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/automate/agent-sessions/9451709) | `code_review/v1`, executed Catalog version `2514`, final status **finished** |
+| [Duo pipeline 2946840620](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2946840620) | Source `duo_workflow`, **SUCCESS**, SHA `4182deb55678382c0a99f7b1fd8e2232d17a0611` |
+| [Duo workload job 17171276318](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17171276318) | SUCCESS; real runner execution log retained |
+| Actual trace | 16 entries, MR context/diffs, file discovery/read, structured model prescan and review-post tool |
+| [Recommendation note 4012466889](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/1#note_4012466889) | GitLabDuo identified unavailable Git in slim image and recommended CI commit identity |
+| [Summary note 4012466832](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/1#note_4012466832) | One concrete recommendation; actual model summary of the import |
 
-The prepared CI has validation, tests, security, policy, evidence and release-review
-stages, with raw failure artifacts and no deployment/infrastructure commands.
-`review_release_candidate` is manual and blocking only on protected default main.
-Its eligibility evaluation is an evidence review, not final human approval or
-execution authorization. An unprotected import/MR branch cannot exercise that rule;
-inspect lint inclusion/protection and observe the real default-branch gate only
-after a human merges. Automatic merge, protection weakening and deployment remain
-outside this run. [Manual-job rules](https://docs.gitlab.com/ci/jobs/job_control/).
+The real recommendation agrees with the failed job log. It was reviewed and fixed
+in GitHub `3b6b277…` / GitLab `d05e8bb…`; new MR CI independently passed. Duo reviewed
+the earlier `4182deb…` commit, **not** the later corrected/documentation head. No
+second review or inherited AI approval is claimed. This is genuine agent-assisted
+review, not Duo Chat availability, prepared YAML or local Codex simulation.
 
-## Duo mechanism and execution — NOT VERIFIED
+The model's actual prescan JSON has `project_structure`,
+`custom_instructions_summary`, `related_files`, `key_patterns`, `recommendations`.
+The final recommendation is a real MR comment. This JSON is **not** the prepared
+final release-risk assessment schema. No transformed local record is presented as
+model-generated risk JSON. Supplied pipeline context is recorded; observed tools
+prove MR/diff/file reads, not that Duo retrieved CI logs/artifacts or evaluated them.
 
-Official documentation was refreshed on 2026-10-14. The prepared minimum is one
-ambient v1 custom flow, created/enabled through the project's AI Catalog UI, then
-triggered with Mention or Assign reviewer on an actual MR. It uses only MR, diff,
-repository-file, job-log and REST GET tools. It requests advisory JSON; it has no
-merge, approval, deployment or shell tool. Its prompt now calls out mandatory tests
-and unapproved skips. [Custom flows](https://docs.gitlab.com/user/duo_agent_platform/flows/custom/),
-[read tools](https://docs.gitlab.com/user/duo_agent_platform/agents/tools/).
+**Resolved execution profile:** the request selected ambient and read-only privilege
+IDs 2/8. The Catalog response instead assigned `environment=web`, privileges and
+pre-approved privileges 3/4/5/8: `read_write_gitlab`, `run_commands`, `use_git`,
+`read_only_files`; `mcp_enabled=true`. Observed tools read context/files and posted
+MR review notes. No code mutation or production effect is observed, but hard
+read-only enforcement is **NOT VERIFIED**. This profile is not the prepared custom
+read-tool allowlist and must not be described as such.
 
-The current schema supports `context:project_id` and trigger-specific `context:goal`;
-it restricts environment to ambient, excludes prompt model overrides and
-`response_schema_id`, and lets the configured group/instance provider choose the
-model. Actual entitlement/model availability is not established by these docs.
-The prepared flow omits these restricted fields. Mention/Assign reviewer is the first
-strategy; selected MR or pipeline events need project-specific verification.
-[Custom-flow schema](https://docs.gitlab.com/user/duo_agent_platform/flows/custom_flows_schema/),
-[triggers](https://docs.gitlab.com/user/duo_agent_platform/triggers/).
+The trace explicitly denied `.gitlab/duo/mr-review-instructions.yaml` because the
+`.gitlab/duo` path matches Duo Context Exclusion. That file is absent here; the
+prepared flow cannot be assumed to govern the foundational review. AGENTS.md and
+docs were not fetched during prescan. No exclusion, protection or security setting
+was changed to bypass this. [Code Review Flow](https://docs.gitlab.com/user/duo_agent_platform/flows/foundational_flows/code_review/).
 
-An independent anonymous read of GitLab's public GraphQL schema also confirmed
-`aiCatalogFlowCreate`, `aiCatalogItemConsumerCreate`, `aiFlowTriggerCreate` and
-`aiDuoWorkflowCreate` and their input contracts. Selected schema metadata is saved
-locally in `.artifacts/phase2/authenticated/duo-registration-schema.json`.
-This supplies a possible API route after identity, project permissions and real
-MR/pipeline context are verified; no mutation was attempted. A public schema is
-not proof of account entitlement, successful registration or model execution.
-[GitLab GraphQL API](https://docs.gitlab.com/api/graphql/).
+## Changed files, preserved evidence and repository status
 
-No registration, service account, trigger, server validation, actual invocation,
-agent output or session/log URL exists from this run. Authentication blocks the UI;
-missing licensing or runner entitlement is not asserted without inspection.
-Code/YAML preparation is PLANNED integration, not real Duo evidence. Do not activate
-paid resources or change security settings to make a demonstration pass.
+This successful-authentication continuation changes only:
 
-AI advice cannot produce trusted `ApprovalFacts`, waive deterministic DENY or grant
-authorization. Final production approval remains separate from execution authority.
-No authenticated approval adapter or executor exists; the release command stays
-closed. The optional pinned Agentic Intent Gate v0.2.0 remains a future Python 3.13
-execution component, after genuine Duo/CI verification. No shared core changes,
-Runtime invocation, real release effect or deployment occurred.
+- `.gitlab-ci.yml`: genuine MR boundary-demonstration job; no deployment command.
+- `scripts/demo.py`: actual failed-test/missing-evidence/SHA demonstrations, outer
+  host context and gitless CI identity correction.
+- `README.md`, `docs/architecture.md`, `docs/duo-integration.md`,
+  `docs/implementation-plan.md`, `docs/hackathon-requirements.md` and this handoff:
+  actual platform results and remaining limits.
 
-## Changed files and next milestone
+Earlier policy/source/test changes, AGENTS.md, license, pinned Runtime guidance,
+Python requirements, lockfile, commits, initialization history and previous evidence
+are retained. No shared Runtime source was modified. Existing root `main` and
+integration worktree were clean after code correction publication. Reviewed
+report changes are separately committed; final status/ref equality is checked
+again and reported with the documentation publication SHAs.
 
-The GitHub preparation commit changed the following 15 files:
+Raw API receipts, traces, logs, actual artifacts and bounded qualification metadata
+remain ignored under `.artifacts/phase2/auth-refresh-retry/`. Earlier evidence under
+`.artifacts/phase2/` and `resume-20261015/` remains preserved. No generated report,
+credential, environment, database, build output or temporary helper is staged.
+Public pipeline/job/session/note URLs above provide platform evidence.
 
-- `src/releasegate/{policy,evidence,cli}.py`: mandatory identities, skip denial,
-  source binding, trusted manifest loading and policy version.
-- `tests/{conftest,test_cli,test_evidence,test_policy}.py` and
-  `tests/required-tests.json`: preserved fixtures and new regression cases/manifest.
-- `scripts/demo.py`: real isolated skip and missing-case demonstrations.
-- `.gitlab/duo/flows/release-risk.yaml`: advisory mandatory-test risk instructions.
-- `README.md`, `docs/{architecture,duo-integration,hackathon-requirements,implementation-plan}.md`:
-  policy contract, current onboarding/auth state and correct Phase 2A/2B ordering.
+Key retained receipts: `preflight.json`, `project-access.json`, `ci-boundaries-lint.json`,
+`ci-verification-2946878007.json`, `boundary-ci-verification.json`,
+`duo-invocation-request.json`, `duo-invocation-response.json`, `duo-session-current.json`,
+`duo-trace-current.jsonl`, `duo-prescan-output.json`, `duo-mr-notes.json` and
+`duo-pipeline-verification.json`. Corrected boundary ZIP SHA-256:
+`36ae41bfc350c4d4d79d342a8fc40eaf4f41f9441f59e43ecc3191e07777912f`;
+its real verification transcript SHA-256:
+`50d8d98efcfb3aa015c901c59cbe947ff1a91fbb29152c6e0275c067ce0bf403`.
 
-This handoff is an additional GitHub documentation file. The local import includes
-the source snapshot plus the preserved initial README and explicit README additions.
-`.gitlab-ci.yml`, AGENTS.md, Python requirements and uv.lock were carried unchanged;
-no environments, credentials, databases, caches or generated outputs were staged.
+## Remaining blockers and next action
 
-**Single most valuable next action:** complete secure interactive login in the
-current Windows account using the installed executable, which defaults to native
-keyring storage, and verify status before continuing:
+| Item | Classification / exact remaining work |
+|---|---|
+| Authentication, import/MR, CI, foundational Duo | VERIFIED; previous 401 blocker resolved |
+| Prepared custom Release Risk Reviewer | BLOCKED: Developer (30); create/enable requires Maintainer/Owner |
+| Custom final risk JSON, bounded read-tool profile and event trigger | NOT VERIFIED; require actual registration, resolved-profile inspection and a real session |
+| Duo reads of raw pipeline artifacts / independent blocked-candidate risk assessment | NOT VERIFIED; do not infer from passing CI or supplied context |
+| Protected-main manual job and About license detection | NOT VERIFIED while MR remains open; project API currently reports license null, LICENSE is published on integration branch |
+| Authenticated final approval, independent authorization, persistent release effect/receipt | PLANNED future milestone; no production executor exists |
+| Public sub-three-minute demo and final competition submission | PLANNED; neither published nor submitted |
 
-```powershell
-& 'C:\Users\weila\AppData\Local\Programs\glab\glab.exe' auth login --hostname gitlab.com --web --git-protocol https
-& 'C:\Users\weila\AppData\Local\Programs\glab\glab.exe' auth status --hostname gitlab.com
-```
+**Next action:** have a Maintainer/Owner review and register the bounded custom
+Release Risk Reviewer, respecting existing context exclusions. Verify its actual
+resolved privileges, real MR/CI artifact reads and final risk JSON on passing and
+blocked evidence before claiming the product workflow complete. Creation/enablement
+requires that role; no permission escalation was attempted.
+[Custom-flow permissions](https://docs.gitlab.com/user/duo_agent_platform/flows/custom/).
 
-Report only PASS/FAIL, not a token or token-bearing output. A controllable,
-signed-in GitLab browser remains an alternative. Do not log out or delete existing
-credentials as a troubleshooting step.
-Then verify identity/role/runners, refresh GitLab main, normally publish the prepared
-branch, open and leave an MR, qualify genuine hosted CI, and register/run the Duo
-reviewer against that real context. Record real URLs/statuses and update this handoff.
-The public GitLab source/MIT display, pipeline/session evidence, short demo video and
-competition submission remain outstanding. Runtime execution is not the next blocker.
+The open MR is ready for human review. Do not automatically merge it to exercise
+the main gate. The shared Runtime's MIT/install compatibility remains qualified,
+but it belongs after platform qualification in an explicitly scoped persistent
+Approval/Authorization/Action/Receipt milestone, not in these CI policy jobs.
+No force push, protected-rule change, production approval, deployment, paid
+provisioning or real release effect occurred.
