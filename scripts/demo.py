@@ -10,6 +10,7 @@ from pathlib import Path
 from uuid import uuid4
 
 from releasegate.evidence import read_json, write_json
+from releasegate.policy import SHA
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -43,9 +44,22 @@ def main():
     args = parser.parse_args()
     directory = args.output_dir.resolve() / str(uuid4())
     directory.mkdir(parents=True, exist_ok=False)
-    sha = subprocess.run(
-        ["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=True
-    ).stdout.strip()
+    in_ci = os.environ.get("GITLAB_CI") == "true"
+    sha = (
+        os.environ.get("CI_COMMIT_SHA", "")
+        if in_ci
+        else subprocess.run(
+            ["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=True
+        ).stdout.strip()
+    )
+    if not SHA.fullmatch(sha):
+        raise RuntimeError("A valid host commit SHA is required")
+    host = {
+        "origin": "gitlab-ci" if in_ci else "local-working-tree",
+        "project_id": os.environ.get("CI_PROJECT_ID", "") if in_ci else "",
+        "pipeline_id": os.environ.get("CI_PIPELINE_ID", "") if in_ci else "",
+        "job_id": os.environ.get("CI_JOB_ID", "") if in_ci else "",
+    }
     env = os.environ.copy()
     # These runs are local snapshots, including when demonstrated inside CI.
     for name in ("GITLAB_CI", "CI_PROJECT_ID", "CI_PIPELINE_ID", "CI_COMMIT_SHA"):
@@ -174,6 +188,7 @@ def main():
     command(["release"], directory / "allow", env, records, expected=3)
     summary = {
         "origin": "local-working-tree",
+        "host_execution": host,
         "gitlab_duo": "NOT VERIFIED",
         "gitlab_pipeline": "NOT RUN",
         "deployment": "NOT RUN",
