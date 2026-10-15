@@ -1,7 +1,9 @@
 # ReleaseGate Phase 2.5 — foundational Duo qualification checkpoint
 
-Updated: **2026-10-15**, Pacific/Auckland. Verdict: **BLOCKED** at browser identity
-verification. The controlled failure and deterministic DENY are VERIFIED; a new
+Updated: **2026-10-15**, Pacific/Auckland. Verdict: **BLOCKED** pending review of
+unverified effective execution permissions and branch isolation. Browser login and
+the official Fix Pipeline UI entry point are now VERIFIED. The controlled failure
+and deterministic DENY are VERIFIED; a new
 Fix CI/CD Pipeline Flow, diagnosis, repair and successful repair pipeline are NOT
 VERIFIED. This checkpoint is not Phase 2.5 completion. The demonstrated autonomy
 claim remains **Assisted**; Supervised is NOT VERIFIED.
@@ -37,9 +39,10 @@ runner `54907241`. Push-rule inspection returned 403, so service-account push-ru
 compatibility is NOT VERIFIED. No push rule or security setting was changed.
 
 Browser work now uses only the **ChatGPT Work built-in browser**, as requested.
-The official GitLab login accepted the supplied sign-in information and requires
-email identity verification. No code has been provided for that checkpoint, so
-browser authentication is not complete. The tab is retained for continuation.
+The official GitLab login first required email identity verification. A subsequent
+browser observation showed the authenticated `weilai-wang` project page; the
+intervening verification action was not observed or attributed to an actor. Browser
+authentication is now VERIFIED; no further code is needed. The tab is retained.
 Credentials and authentication codes are excluded from this report and repository.
 
 ## Fix CI/CD Pipeline availability and invocation boundary
@@ -68,13 +71,19 @@ from that description. Flow execution can consume compute and GitLab Credits;
 balance, exact model and run consumption are NOT VERIFIED. No credit purchase,
 subscription, paid-setting change or new flow execution occurred.
 
-**Gate 1:** configuration and execute permission VERIFIED; actual UI entry point,
-effective execution profile and service-account prerequisites remain unqualified.
+**Gate 1: PASS for availability.** Configuration, execute permission and the actual
+enabled **Fix pipeline with Duo** button on pipeline `2949021100` are VERIFIED.
+The GitLab-managed flow detail page confirms it is enabled, v1.0.0, with no event
+triggers configured. An event trigger is not needed for this explicit UI action.
+The effective execution profile and service-account push-rule compatibility remain
+unqualified; a visible button is not proof of successful execution.
 Before dispatch, inspect the actual permissions/write scope. Foundational flows are
 not assumed read-only. The inspected protected-main rule permits Developer pushes;
 branch-local instructions therefore cannot be treated as technical isolation.
 If the effective profile can affect unrelated branches/resources, obtain the scope
-review required by the user's Phase 2.5 instructions before starting it.
+review required by the user's Phase 2.5 instructions before starting it. The actual
+flow detail page exposes no effective tool/privilege list or forced branch limit.
+An explicit one-run scope-risk review is pending; the Fix button has not been clicked.
 
 ## Controlled failure — Gate 2 PASS
 
@@ -133,9 +142,14 @@ AI recommendation. Raw logs/ZIPs were downloaded, path-checked and hash-recorded
 under ignored `.artifacts/phase2.5/`. Fault-job trace SHA-256:
 `12d6c090004c855455c268242f4d1096f9db9b152693e33d56651958883293a1`.
 
+The observed demo MR UI also displayed optional approval and Ready to merge while
+the pipeline was failed. Native MR merge checks are therefore not claimed to enforce
+ReleaseGate's DENY. Release eligibility and execution authorization remain separate;
+no merge was attempted and no project security setting was changed.
+
 ## Actual agent actions, repair and continuation
 
-**Gate 3: BLOCKED / NOT RUN.** No new Fix Flow session, workload pipeline/job,
+**Gate 3: BLOCKED / NOT RUN pending scope-risk review.** No new Fix Flow session, workload pipeline/job,
 diagnosis, patch, comment, suggestion or agent-authored commit exists from this
 milestone. Session `9451709` remains the sole observed session: genuine Phase 2
 Code Review, not a Phase 2.5 Fix Pipeline run. No new model output was fabricated.
@@ -145,7 +159,7 @@ substitute baseline pipeline `2946935881`, a local expected fix or hosted bounda
 snapshots for qualification of a corrected demo SHA. Production final approval and
 the closed release command remain required; no executor or authorization was added.
 
-After identity verification, use the retained built-in browser to open
+After the required scope-risk review, use the retained built-in browser to open
 [MR !2](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/2),
 then **Overview → failed pipeline → Fix pipeline with Duo**, or **Pipelines →
 2949021100 → Fix pipeline with Duo**. First inspect availability and permission
@@ -169,7 +183,7 @@ tests, scan, exact-SHA evidence, deterministic decision and final human boundary
 | Reject missing required evidence | ReleaseGate in CI, automatic | DENY before any final release approval; policy artifacts above |
 | Foundational Code Review in Phase 2 | GitLab Duo, explicitly invoked | [9451709](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/automate/agent-sessions/9451709); genuine advice, no execution authorization |
 | Apply Phase 2 recommendation | Codex, manually reviewed and applied | GitHub `3b6b277…`; not autonomous Duo repair |
-| Phase 2.5 diagnosis / patch | PLANNED Duo; UI invocation not performed | Email verification and profile review pending; NOT VERIFIED |
+| Phase 2.5 diagnosis / patch | PLANNED Duo; UI invocation not performed | Login/button verified; effective-profile risk review pending; NOT VERIFIED |
 | Apply suggestion / verify repair | PLANNED reviewer/Codex plus automatic CI | No patch or repair pipeline yet; NOT VERIFIED |
 | Final approval / execution | Human / future independent authorization | No authenticated approval or production effect; release remains closed |
 
@@ -198,9 +212,11 @@ Deadline: **2026-10-27 13:00 UTC / 2026-10-28 02:00 Pacific/Auckland**. Public s
 detectable MIT license, visible automation history and a public video under three
 minutes still need final submission review. [Official requirements](https://gitlab-transcend.devpost.com/rules).
 
-**Single most valuable next action:** complete GitLab's email identity verification
-in the retained built-in-browser session, then inspect the supported Fix Pipeline
-entry point and its effective permissions before dispatch. No new login/token
+**Single most valuable next action:** review whether to permit one scoped Fix Flow
+invocation despite the unverified effective privilege list and branch isolation.
+The concrete target is MR !2 / pipeline `2949021100`, with inline suggestions as the
+intended output and no authority to change main/import, MR !1, security settings or
+release authorization. No new login/token
 setup, custom registration, permission escalation or Runtime implementation is needed
 for the already verified preparation.
 
