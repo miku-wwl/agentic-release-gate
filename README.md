@@ -1,13 +1,20 @@
 # ReleaseGate
 
 Commit-bound release evidence and deterministic policy for GitLab Transcend
-**Life After Code**, Path A / Supervised. Phase 1 evaluates actual pytest and Bandit
+**Life After Code**, Path A. Assisted behavior is demonstrated; Supervised remains
+a target pending evidence. Phase 1 evaluates actual pytest and Bandit
 reports, blocks unsafe candidates, and produces JSON evidence for human review.
 
 **Status (2026-10-15):** GitLab import, real MR CI (96 tests) and a genuine Duo
 Code Review Flow are VERIFIED. [MR !1](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/1)
 remains open. Phase 2 is PARTIAL: custom risk-flow registration and its final risk
 JSON contract remain unverified. See the [actual CI/Duo evidence and handoff](docs/phase2-unified-handoff.md).
+
+Phase 2.5 uses the built-in Fix CI/CD Pipeline Flow, without requiring Custom Flow
+registration. Its [isolated failure and qualification checkpoint](docs/phase2.5-foundational-duo-handoff.md)
+records real missing-command and policy DENY evidence. Browser email verification,
+the new Fix Flow invocation and repair qualification remain pending.
+
 Production execution is disabled. ALLOW means eligible for the next gate, never execution authorization. The pinned shared
 Runtime v0.2.0 is MIT licensed and verified separately on Python 3.13. Its execution
 integration belongs to a separately authorized persistent-execution milestone; see
