@@ -13,8 +13,10 @@ JSON contract remain unverified. See the [actual CI/Duo evidence and handoff](do
 Phase 2.5 uses the built-in Fix CI/CD Pipeline Flow, without requiring Custom Flow
 registration. Its [isolated failure and qualification checkpoint](docs/phase2.5-foundational-duo-handoff.md)
 records real missing-command and policy DENY evidence. Browser login and the Fix
-Pipeline button are verified; effective-permission risk review, invocation and
-repair qualification remain pending.
+Pipeline button are verified. The [V2 security review](docs/phase2.5-security-and-autonomy-review.md)
+blocks invocation because demo-only write isolation is not established. Fix Flow
+and repair qualification remain NOT VERIFIED; the report includes an Assisted
+demonstration fallback using existing genuine Code Review and CI evidence.
 
 Production execution is disabled. ALLOW means eligible for the next gate, never execution authorization. The pinned shared
 Runtime v0.2.0 is MIT licensed and verified separately on Python 3.13. Its execution

@@ -1,12 +1,14 @@
 # ReleaseGate Phase 2.5 — foundational Duo qualification checkpoint
 
-Updated: **2026-10-15**, Pacific/Auckland. Verdict: **BLOCKED** pending review of
-unverified effective execution permissions and branch isolation. Browser login and
+Updated: **2026-10-15**, Pacific/Auckland, V2 security review completed.
+**Security Invocation Verdict: BLOCKED. Phase 2.5 Overall Verdict: BLOCKED.**
+The project's effective demo-only write isolation is not established. Browser login and
 the official Fix Pipeline UI entry point are now VERIFIED. The controlled failure
 and deterministic DENY are VERIFIED; a new
 Fix CI/CD Pipeline Flow, diagnosis, repair and successful repair pipeline are NOT
 VERIFIED. This checkpoint is not Phase 2.5 completion. The demonstrated autonomy
-claim remains **Assisted**; Supervised is NOT VERIFIED.
+claim is **ASSISTED VERIFIED**; Supervised is NOT VERIFIED. See the focused
+[security, autonomy and submission review](phase2.5-security-and-autonomy-review.md).
 
 Custom Flow registration is not a prerequisite for this milestone. No Custom Flow
 was registered and no Runtime dependency or executor was added.
@@ -17,8 +19,9 @@ The actual local/tracking/live refs were refreshed before changes:
 
 | Checkout / remote branch | Recovered SHA / status |
 |---|---|
-| GitHub `main -> origin/main` | `ceac68727df0f00945ef7eedc9c715bb156597c8`, CLEAN |
+| GitHub `main -> origin/main` | V2 recovery: `5241e2c915b52bb3c27f82570e800ab2b8ec0316`, CLEAN |
 | GitLab `import/releasegate-phase2a` | `559c47fa7a645795cd6ca46f91825445d29d70a6`, CLEAN |
+| GitLab `demo/duo-fix-ci` | `e451c3b74b3bb978d5d644bb8f75203253dc9188`, CLEAN |
 | GitLab default `main` | `e4239c704040e427ef6ded36a4163113f995cef9`, initialization retained |
 | [MR !1](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/1) | Open, auto-merge disabled, source SHA unchanged |
 | [Baseline pipeline 2946935881](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2946935881) | SUCCESS; previous actual qualification: six jobs, 96 tests, two LOW findings |
@@ -28,8 +31,11 @@ Remotes and primary upstream remain unchanged:
 - GitHub: `git@github.com:miku-wwl/agentic-release-gate.git`.
 - GitLab: `https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase.git`.
 
-The interrupted preflight completed only read-only checks; no demo branch or MR
-existed when it was resumed. Existing commits, worktrees and evidence were retained.
+The V2 recovery independently checked all three worktrees, local/tracking/live refs,
+both open MRs and the original failure trace. The previous preparation already
+created the demo branch/MR; none was recreated. The project has one visible Agent
+Session, `9451709` (`code_review/v1`, finished); the session query has no next page.
+The latest pipeline is still `2949021100`. Existing commits, worktrees and evidence were retained.
 No reset, clean, stash, rebase, force push or repeated session was performed.
 
 The existing glab 1.123.0 independently authenticates as `weilai-wang`, Developer
@@ -75,15 +81,32 @@ subscription, paid-setting change or new flow execution occurred.
 enabled **Fix pipeline with Duo** button on pipeline `2949021100` are VERIFIED.
 The GitLab-managed flow detail page confirms it is enabled, v1.0.0, with no event
 triggers configured. An event trigger is not needed for this explicit UI action.
-The effective execution profile and service-account push-rule compatibility remain
-unqualified; a visible button is not proof of successful execution.
-Before dispatch, inspect the actual permissions/write scope. Foundational flows are
-not assumed read-only. The inspected protected-main rule permits Developer pushes;
-branch-local instructions therefore cannot be treated as technical isolation.
-If the effective profile can affect unrelated branches/resources, obtain the scope
-review required by the user's Phase 2.5 instructions before starting it. The actual
-flow detail page exposes no effective tool/privilege list or forced branch limit.
-An explicit one-run scope-risk review is pending; the Fix button has not been clicked.
+The V2 security review is complete and invocation is **BLOCKED**. Main rule
+`340218024` allows Developer (30) pushes and merges; force push is false, Code Owner
+approval is false, and no user/group/deploy-key restriction narrows those grants.
+The authenticated human has `can_push=true` on main, import and demo. The active
+Fix Pipeline bot `33073387` is a direct Developer member. Official composite identity
+uses the intersection of human and service-account access; a protected label alone
+does not isolate the bot. [Composite identity](https://docs.gitlab.com/user/duo_agent_platform/composite_identity/).
+
+GitLab reports `19.5.0-pre`, revision `135fb0218a7`. The matching public source commit
+`135fb0218a7aa9cc54a5c2b4033d2f0e7d9b4e0b` declares Fix Flow file writes, GitLab reads/writes,
+shell commands and Git, with default pre-approval of the granted set. This is source
+configuration evidence, **not a resolved new session**. The Catalog placeholder's
+ambient/v1.0.0 is not the deployed execution profile: server source specifies web,
+flow v1.0.4, with a feature-dependent experimental resolver. Exact runtime tools,
+tokens, version and branch restrictions remain NOT VERIFIED without execution.
+[Version-matched Fix definition](https://gitlab.com/gitlab-org/gitlab/-/blob/135fb0218a7aa9cc54a5c2b4033d2f0e7d9b4e0b/ee/app/models/ai/catalog/foundational_flow/fix_pipeline/definition.rb).
+
+The project and immediate subgroup variable lists are empty. Parent/top-level group
+variable inspection and push-rule inspection return 403. Official flow-variable
+documentation filters custom project/group/instance variables out of workload jobs;
+ordinary CI inheritance and exact deployed filtering are not proven by that fact.
+Default-branch agent configuration is absent; adding it on demo would be ignored.
+Network/filesystem sandboxing is not a verified GitLab ref-write restriction.
+No enforceable demo-only control was found. AGENTS instructions and intended inline
+suggestions cannot replace it. No blanket risk acceptance or another login is sought.
+The Fix button has not been clicked; see the focused report for the mitigation gate.
 
 ## Controlled failure — Gate 2 PASS
 
@@ -149,7 +172,7 @@ no merge was attempted and no project security setting was changed.
 
 ## Actual agent actions, repair and continuation
 
-**Gate 3: BLOCKED / NOT RUN pending scope-risk review.** No new Fix Flow session, workload pipeline/job,
+**Gate 3: BLOCKED / NOT RUN after V2 security review.** No new Fix Flow session, workload pipeline/job,
 diagnosis, patch, comment, suggestion or agent-authored commit exists from this
 milestone. Session `9451709` remains the sole observed session: genuine Phase 2
 Code Review, not a Phase 2.5 Fix Pipeline run. No new model output was fabricated.
@@ -159,11 +182,12 @@ substitute baseline pipeline `2946935881`, a local expected fix or hosted bounda
 snapshots for qualification of a corrected demo SHA. Production final approval and
 the closed release command remain required; no executor or authorization was added.
 
-After the required scope-risk review, use the retained built-in browser to open
+Only after independently reviewed technical isolation and a new **SAFE TO INVOKE**
+preflight, use the retained built-in browser to open
 [MR !2](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/2),
 then **Overview → failed pipeline → Fix pipeline with Duo**, or **Pipelines →
 2949021100 → Fix pipeline with Duo**. First inspect availability and permission
-scope; stop for review if broader than authorized. Monitor **AI → Sessions** and
+scope; do not invoke under the current BLOCKED verdict. Monitor **AI → Sessions** and
 retain the actual session, workload job, traces and suggestions. Do not invoke twice
 if a session has already been created.
 
@@ -183,11 +207,11 @@ tests, scan, exact-SHA evidence, deterministic decision and final human boundary
 | Reject missing required evidence | ReleaseGate in CI, automatic | DENY before any final release approval; policy artifacts above |
 | Foundational Code Review in Phase 2 | GitLab Duo, explicitly invoked | [9451709](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/automate/agent-sessions/9451709); genuine advice, no execution authorization |
 | Apply Phase 2 recommendation | Codex, manually reviewed and applied | GitHub `3b6b277…`; not autonomous Duo repair |
-| Phase 2.5 diagnosis / patch | PLANNED Duo; UI invocation not performed | Login/button verified; effective-profile risk review pending; NOT VERIFIED |
+| Phase 2.5 diagnosis / patch | PLANNED Duo; UI invocation not performed | V2 security gate BLOCKED; NOT VERIFIED |
 | Apply suggestion / verify repair | PLANNED reviewer/Codex plus automatic CI | No patch or repair pipeline yet; NOT VERIFIED |
 | Final approval / execution | Human / future independent authorization | No authenticated approval or production effect; release remains closed |
 
-Assisted is the supported existing demonstration: real Duo advice, separately
+**ASSISTED VERIFIED** is the supported existing demonstration: real Duo advice, separately
 reviewed Codex correction and automatic CI. Sequential Codex/API calls and ordinary
 CI stages do not prove agent-owned orchestration. Supervised and autonomous repair
 remain NOT VERIFIED; no safety gate is relaxed to improve that classification.
@@ -205,20 +229,27 @@ remain NOT VERIFIED; no safety gate is relaxed to improve that classification.
 | Stage coverage | Actual review, testing, scanning, policy/evidence; repair pending; no deployment/monitoring claim |
 | Reproducibility | Exact fault commit, MR, job error and artifacts retained; passing comparison untouched |
 | Outstanding reviews | MR !1 and demo MR !2 open; later merge requires human review, not this run |
-| Sub-three-minute demonstration | Earlier Assisted evidence can support a storyboard; Phase 2.5 failure-to-repair recording is not ready |
+| Sub-three-minute demonstration | Assisted storyboard and evidence links prepared in the focused V2 report; no video recorded/published |
 | Final submission | Public YouTube video and Devpost submission NOT CREATED / NOT SUBMITTED |
 
 Deadline: **2026-10-27 13:00 UTC / 2026-10-28 02:00 Pacific/Auckland**. Public source,
 detectable MIT license, visible automation history and a public video under three
 minutes still need final submission review. [Official requirements](https://gitlab-transcend.devpost.com/rules).
 
-**Single most valuable next action:** review whether to permit one scoped Fix Flow
-invocation despite the unverified effective privilege list and branch isolation.
-The concrete target is MR !2 / pipeline `2949021100`, with inline suggestions as the
-intended output and no authority to change main/import, MR !1, security settings or
-release authorization. No new login/token
-setup, custom registration, permission escalation or Runtime implementation is needed
-for the already verified preparation.
+**Single most valuable next action:** ask the project Maintainer to independently
+review the focused report's technical isolation proposal and verify an enforceable
+restriction on the actual Fix identity before any invocation. Broad permission to
+accept risk is insufficient. No protection or service-account change is authorized
+by this run. Use the prepared Assisted fallback while this is blocked; MR !1 and
+About license recognition still require human publication review before submission.
+
+This V2 continuation changes only README and the two Phase 2.5 reports. It rechecked
+retained genuine CI artifact ZIP hashes and the raw JUnit's 96 unique mandatory
+passing cases; no tests, scans, pipelines, reviews or agent executions were repeated
+for documentation-only changes. New filtered receipts and version-matched public
+source inspection remain ignored under `.artifacts/phase2.5-v2/`. Earlier raw evidence
+is preserved. No correction, new corrected pipeline, merge, deployment, permission
+change or shared Runtime change occurred.
 
 The GitHub documentation publication SHA is reported in the delivery response to
 avoid a self-referential commit. MR !1, the import/default branches, primary upstream,
