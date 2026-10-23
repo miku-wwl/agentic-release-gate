@@ -1,0 +1,198 @@
+{
+  "commands": [
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "ruff",
+        "check",
+        "."
+      ],
+      "duration_seconds": 0.10768420004751533,
+      "exit_code": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "duration_seconds": 0.09772869996959344,
+      "exit_code": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--frozen",
+        "--extra",
+        "dev"
+      ],
+      "duration_seconds": 0.1298955000238493,
+      "exit_code": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "command": [
+        "uv",
+        "lock",
+        "--check"
+      ],
+      "duration_seconds": 0.05842529999790713,
+      "exit_code": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "command": [
+        "uv",
+        "pip",
+        "check"
+      ],
+      "duration_seconds": 0.06385010003577918,
+      "exit_code": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-m",
+        "releasegate",
+        "run-check",
+        "tests",
+        "--sha",
+        "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "--evidence-dir",
+        ".artifacts/phase4-final-qualification"
+      ],
+      "duration_seconds": 2.436396200035233,
+      "exit_code": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-m",
+        "releasegate",
+        "run-check",
+        "security",
+        "--sha",
+        "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "--evidence-dir",
+        ".artifacts/phase4-final-qualification"
+      ],
+      "duration_seconds": 1.2371853000367992,
+      "exit_code": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-m",
+        "releasegate",
+        "evaluate",
+        "--sha",
+        "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "--target",
+        "staging",
+        "--evidence-dir",
+        ".artifacts/phase4-final-qualification",
+        "--output",
+        ".artifacts/phase4-final-qualification/decision.json"
+      ],
+      "duration_seconds": 0.3727819000487216,
+      "exit_code": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-m",
+        "releasegate",
+        "report",
+        "--sha",
+        "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "--target",
+        "staging",
+        "--evidence-dir",
+        ".artifacts/phase4-final-qualification",
+        "--advisory",
+        "docs/phase4/duo-advisory.json",
+        "--output-dir",
+        ".artifacts/phase4-final-qualification/review"
+      ],
+      "duration_seconds": 0.40242310002213344,
+      "exit_code": 0,
+      "expected_exit": 0,
+      "pass": true
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-m",
+        "releasegate",
+        "evaluate",
+        "--sha",
+        "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "--target",
+        "production",
+        "--gate",
+        "final",
+        "--evidence-dir",
+        ".artifacts/phase4-final-qualification",
+        "--output",
+        ".artifacts/phase4-final-qualification/production-deny.json"
+      ],
+      "duration_seconds": 0.3621529000229202,
+      "exit_code": 1,
+      "expected_exit": 1,
+      "pass": true
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-m",
+        "releasegate",
+        "release"
+      ],
+      "duration_seconds": 0.37695700000040233,
+      "exit_code": 3,
+      "expected_exit": 3,
+      "pass": true
+    }
+  ],
+  "origin": "LOCAL_TESTED",
+  "schema_version": 1
+}

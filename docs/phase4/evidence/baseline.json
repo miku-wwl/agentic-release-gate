@@ -1,0 +1,128 @@
+{
+  "observed_at": "2026-10-23T22:08:32.407283+00:00",
+  "source": "authenticated glab read-only API; selected public fields only",
+  "project": {
+    "id": 87602765,
+    "default_branch": "main",
+    "visibility": "public",
+    "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase"
+  },
+  "main": {
+    "sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+    "protected": true,
+    "developers_can_push": true,
+    "developers_can_merge": true
+  },
+  "merge_requests": [
+    {
+      "iid": 1,
+      "state": "merged",
+      "sha": "63c11ca4d30f021f2808fccae2d480007d440f87",
+      "merged_at": "2026-10-16T02:24:06.561Z",
+      "merge_commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+      "source_branch": "import/releasegate-phase2a",
+      "target_branch": "main",
+      "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/1"
+    },
+    {
+      "iid": 2,
+      "state": "opened",
+      "sha": "e451c3b74b3bb978d5d644bb8f75203253dc9188",
+      "merged_at": null,
+      "merge_commit_sha": null,
+      "source_branch": "demo/duo-fix-ci",
+      "target_branch": "import/releasegate-phase2a",
+      "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/2"
+    }
+  ],
+  "pipelines": [
+    {
+      "id": 2953431698,
+      "sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+      "status": "manual",
+      "source": "push",
+      "ref": "main",
+      "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2953431698"
+    },
+    {
+      "id": 2946840620,
+      "sha": "4182deb55678382c0a99f7b1fd8e2232d17a0611",
+      "status": "success",
+      "source": "duo_workflow",
+      "ref": "refs/workloads/208814c2d77",
+      "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2946840620"
+    },
+    {
+      "id": 2949021100,
+      "sha": "e451c3b74b3bb978d5d644bb8f75203253dc9188",
+      "status": "failed",
+      "source": "merge_request_event",
+      "ref": "refs/merge-requests/2/head",
+      "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2949021100"
+    }
+  ],
+  "main_jobs": [
+    {
+      "id": 17220332236,
+      "name": "review_release_candidate",
+      "status": "manual",
+      "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17220332236"
+    },
+    {
+      "id": 17220332235,
+      "name": "evidence_bundle",
+      "status": "success",
+      "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17220332235"
+    },
+    {
+      "id": 17220332234,
+      "name": "release_policy",
+      "status": "success",
+      "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17220332234"
+    },
+    {
+      "id": 17220332233,
+      "name": "security",
+      "status": "success",
+      "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17220332233"
+    },
+    {
+      "id": 17220332232,
+      "name": "tests",
+      "status": "success",
+      "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17220332232"
+    },
+    {
+      "id": 17220332231,
+      "name": "validate",
+      "status": "success",
+      "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17220332231"
+    }
+  ],
+  "duo_note": {
+    "id": 4012466889,
+    "created_at": "2026-10-14T12:35:37.799Z",
+    "author": "GitLabDuo",
+    "finding_summary": "scripts/demo.py required git in the slim image; use validated CI_COMMIT_SHA in CI."
+  },
+  "sessions": {
+    "data": {
+      "project": {
+        "duoWorkflowWorkflows": {
+          "nodes": [
+            {
+              "id": "gid://gitlab/Ai::DuoWorkflows::Workflow/9451709",
+              "statusName": "finished",
+              "workflowDefinition": "code_review/v1",
+              "createdAt": "2026-10-14T12:33:38Z"
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false
+          }
+        }
+      }
+    }
+  },
+  "github_main": "f0d5f680dd78900f1dd8600534659d2066ea920d"
+}

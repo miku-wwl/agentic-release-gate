@@ -69,7 +69,7 @@ def main():
     for scenario in ("allow", "deny", "skipped", "missing", "failed"):
         root = directory / scenario
         root.mkdir()
-        for folder in ("src", ".gitlab"):
+        for folder in ("src", "scripts", ".gitlab"):
             shutil.copytree(
                 ROOT / folder, root / folder, ignore=shutil.ignore_patterns("__pycache__")
             )

@@ -1,0 +1,17 @@
+{
+  "artifact_encoding": "UTF-8 LF; Markdown hard breaks normalized to blank lines; sha256 of exact published bytes",
+  "schema_version": 1,
+  "sha256": {
+    "evidence/baseline.json": "0fe255c74e40c0f8df2dbc12dd3a54ce15dcd36797d0c413a6e5feca518b43ce",
+    "evidence/hosted-qualification.json": "4d9970f2bd129691a5dd4e98227531d94155c67be4aa0ac8777c1ed711b42ede",
+    "evidence/local-qualification.json": "81e8501a4a5c0ae9d983ccf918d086284677001a73089df20ddbe97098ffe60b",
+    "evidence/research-results.json": "805cfc080ee7040b30e101e9aa58a22adc728546dd5ee334b5a1be7cb04784e5",
+    "evidence/validation-commands.json": "9ae8aaa63ec72fd612a7a778b2435bd18f922010b4f99f33d1e2c618499f41af",
+    "examples/complete/report.html": "904114f452aba4660d54ec04c95547159f78bfb0344b4e566ff31208abab91e4",
+    "examples/complete/report.json": "21e512a673f95b9c6d2ae3ec53dcfba1c48b1b60be4358f95586c1fc7ff123a6",
+    "examples/complete/report.md": "a7cc92c91755766dbb82bda5db703dd65c9840cb5b5b621e3b1e8adbc3f3a502",
+    "examples/high_security/report.html": "aefbe05de013776f95a3594ea0d790ced65905df3e5b67b4489a7967de912cd9",
+    "examples/high_security/report.json": "f8c8c54a157b5dbc463c9f2d7b6b4eabd9434d914fb45a327e7862b4fbc494d9",
+    "examples/high_security/report.md": "371eb802882e15232dfc6d82addf91e45bee427151a9bf217027f5c7adb1a8f2"
+  }
+}

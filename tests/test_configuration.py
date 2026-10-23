@@ -33,3 +33,16 @@ def test_duo_flow_uses_documented_read_only_configuration():
     assert flow["flow"]["entry_point"] == component["name"]
     assert flow["routers"] == [{"from": component["name"], "to": "end"}]
     assert flow["prompts"][0]["prompt_id"] == component["prompt_id"]
+
+
+def test_research_and_reports_supplement_required_checks():
+    ci = yaml.safe_load((ROOT / ".gitlab-ci.yml").read_text("utf-8"))
+    research = ci["research_evaluation"]
+    assert research["when"] == "always"
+    assert research["artifacts"]["when"] == "always"
+    assert research["dependencies"] == []
+    assert "scripts/evaluate_scenarios.py --trials 3" in research["script"][0]
+    assert any("releasegate report" in cmd for cmd in ci["evidence_bundle"]["script"])
+    assert "run-check tests" in ci["tests"]["script"][0]
+    assert "run-check security" in ci["security"]["script"][0]
+    assert all("environment" not in value for value in ci.values() if isinstance(value, dict))

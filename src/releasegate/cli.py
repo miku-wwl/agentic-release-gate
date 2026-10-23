@@ -10,6 +10,7 @@ from releasegate.evidence import (
     write_json,
 )
 from releasegate.policy import Decision, evaluate
+from releasegate.reporting import build_report, write_report
 
 
 def main(argv=None) -> int:
@@ -25,6 +26,13 @@ def main(argv=None) -> int:
     assess.add_argument("--gate", choices=("eligibility", "final"), default="eligibility")
     assess.add_argument("--evidence-dir", type=Path, default=Path("evidence"))
     assess.add_argument("--output", type=Path, default=Path("evidence/decision.json"))
+    report = commands.add_parser("report", help="Revalidate evidence and present human review")
+    report.add_argument("--sha", required=True)
+    report.add_argument("--target", choices=("staging", "production"), required=True)
+    report.add_argument("--gate", choices=("eligibility", "final"), default="eligibility")
+    report.add_argument("--evidence-dir", type=Path, default=Path("evidence"))
+    report.add_argument("--advisory", type=Path)
+    report.add_argument("--output-dir", type=Path, default=Path("evidence/review"))
     commands.add_parser("release", help="Fail closed: release executor is not configured")
     args = parser.parse_args(argv)
     if args.command == "release":
@@ -39,6 +47,22 @@ def main(argv=None) -> int:
             )
         )
         return 3
+    if args.command == "report":
+        try:
+            value = build_report(
+                root=Path.cwd(),
+                directory=args.evidence_dir,
+                sha=args.sha,
+                target=args.target,
+                gate=args.gate,
+                advisory_path=args.advisory,
+            )
+            write_report(args.output_dir, value)
+        except (EvidenceError, OSError, ValueError, TypeError, KeyError):
+            print(json.dumps({"decision": "DENY", "reasons": ["REPORT_INPUT_UNUSABLE"]}))
+            return 2
+        print(json.dumps(value["decision"], sort_keys=True))
+        return 0 if value["decision"]["decision"] == "ALLOW" else 1
     try:
         if args.command == "run-check":
             result = run_check(

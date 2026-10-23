@@ -63,11 +63,29 @@ evidence_bundle:
   dependencies: [release_policy]
   script:
     # Regenerate the decision from raw artifacts; never trust a prior ALLOW string.
-    - uv run --no-sync python -m releasegate evaluate --sha "$CI_COMMIT_SHA" --target staging --output evidence/bundle-decision.json
+    - |
+      policy_status=0
+      uv run --no-sync python -m releasegate evaluate --sha "$CI_COMMIT_SHA" --target staging --output evidence/bundle-decision.json || policy_status=$?
+      report_status=0
+      uv run --no-sync python -m releasegate report --sha "$CI_COMMIT_SHA" --target staging --advisory docs/phase4/duo-advisory.json --output-dir evidence/review || report_status=$?
+      test "$policy_status" -eq 0 && test "$report_status" -eq 0
   artifacts:
     when: always
     expire_in: 14 days
     paths: [evidence/]
+
+# Independent local-snapshot research, executed on the runner. This does not
+# replace tests/security/release_policy or attest the derived snapshot as main.
+research_evaluation:
+  stage: evidence
+  when: always
+  dependencies: []
+  script:
+    - uv run --no-sync python scripts/evaluate_scenarios.py --trials 3 --output-dir evidence/research
+  artifacts:
+    when: always
+    expire_in: 14 days
+    paths: [evidence/research/]
 
 # Execute safe negative suites on the real runner. Their derived snapshots remain
 # explicitly local-working-tree evidence; baseline jobs above retain gitlab-ci provenance.

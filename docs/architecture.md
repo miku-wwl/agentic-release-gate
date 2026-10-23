@@ -1,6 +1,6 @@
-# ReleaseGate architecture — Phase 2 platform qualification
+# ReleaseGate architecture — evidence, eligibility and human review
 
-Initial assessment: 2026-10-13; platform evidence updated 2026-10-15.
+Initial assessment: 2026-10-13; current update: 2026-10-24.
 Scope: a new Path A application. The completed local
 slice makes release eligibility decisions. Real GitLab CI and foundational Duo
 review are qualified; custom risk-flow registration and release execution remain
@@ -14,7 +14,9 @@ flowchart LR
     MR --> DUO[Verified Duo Code Review Flow]
     CI --> RAW[Raw reports and provenance envelopes]
     RAW --> POLICY[Deterministic ReleaseGate policy]
-    DUO --> ADVICE[MR advice, prescan JSON and session evidence]
+    DUO --> ADVICE[Historical advice and original reviewed SHA]
+    ADVICE --> REPORT[Human review report]
+    POLICY --> REPORT
     POLICY --> DENY[DENY with reasons]
     POLICY --> HUMAN[ALLOW to human review]
     HUMAN --> AUTH[Future independent execution authorization]
@@ -73,8 +75,7 @@ in the local DENY demonstration is never imported or executed.
 
 The checkout retains GitHub `origin` and a separate official `gitlab` remote.
 After the user's secure OAuth refresh, the actual glab process authenticated as
-`weilai-wang`, with Developer (30) group access. The isolated import is published
-as MR !1, preserving the GitLab initialization ancestor and README. GitHub retains
+`weilai-wang`, with Developer (30) group access. The isolated import was merged through MR !1 on October 16, preserving the GitLab initialization ancestor and README. GitHub retains
 its independent history and upstream. Runner inventory access returned 403, but
 successful hosted jobs independently prove shared-runner execution. Project Duo
 remote/foundational flows and workflow-runner availability are enabled. Actual
@@ -89,7 +90,7 @@ See [the SHA-bound qualification record](phase2-unified-handoff.md).
 | Event triggers | Flows/external agents, not custom agents | Explicit API invocation VERIFIED; custom event trigger NOT VERIFIED |
 | Read tools | MR context, repository files and diffs | Real calls observed; pipeline artifact reads by Duo NOT VERIFIED |
 | GitLab CI artifacts | Raw paths and pytest JUnit report | Hosted 96-case suite, Bandit, decisions and boundary artifacts VERIFIED |
-| Manual job | Blocking with `allow_failure: false` | Server lint accepted; protected-main execution NOT VERIFIED while MR stays open |
+| Manual job | Blocking with `allow_failure: false` | Present and unexecuted on merged main; overall main pipeline remains manual |
 | Protected deployment approval | Premium/Ultimate; separate approval and job run | Deferred; edition/rules NOT VERIFIED |
 | Agent sessions | AI > Sessions, execution logs | Session, trace, model output, MR notes and Duo pipeline VERIFIED |
 
@@ -162,3 +163,12 @@ separate scope/ledger. Never elevate old approvals, grants or Actions. Preserve
 terminal Unknown/no blind retry. The bundled HTTP deadline remains ten seconds, so
 a full fifteen-second profile needs a consumer-owned request envelope.
 [Pinned adapter guide](https://github.com/miku-wwl/agentic-intent-gate/blob/v0.2.0/docs/ADAPTER_GUIDE.md).
+
+## Phase 4 presentation and experiment
+
+The report command revalidates evidence and invokes the same pure Policy v2. Offline
+Duo advisory metadata reaches only the presentation layer, with curated historical
+identity checks and visible correction attribution. No approval input or executor
+is added. The research command uses real isolated check collection plus explicitly
+labelled policy-only approval fixtures. See [method](phase4/01-research-methodology.md)
+and [human report](phase4/06-human-review-experience.md).

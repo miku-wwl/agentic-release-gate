@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'"><title>ReleaseGate candidate review</title><style>body{margin:0;background:#101828;color:#e4e7ec;font:16px/1.6 system-ui}main{max-width:1050px;margin:32px auto;padding:24px}section{margin:24px 0;padding:24px;background:#1d2939;border:1px solid #344054;border-radius:12px;overflow-wrap:anywhere}h2{font-size:21px}.cards{display:flex;gap:16px;flex-wrap:wrap}.card{flex:1;min-width:170px;padding:20px;background:#26364c;border-radius:8px}.card strong{display:block;font-size:27px}table{width:100%;text-align:left;border-collapse:collapse}td,th{padding:10px;border-bottom:1px solid #344054}.boundary{border-left:5px solid #efb95b}h1{margin:0;font-size:32px}p{color:#b9c5d6}.badge{font-size:28px;font-weight:700;display:inline-block;padding:4px 24px;border-radius:8px;background:#075e47}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.8 ui-monospace,monospace}</style><main><h1>ReleaseGate</h1><p>Evidence → eligibility → human review</p><div class="badge">ALLOW</div><p>Execution authorization: false · Production execution disabled</p><section><strong>Candidate</strong><p><code>81aadcf643f3375046c79c4ff611096923cd93a0</code></p><p>Target: staging · Gate: eligibility · Policy: releasegate-policy-v2</p></section><div class="cards"><div class="card">Tests passed<strong>139/139</strong></div><div class="card">Mandatory identities<strong>139/139</strong></div><div class="card">Security findings<strong>2</strong></div></div><section><h2>Exact policy reasons</h2><ul><li><code>CHECKS_PASSED</code></li></ul><p>Next gate: HUMAN_APPROVAL</p><p>Obtain exact human review; execution still requires separate authorization.</p></section><section class="boundary"><h2>Human authorization boundary</h2><p>ALLOW is eligibility only. Final production approval is required. execution_authorized=false. release remains DENY / exit 3.</p></section><section><h2>Test and security detail</h2><p>Passed 139; failed 0; errors 0; skipped 0.</p><p>Missing identities: []</p><pre>{
+  &quot;findings&quot;: [
+    {
+      &quot;file&quot;: &quot;src\\releasegate\\evidence.py&quot;,
+      &quot;id&quot;: &quot;B404&quot;,
+      &quot;line&quot;: 7,
+      &quot;severity&quot;: &quot;LOW&quot;
+    },
+    {
+      &quot;file&quot;: &quot;src\\releasegate\\evidence.py&quot;,
+      &quot;id&quot;: &quot;B603&quot;,
+      &quot;line&quot;: 239,
+      &quot;severity&quot;: &quot;LOW&quot;
+    }
+  ],
+  &quot;scanned_files&quot;: 7
+}</pre></section><section><h2>Evidence provenance</h2><table><tr><th>Check</th><th>Tool</th><th>Origin</th><th>Exit</th></tr><tr><td>tests</td><td>pytest 8.4.2</td><td>local-working-tree</td><td>0</td></tr><tr><td>security</td><td>bandit 1.8.6</td><td>local-working-tree</td><td>1</td></tr></table><p>Hosted verification: NOT_VERIFIED</p><details><summary>Digests and source context</summary><pre>{
+  &quot;security&quot;: {
+    &quot;commit_sha&quot;: &quot;81aadcf643f3375046c79c4ff611096923cd93a0&quot;,
+    &quot;context&quot;: {
+      &quot;origin&quot;: &quot;local-working-tree&quot;,
+      &quot;pipeline_id&quot;: &quot;&quot;,
+      &quot;project_id&quot;: &quot;&quot;,
+      &quot;source_digest&quot;: &quot;3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18&quot;
+    },
+    &quot;exit_code&quot;: 1,
+    &quot;raw_file&quot;: &quot;security.bandit.json&quot;,
+    &quot;raw_sha256&quot;: &quot;78c9fc14c9f52ad613319540594626fbd4283f0eac29af94ad3d564c9b0e22e5&quot;,
+    &quot;tool&quot;: &quot;bandit&quot;,
+    &quot;tool_version&quot;: &quot;1.8.6&quot;
+  },
+  &quot;tests&quot;: {
+    &quot;commit_sha&quot;: &quot;81aadcf643f3375046c79c4ff611096923cd93a0&quot;,
+    &quot;context&quot;: {
+      &quot;origin&quot;: &quot;local-working-tree&quot;,
+      &quot;pipeline_id&quot;: &quot;&quot;,
+      &quot;project_id&quot;: &quot;&quot;,
+      &quot;source_digest&quot;: &quot;3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18&quot;
+    },
+    &quot;exit_code&quot;: 0,
+    &quot;raw_file&quot;: &quot;tests.junit.xml&quot;,
+    &quot;raw_sha256&quot;: &quot;7c8d75a0bf1fcb15a1d74abddc1c86769a2050c9ec0b5feea521a5d37e319516&quot;,
+    &quot;tool&quot;: &quot;pytest&quot;,
+    &quot;tool_version&quot;: &quot;8.4.2&quot;
+  }
+}</pre></details></section><section><h2>Duo advisory</h2><p><strong>HISTORICAL_EVIDENCE</strong> · OFFLINE_REFERENCE_ONLY</p><p>Reviewed SHA: <code>4182deb55678382c0a99f7b1fd8e2232d17a0611</code><br>Matches candidate: false</p><p><b>Finding:</b> git is unavailable in the slim CI image.</p><p><b>Recommendation:</b> Use validated CI_COMMIT_SHA in CI.</p><p>Session: https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/automate/agent-sessions/9451709<br>Finding: https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/1#note_4012466889<br>Time: 2026-10-14T12:35:37.799Z</p><p>Subsequent correction by <strong>Codex</strong><br>https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/commit/d05e8bb205a0411c5f7b5bc5c6fc68b0b367a7cf</p><p>Historical session reviewed the recorded earlier SHA, not the final merged or Phase 4 candidate.</p><p>Finding/reference rechecked through GitLab REST and session GraphQL on 2026-10-24 Pacific/Auckland.</p><p>Duo supplied the recommendation; Codex implemented the subsequent correction.</p><p>Offline ingestion is reference-only and cannot authenticate a live session or human approval.</p><p>No proof that Duo read CI artifacts; no new Flow was invoked in this milestone.</p></section><section><h2>Known limitations</h2><ul><li>Hashes establish local integrity, not runner attestation or artifact authenticity.</li><li>CI context in a file is not independently verified hosted execution.</li><li>Duo references are offline evidence; ingestion does not authenticate a GitLab session.</li><li>No authenticated human approval adapter or release executor is configured.</li></ul></section></main></html>
