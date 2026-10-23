@@ -5,6 +5,8 @@ __pycache__/
 .ruff_cache/
 .artifacts/
 evidence/
+!docs/phase4/evidence/
+!docs/phase4/evidence/*.json
 dist/
 *.egg-info/
 .env

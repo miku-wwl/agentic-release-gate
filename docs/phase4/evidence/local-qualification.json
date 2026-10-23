@@ -1,0 +1,65 @@
+{
+  "bandit_raw_exit": 1,
+  "browser_visual_qa": "BLOCKED: cua inventory apps=[] browsers=[]; iab unavailable",
+  "origin": "LOCAL_TESTED",
+  "original_mandatory": 96,
+  "original_mandatory_present": 96,
+  "qualification_base_commit": "81aadcf643f3375046c79c4ff611096923cd93a0",
+  "release_command": {
+    "decision": "DENY",
+    "execution_authorized": false,
+    "exit_code": 3
+  },
+  "report_rendering": "PASS: deterministic Markdown/JSON/HTML tests and actual example generation",
+  "research_metrics": {
+    "cli_latency_seconds": {
+      "max": 0.4105870999628678,
+      "mean": 0.346947830304447,
+      "median": 0.3435394000262022,
+      "min": 0.29495589999714866,
+      "n": 33
+    },
+    "correct_decisions": 42,
+    "expected_allow": 3,
+    "expected_deny": 39,
+    "fail_closed_detection_rate": 1.0,
+    "false_allow": 0,
+    "false_deny": 0,
+    "total_scenarios": 14,
+    "trials_executed": 42
+  },
+  "runtime_dependency": "NOT_ADDED; existing ignored 3.13 installed API probe passed",
+  "schema_version": 1,
+  "security": {
+    "findings": [
+      {
+        "file": "src\\releasegate\\evidence.py",
+        "id": "B404",
+        "line": 7,
+        "severity": "LOW"
+      },
+      {
+        "file": "src\\releasegate\\evidence.py",
+        "id": "B603",
+        "line": 239,
+        "severity": "LOW"
+      }
+    ],
+    "scanned_files": 7
+  },
+  "security_collection_cli_exit": 0,
+  "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+  "tests": {
+    "errors": 0,
+    "failed": 0,
+    "passed": 139,
+    "skipped": 0,
+    "total": 139
+  },
+  "tools": {
+    "bandit": "1.8.6",
+    "defusedxml": "0.7.1",
+    "pytest": "8.4.2",
+    "python": "3.12.13"
+  }
+}

@@ -1,6 +1,11 @@
 # GitLab Duo integration — genuine foundational review, custom flow pending
 
-Updated: 2026-10-15. Authentication is VERIFIED in the actual glab execution
+Phase 4 update (2026-10-24): MR !1 is merged. Historical session identity and finding
+were revalidated; no new Flow was invoked. See [advisory integration](phase4/04-duo-advisory-integration.md)
+and [current qualification](phase4/14-final-handoff.md). The dated observations below
+remain historical evidence.
+
+Historical record, updated: 2026-10-15. Authentication is VERIFIED in the actual glab execution
 environment as `weilai-wang`, Developer (30). The project has enabled foundational
 and remote flows and an available Duo workflow runner. The existing Code Review
 Catalog consumer `12590001` (item `1796`, executed version `2514`) was invoked once

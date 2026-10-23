@@ -1,22 +1,38 @@
 # ReleaseGate
 
+Official competition workspace: [GitLab Showcase](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase).
+The [welcome issue](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/work_items/1)
+contains onboarding and community resources. The original workspace README is
+preserved in [gitlab-initial-README.md](docs/gitlab-initial-README.md) as historical
+content; its template push instructions do not govern this import.
+
+This branch is a tracked content import from GitHub commit
+`98d81957f19afa8d7de8843236b7497d5baac2b3`, based on the GitLab initialization
+commit. The GitHub and GitLab histories remain independent.
+
+Documentation updated from reviewed GitHub commit
+`7a692fbba0139fd4805fc9c2bce95eda35d5eebf`; code corrections are recorded in the Phase 2 handoff.
+
 Commit-bound release evidence and deterministic policy for GitLab Transcend
-**Life After Code**, Path A. Assisted behavior is demonstrated; Supervised remains
-a target pending evidence. Phase 1 evaluates actual pytest and Bandit
-reports, blocks unsafe candidates, and produces JSON evidence for human review.
+**Life After Code**, Path A / Best Assisted Agent. GitLab Duo advises; real pytest
+and Bandit evidence qualify a candidate; ReleaseGate presents an inspectable
+ALLOW/DENY for human review.
 
-**Status (2026-10-15):** GitLab import, real MR CI (96 tests) and a genuine Duo
-Code Review Flow are VERIFIED. [MR !1](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/1)
-remains open. Phase 2 is PARTIAL: custom risk-flow registration and its final risk
-JSON contract remain unverified. See the [actual CI/Duo evidence and handoff](docs/phase2-unified-handoff.md).
+**Status (2026-10-24):** [MR !1](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/1)
+was merged into GitLab main on October 16. The project is public and MIT licensed.
+Historical main CI passed five automatic jobs and the original 96 mandatory tests;
+its overall status remains manual at the untouched blocking candidate-review job.
+Phase 4 adds reproducible evidence experiments, historical Duo advisory ingestion
+and Markdown/JSON/static HTML human reports. Exact current qualification is in the
+[Phase 4 handoff](docs/phase4/14-final-handoff.md).
 
-Phase 2.5 uses the built-in Fix CI/CD Pipeline Flow, without requiring Custom Flow
-registration. Its [isolated failure and qualification checkpoint](docs/phase2.5-foundational-duo-handoff.md)
-records real missing-command and policy DENY evidence. Browser login and the Fix
-Pipeline button are verified. The [V2 security review](docs/phase2.5-security-and-autonomy-review.md)
-blocks invocation because demo-only write isolation is not established. Fix Flow
-and repair qualification remain NOT VERIFIED; the report includes an Assisted
-demonstration fallback using existing genuine Code Review and CI evidence.
+AUTONOMY_STATUS=ASSISTED_VERIFIED. SUPERVISED_STATUS=NOT_VERIFIED.
+The genuine historical Code Review session found missing git in the slim CI image.
+Duo recommended; Codex implemented the correction. The session reviewed an earlier
+revision, not the final merged main or Phase 4 candidate. The prepared custom Flow
+was not registered; foundational Fix CI/CD Flow was not executed. The historical
+[Phase 2.5 safety restriction](docs/phase2.5-security-and-autonomy-review.md)
+remains applicable. No new Flow invocation is part of this milestone.
 
 Production execution is disabled. ALLOW means eligible for the next gate, never execution authorization. The pinned shared
 Runtime v0.2.0 is MIT licensed and verified separately on Python 3.13. Its execution
@@ -80,5 +96,32 @@ through AI Catalog; the file alone does not install a flow. See [Duo setup and l
 - [Phase 1 handoff and actual verification](docs/phase1-handoff.md)
 - [Phase 1.1 Runtime compatibility update](docs/phase1.1-handoff.md)
 
-MIT licensed. AGENTS.md is preserved. GitHub publication and a GitLab import branch
-are authorized for this milestone; deployment and automatic MR merge are excluded.
+MIT licensed. AGENTS.md is preserved. The Phase 4 feature-branch publication and review MR are authorized; deployment and automatic merge are excluded.
+
+## Human review and reproducible evaluation
+
+```powershell
+# After collecting tests/security above:
+uv run --no-sync python -m releasegate report --sha $sha --target staging --advisory docs/phase4/duo-advisory.json --output-dir evidence/review
+uv run --no-sync python scripts/evaluate_scenarios.py --trials 3 --output-dir .artifacts/research-new
+```
+
+The report revalidates raw artifacts using existing Policy v2. Advice cannot waive
+failures or supply human approval. Open `evidence/review/report.html`; Markdown and
+schema-v1 JSON are adjacent. Historical Duo references and local versus hosted
+verification remain visible. Research executes real checks in isolated snapshots,
+labels synthetic approval-policy evaluations, and records measured outcomes and
+provenance. Its three-identity negative fixtures never replace the original 96
+mandatory application identities; Phase 4 adds mandatory coverage for new features.
+
+- [Baseline audit](docs/phase4/00-baseline-audit.md)
+- [Method and reproduction](docs/phase4/01-research-methodology.md)
+- [Executed results](docs/phase4/02-experimental-results.md)
+- [Threat model and limits](docs/phase4/03-threat-model-and-validity.md)
+- [Review report](docs/phase4/06-human-review-experience.md)
+- [Lifecycle coverage](docs/phase4/07-devsecops-lifecycle-matrix.md)
+- [New video storyboard](docs/phase4/09-video-storyboard.md) — materials only; recording pending
+
+Phase 4 uses a normal GitLab-main-based feature branch and review MR. It preserves
+GitLab initialization history, MR !2, all existing policy gates and the Python 3.12
+lock. No main push, merge, deployment or final video publication is included.
