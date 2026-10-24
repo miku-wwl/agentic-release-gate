@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ReleaseGate — Live Verification Console</title>
+  <link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/base.css">
+  <link rel="stylesheet" href="/assets/live.css">
+  <script src="/assets/live.js" defer></script>
+</head>
+<body class="live-app">
+<a class="skip-link" href="#live-main">Skip to content</a>
+<aside class="live-sidebar">
+  <a class="live-brand" href="#verification"><img src="/assets/mark.svg" width="36" height="36" alt=""><span>ReleaseGate<small>LIVE VERIFICATION</small></span></a>
+  <nav aria-label="Console navigation">
+    <a href="#verification">Verify</a><a href="#decision">Decision</a><a href="#evidence">Evidence</a><a href="#technical-status">Status</a>
+  </nav>
+  <p class="sidebar-note">Every decision traces to actual verification evidence.</p>
+</aside>
+<div class="live-frame">
+  <header class="live-topbar"><span>Verification workspace</span><span class="live-environment">LOCAL LIVE DEMO</span></header>
+  <main id="live-main" tabindex="-1">
+    <section class="live-hero" id="verification" aria-labelledby="console-title">
+      <div><p class="eyebrow">VERIFICATION BEFORE EXECUTION</p><h1 id="console-title">Live Verification Console</h1><p class="live-subtitle">Run real checks. Inspect evidence. Verify decisions.</p></div>
+      <div class="live-repository"><p class="label">CURRENT REPOSITORY HEAD</p><code id="repository-sha">Connecting to local service…</code><p>Each run verifies an isolated snapshot of this committed source.</p></div>
+    </section>
+    <section class="panel live-controls" aria-labelledby="verification-title">
+      <div class="live-section-heading"><div><h2 id="verification-title">Start a verification</h2><p>Tests, security scanning and policy evaluation run on this machine.</p></div><span class="live-service" id="service-status">Connecting</span></div>
+      <div class="live-actions"><button id="run-fresh" class="live-primary" type="button" data-operation="allow" disabled>Run Fresh Verification <span aria-hidden="true">↗</span></button><button id="cancel-run" class="live-secondary" type="button" hidden>Cancel verification</button></div>
+      <div class="live-scenarios"><div><h3>Standard verification</h3><p>Verify the committed source against the existing release policy.</p><button class="live-secondary" type="button" data-operation="allow" disabled>Run ALLOW Verification</button></div><div><h3>Controlled security scenario</h3><p>A separate scan-only fixture demonstrates rejection. Its code is never executed.</p><button class="live-secondary live-rejection" type="button" data-operation="security_rejection" disabled>Run Security Rejection</button></div></div>
+      <p id="request-error" class="live-error" role="alert" hidden></p>
+    </section>
+    <section class="panel live-progress" aria-labelledby="progress-title">
+      <div class="live-section-heading"><h2 id="progress-title">Execution progress</h2><span id="run-status" class="live-neutral">Ready</span></div>
+      <p id="empty-state">No verification has been run in this session.</p>
+      <ol id="progress-steps" class="live-steps" aria-label="Actual backend stages"><li data-stage="preparing">Preparing</li><li data-stage="tests">Running tests</li><li data-stage="security">Security scan</li><li data-stage="collecting">Collecting evidence</li><li data-stage="policy">Evaluating policy</li><li data-stage="report">Generating report</li></ol>
+      <p id="live-announcement" class="sr-only" role="status" aria-live="polite"></p>
+      <details class="live-details"><summary>Process execution details</summary><div class="table-wrap"><table class="live-findings"><caption>Actual local process records</caption><thead><tr><th scope="col">Check</th><th scope="col">Process ID</th><th scope="col">Exit code</th><th scope="col">Duration</th></tr></thead><tbody id="process-body"><tr><td colspan="4">No processes started yet.</td></tr></tbody></table></div></details>
+      <dl class="live-run-meta" id="run-meta" hidden><div><dt>Run ID</dt><dd><code id="run-id">—</code></dd></div><div><dt>Started · UTC</dt><dd id="started-at">—</dd></div><div><dt>Completed · UTC</dt><dd id="finished-at">—</dd></div><div><dt>Duration</dt><dd id="duration">—</dd></div></dl>
+      <p id="run-error" class="live-error" hidden></p>
+    </section>
+    <section id="decision" class="live-result-grid" aria-label="Current verification result">
+      <article class="panel live-decision" id="decision-panel"><p class="label">RELEASE ELIGIBILITY</p><h2 id="decision-value">Awaiting verification</h2><p id="decision-summary">A decision will appear after actual checks and evidence validation.</p><ul id="decision-reasons"></ul><div class="live-human"><strong>Human Approval Required</strong><p id="next-gate">Verification does not grant execution authorization.</p></div></article>
+      <div class="live-metric-stack"><article class="panel"><p class="label">REAL TEST EXECUTION</p><h2 id="test-count">—</h2><p id="test-detail">No test execution yet.</p></article><article class="panel"><p class="label">SECURITY EVIDENCE</p><h2 id="security-count">—</h2><p id="security-detail">No security scan yet.</p></article></div>
+    </section>
+    <section id="evidence" class="panel" aria-labelledby="chain-title"><div class="live-section-heading"><div><p class="eyebrow">DECISION TRACE</p><h2 id="chain-title">Follow the evidence.</h2></div><span id="scenario-label" class="live-neutral">Current session</span></div><ol id="evidence-chain" class="live-chain"><li><strong>Commit</strong><span id="chain-commit">Waiting for run</span></li><li><strong>Tests</strong><span id="chain-tests">Not run</span></li><li><strong>Security</strong><span id="chain-security">Not run</span></li><li><strong>Policy</strong><span id="chain-policy">Not evaluated</span></li><li class="live-human-node"><strong>Human approval</strong><span>Required · Unexecuted</span></li></ol><p class="source-note">Automated verification establishes eligibility. Human approval and execution authorization remain separate.</p>
+      <details class="live-details"><summary>Source and evidence identity</summary><dl class="live-identity"><div><dt>Verified source SHA</dt><dd><code id="verified-sha">—</code></dd></div><div><dt>Evidence digest</dt><dd><code id="evidence-digest">—</code></dd></div><div><dt>Local artifact directory</dt><dd><code id="artifact-directory">—</code></dd></div></dl><p>Logs and reports below are sanitized views. Original bytes and SHA256 remain in the local run directory.</p></details>
+    </section>
+    <section class="panel" aria-labelledby="findings-title"><div class="live-section-heading"><h2 id="findings-title">Actual security findings</h2><span id="scan-scope" class="live-neutral">No scan yet</span></div><div class="table-wrap"><table class="live-findings"><caption>Findings from this run's real Bandit scan</caption><thead><tr><th scope="col">Severity</th><th scope="col">Rule</th><th scope="col">Source</th></tr></thead><tbody id="findings-body"><tr><td colspan="3">Run verification to inspect security evidence.</td></tr></tbody></table></div></section>
+    <section class="panel" aria-labelledby="artifacts-title"><h2 id="artifacts-title">Inspect execution evidence</h2><p class="source-note">Choose actual stdout, stderr, raw report data or the generated decision. Sensitive content is redacted from these browser views.</p><div class="live-artifact-controls"><label for="artifact-choice">Artifact</label><select id="artifact-choice" disabled><option value="">No generated artifacts yet</option></select><button id="inspect-artifact" type="button" class="live-secondary" disabled>Inspect evidence</button></div><details id="artifact-inspector" class="live-details"><summary>Artifact contents and original hash</summary><p id="artifact-name">No artifact selected.</p><code id="artifact-hash">—</code><p id="artifact-redaction" class="source-note"></p><pre id="artifact-text" tabindex="0">Choose an artifact after a verification run.</pre></details></section>
+    <details id="technical-status" class="panel live-details"><summary>Safety boundary active · Technical status</summary><dl class="live-technical"><div><dt>Environment</dt><dd>LOCAL</dd></div><div><dt>Verification execution</dt><dd>ENABLED</dd></div><div><dt>Production execution</dt><dd>DISABLED</dd></div><div><dt>Human approval</dt><dd>REQUIRED / UNEXECUTED</dd></div><div><dt>Execution authorization</dt><dd>execution_authorized=false</dd></div><div><dt>Verification source</dt><dd>Current committed HEAD; uncommitted edits are excluded.</dd></div></dl><p>No local verification can approve a release or dispatch a production deployment.</p></details>
+    <details class="panel live-details"><summary>Historical references and public showcase</summary><p>Local Python verification is separate from GitLab Duo Agent Platform activity. This console does not start a Duo session.</p><a href="https://miku-wwl.github.io/agentic-release-gate/" target="_blank" rel="noopener noreferrer">Public showcase · static reference</a><a href="https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/1#note_4012466889" target="_blank" rel="noopener noreferrer">Historical Duo review finding</a><p>Historical advice is not a live review of this run. The historical session UI may require authenticated access.</p></details>
+  </main>
+  <footer class="live-footer"><strong>ReleaseGate</strong><span>Evidence-backed release decisions · Safety boundary active</span></footer>
+</div>
+</body>
+</html>
