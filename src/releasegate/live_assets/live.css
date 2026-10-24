@@ -54,6 +54,8 @@
 .live-human { margin-top: 24px; padding: 16px 18px; border: 1px solid #4e4934; background: #292d25; border-radius: 10px; }
 .live-human strong { color: var(--amber); font-size: 15px; }
 .live-human p { color: var(--muted); font-size: 13px; margin-top: 3px; }
+.live-decision.deny .live-human { border-color: #6c3f4c; background: var(--rose-bg); }
+.live-decision.deny .live-human strong { color: var(--rose); }
 .live-metric-stack { display: grid; gap: 18px; }
 .live-metric-stack h2 { margin: 12px 0 7px; font-size: 32px; }
 .live-metric-stack p:last-child { color: var(--muted); font-size: 14px; }

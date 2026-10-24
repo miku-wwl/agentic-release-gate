@@ -14,3 +14,4 @@ console_javascript:
   script:
     - node --version
     - node --check frontend/assets/console.js
+    - node --test frontend/tests/live_copy.test.cjs

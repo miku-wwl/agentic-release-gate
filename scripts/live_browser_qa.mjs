@@ -67,11 +67,20 @@ async function runByClick(page,button,expected,label,captureRunning=false) {
   assert.equal(run.processes.length,4);
   assert.ok(run.processes.slice(0,2).every(process=>process.inner_check_pid && process.pid));
   assert.equal(await page.locator('#empty-state').isVisible(),false);
+  const counts={HIGH:0,CRITICAL:0};
+  for(const finding of run.result.security.findings) if(finding.severity in counts) counts[finding.severity]++;
+  assert.equal(await page.locator('#security-count').textContent(),`${counts.HIGH} HIGH · ${counts.CRITICAL} CRITICAL`);
   if(expected==='DENY') {
     assert.ok(run.result.decision.reasons.includes('SECURITY_HIGH'));
     assert.ok(await page.locator('#findings-body .HIGH').count()>0);
     assert.match(await page.locator('#scenario-label').textContent(),/Controlled scan-only/);
-  } else assert.match(await page.locator('#next-gate').textContent(),/Human Approval Required/);
+    assert.equal(await page.locator('#decision-gate-label').textContent(),'Release Blocked — Security Policy Rejected');
+    assert.doesNotMatch(await page.locator('#decision-panel').innerText(),/Human Approval Required/);
+    assert.equal(await page.locator('#chain-human').textContent(),'Blocked · Unexecuted');
+  } else {
+    assert.match(await page.locator('#next-gate').textContent(),/Human Approval Required/);
+    assert.equal(await page.locator('#decision-gate-label').textContent(),'Eligible — Human Approval Required');
+  }
   await page.locator('#decision').scrollIntoViewIfNeeded();
   await screenshot(page,`${label}-decision`);
   await page.locator('#artifact-choice').selectOption('test-stdout');

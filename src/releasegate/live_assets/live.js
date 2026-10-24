@@ -57,14 +57,19 @@
     text("decision-summary", decision ? "Calculated by the existing release policy from this run's evidence." : "A decision requires actual checks and validated evidence.");
     byId("decision-reasons").replaceChildren();
     for (const reason of decision?.reasons || []) { const item = document.createElement("li"); item.textContent = reason; byId("decision-reasons").append(item); }
-    text("next-gate", decision?.next_gate === "HUMAN_APPROVAL" ? "Next Gate: Human Approval Required · Unexecuted" : "Verification does not grant execution authorization.");
+    const allowed = decision?.decision === "ALLOW";
+    const denied = decision?.decision === "DENY";
+    const securityRejected = decision?.reasons.some(reason => reason.startsWith("SECURITY_"));
+    text("decision-gate-label", allowed ? "Eligible — Human Approval Required" : denied ? (securityRejected ? "Release Blocked — Security Policy Rejected" : "Release Blocked — Policy Rejected") : "Verification required");
+    text("next-gate", denied ? "Resolve policy failures and run verification again. Human approval cannot override this decision." : allowed ? "Next Gate: Human Approval Required · Unexecuted" : "Verification does not grant execution authorization.");
+    text("chain-human", denied ? "Blocked · Unexecuted" : allowed ? "Required · Unexecuted" : "Unexecuted");
     text("evidence-digest", decision?.evidence_digest);
     text("test-count", tests ? `${tests.passed} / ${tests.total}` : "—");
     text("test-detail", tests ? `${tests.failed} failed · ${tests.errors} errors · ${tests.skipped} skipped` : "Waiting for this run's test evidence.");
     text("chain-tests", tests ? `${tests.passed}/${tests.total} passed` : "Not collected yet");
     const severities = {LOW:0, MEDIUM:0, HIGH:0, CRITICAL:0};
     for (const finding of security?.findings || []) if (finding.severity in severities) severities[finding.severity] += 1;
-    text("security-count", security ? `${severities.HIGH + severities.CRITICAL} high / critical` : "—");
+    text("security-count", security ? `${severities.HIGH} HIGH · ${severities.CRITICAL} CRITICAL` : "—");
     text("security-detail", security ? `${severities.LOW} low · ${severities.MEDIUM} medium · ${security.scanned_files} files scanned` : "Waiting for this run's security evidence.");
     text("chain-security", security ? `${security.findings.length} actual findings` : "Not collected yet");
     text("chain-policy", decision?.decision || "Not evaluated");
