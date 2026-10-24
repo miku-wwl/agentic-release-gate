@@ -1,0 +1,76 @@
+{
+  "branch_pipeline": {
+    "id": 2983196180,
+    "status": "success"
+  },
+  "commit_sha": "4a99e9e42c1ef95ec3af91d8f9c8e69c186b35e9",
+  "evidence_status": "VERIFIED",
+  "jobs": [
+    {
+      "duration_seconds": 15.957125,
+      "id": 17430569509,
+      "name": "validate",
+      "status": "success",
+      "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17430569509"
+    },
+    {
+      "duration_seconds": 24.102248,
+      "id": 17430569510,
+      "name": "tests",
+      "status": "success",
+      "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17430569510"
+    },
+    {
+      "duration_seconds": 18.770828,
+      "id": 17430569511,
+      "name": "security",
+      "status": "success",
+      "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17430569511"
+    },
+    {
+      "duration_seconds": 156.031286,
+      "id": 17430569512,
+      "name": "release_policy",
+      "status": "success",
+      "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17430569512"
+    },
+    {
+      "duration_seconds": 23.905416,
+      "id": 17430569513,
+      "name": "evidence_bundle",
+      "status": "success",
+      "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17430569513"
+    },
+    {
+      "duration_seconds": 33.306651,
+      "id": 17430569514,
+      "name": "research_evaluation",
+      "status": "success",
+      "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17430569514"
+    },
+    {
+      "duration_seconds": 23.589914,
+      "id": 17430569515,
+      "name": "release_boundary_demo",
+      "status": "success",
+      "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17430569515"
+    }
+  ],
+  "limitations": [
+    "Selected API observations, not a signed attestation.",
+    "No new Duo review of this implementation commit.",
+    "No human production approval, release execution or deployment."
+  ],
+  "merge_request_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/3",
+  "pipeline_id": 2983200071,
+  "pipeline_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2983200071",
+  "schema_version": 1,
+  "source": "GitLab public REST API, observed 2026-10-23 22:41-22:42 UTC",
+  "test_report_summary": {
+    "count": 139,
+    "error": 0,
+    "failed": 0,
+    "skipped": 0,
+    "success": 139
+  }
+}
