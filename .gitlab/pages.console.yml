@@ -1,10 +1,29 @@
-# INERT TEMPLATE: not included by .gitlab-ci.yml.
-# Only enable after separate explicit user authorization for the reviewed commit,
+# Included configuration, inert while the exact-SHA publication fence is closed.
+# Only publish after separate explicit user authorization for the reviewed commit,
 # payload and intended Pages audience. This variable is an operational fence,
 # not authenticated production approval. Never change Pages visibility silently.
 console_pages:
   stage: evidence
+  needs:
+    - job: validate
+      artifacts: false
+    - job: console_build
+      artifacts: false
+    - job: console_javascript
+      artifacts: false
+    - job: tests
+      artifacts: false
+    - job: security
+      artifacts: false
+    - job: release_policy
+      artifacts: false
+    - job: evidence_bundle
+      artifacts: false
+    - job: research_evaluation
+      artifacts: false
+  manual_confirmation: "Publish only the explicitly approved static Console SHA, payload and audience. This does not authorize production execution."
   script:
+    - test "$RELEASEGATE_PAGES_APPROVED_SHA" = "$CI_COMMIT_SHA"
     - uv run --no-sync python frontend/build_console.py --output-dir dist/console
   pages:
     publish: dist/console

@@ -215,15 +215,34 @@ def test_research_and_audit_are_bounded_and_historical(site):
 
 def test_pages_deployment_config_is_inert_and_validation_has_no_uploads():
     root_ci = yaml.safe_load((ROOT / ".gitlab-ci.yml").read_text())
-    assert root_ci["include"] == [{"local": ".gitlab/ci/console-validate.yml"}]
+    assert root_ci["include"] == [
+        {"local": ".gitlab/ci/console-validate.yml"},
+        {"local": ".gitlab/pages.console.yml"},
+    ]
     validate = yaml.safe_load((ROOT / ".gitlab/ci/console-validate.yml").read_text())
     assert all("pages" not in job and "artifacts" not in job for job in validate.values())
     deploy = yaml.safe_load((ROOT / ".gitlab/pages.console.yml").read_text())
     job = deploy["console_pages"]
     assert job["pages"]["publish"] == "dist/console"
     assert job["rules"][0]["when"] == "manual"
-    assert "$RELEASEGATE_PAGES_APPROVED_SHA == $CI_COMMIT_SHA" in job["rules"][0]["if"]
+    assert job["rules"][0]["allow_failure"] is False
+    condition = job["rules"][0]["if"]
+    assert "$RELEASEGATE_PAGES_APPROVED_SHA == $CI_COMMIT_SHA" in condition
+    assert "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH" in condition
+    assert '$CI_COMMIT_REF_PROTECTED == "true"' in condition
     assert job["rules"][-1] == {"when": "never"}
+    assert job["script"][0] == 'test "$RELEASEGATE_PAGES_APPROVED_SHA" = "$CI_COMMIT_SHA"'
+    assert {need["job"] for need in job["needs"]} == {
+        "validate",
+        "console_build",
+        "console_javascript",
+        "tests",
+        "security",
+        "release_policy",
+        "evidence_bundle",
+        "research_evaluation",
+    }
+    assert all(need["artifacts"] is False for need in job["needs"])
 
 
 def test_original_mandatory_manifest_is_unchanged():

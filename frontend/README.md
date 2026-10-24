@@ -37,5 +37,17 @@ installation is required to build or serve. The tinycss2 parser checks syntax,
 not full property semantics; browser layout/interaction checks supplement it.
 
 See [architecture and publication boundary](../docs/phase4.3/console-handoff.md)
-and [QA evidence](../docs/phase4.3/qa-report.md). Pages configuration is an inert,
-unincluded template. This task does not authorize public deployment or demo uploads.
+and [QA evidence](../docs/phase4.3/qa-report.md) for the historical frontend checkpoint.
+
+Pages configuration is included but omitted from pipelines unless protected default
+main matches `RELEASEGATE_PAGES_APPROVED_SHA` exactly. A matching publication job is
+manual and waits for all eight applicable automatic checks without downloading their
+artifacts. It rebuilds only `dist/console` from committed source. The validation job
+prints the non-secret GitLab-provided `CI_PAGES_URL` for publication review.
+
+Before setting the SHA fence or starting a publication pipeline, obtain explicit
+user authorization for the exact main SHA, complete generated file manifest and
+intended audience. Reconfirm if source or payload changes. Never infer publication
+consent from a code merge or silently change Pages visibility. This operational
+fence grants no Human Approval or production execution authority. The archived
+Phase 4.3 documents describe the earlier, unincluded-template state.
