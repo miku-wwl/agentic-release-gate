@@ -103,6 +103,19 @@ MIT licensed. AGENTS.md is preserved. Phase 4.2 uses normal reviewed MR/PR merge
 
 ## Human review and reproducible evaluation
 
+The new [read-only Decision Console](frontend/README.md) is a separate static
+frontend with Overview, Positive/Negative DEMO FIXTURE navigation, Evidence Chain,
+bounded Research and original Audit Trail sources. It preserves Policy and all
+139 mandatory identities. [Phase 4.3 architecture and handoff](docs/phase4.3/console-handoff.md)
+and [local visual QA](docs/phase4.3/qa-report.md) explain its reference-data scope.
+The Pages template is prepared but unincluded; no public deployment is authorized.
+Phase 4.3 feature MR/PR review does not authorize merging or publication.
+
+```powershell
+uv run --no-sync python frontend/build_console.py --output-dir dist/console
+uv run --no-sync python -m http.server 8767 --bind 127.0.0.1 --directory dist/console
+```
+
 ```powershell
 # After collecting tests/security above:
 uv run --no-sync python -m releasegate report --sha $sha --target staging --advisory docs/phase4/duo-advisory.json --output-dir evidence/review

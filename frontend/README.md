@@ -1,0 +1,41 @@
+# ReleaseGate Decision Console
+
+A separate, read-only static product. Build-time Python renders five accessible
+HTML pages; local CSS and a small JavaScript file provide navigation. No framework,
+backend, credentials, external fonts, analytics, fetch requests or execution API.
+The existing Policy/report generator remains unchanged.
+
+```powershell
+uv sync --locked --extra dev
+uv run --no-sync python frontend/build_console.py --output-dir dist/console
+uv run --no-sync python -m http.server 8767 --bind 127.0.0.1 --directory dist/console
+```
+
+Open `http://127.0.0.1:8767/`. This is a newly built application served only from
+its output directory, not a proxy to old local HTML reports or arbitrary files.
+Every build requires a new output directory and refuses to overwrite an existing
+build. Outputs have relative links and work under a Pages project subpath.
+
+The checked-in source fixtures are the existing public generated JSON reports.
+Both Explorer cases visibly say **DEMO FIXTURE**. Overview/Audit use the explicitly
+historical Phase 4.2 checkpoint; Research preserves its evaluated commit/digest.
+The Console never treats historical data as a live feed or as authenticated consent.
+Unknown/mismatched source hashes, unsafe execution claims, malformed JSON and
+unreviewed URLs fail the build. It does not rerun or reimplement Policy.
+
+```powershell
+uv run --no-sync pytest -q tests frontend/tests
+uv run --no-sync ruff check .
+uv run --no-sync ruff format --check .
+node --check frontend/assets/console.js
+uv run --no-project --with tinycss2==1.4.0 python frontend/check_static.py
+```
+
+CSS parsing uses a pinned isolated QA tool, leaving application dependencies and
+uv.lock unchanged. Node is used only for JavaScript syntax validation; no npm
+installation is required to build or serve. The tinycss2 parser checks syntax,
+not full property semantics; browser layout/interaction checks supplement it.
+
+See [architecture and publication boundary](../docs/phase4.3/console-handoff.md)
+and [QA evidence](../docs/phase4.3/qa-report.md). Pages configuration is an inert,
+unincluded template. This task does not authorize public deployment or demo uploads.

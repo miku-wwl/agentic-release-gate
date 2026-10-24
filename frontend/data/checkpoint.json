@@ -1,0 +1,22 @@
+{
+  "automatic_jobs_passed": 6,
+  "evaluated_source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
+  "github_main_sha": "c3a2a755a65b58adcc3ede1a049c8b2adf6b044c",
+  "github_merged_at": "2026-10-24T00:17:57Z",
+  "gitlab_main_sha": "bc5e410ff6c976bd1d55fa510b20c1911163306b",
+  "gitlab_merged_at": "2026-10-24T00:10:03.814Z",
+  "human_gate_executed": false,
+  "pipeline_status": "manual",
+  "production_execution": "DISABLED",
+  "references": {
+    "correction": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/commit/d05e8bb205a0411c5f7b5bc5c6fc68b0b367a7cf",
+    "duo_finding": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/1#note_4012466889",
+    "duo_session": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/automate/agent-sessions/9451709",
+    "github_pr": "https://github.com/miku-wwl/agentic-release-gate/pull/2",
+    "gitlab_mr": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/4",
+    "human_gate": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17432048761",
+    "pipeline": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2983447020"
+  },
+  "schema_version": 1,
+  "scope": "Historical Phase 4.2 qualified checkpoint; no live data feed"
+}

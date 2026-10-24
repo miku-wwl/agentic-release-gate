@@ -1,0 +1,15 @@
+# Build/test only. No artifacts, Pages publishing or demo-data upload.
+console_build:
+  stage: validation
+  script:
+    - uv run --no-sync pytest -q frontend/tests
+    - uv run --no-project --with tinycss2==1.4.0 python frontend/check_static.py
+    - uv run --no-sync python frontend/build_console.py --output-dir dist/console
+
+console_javascript:
+  stage: validation
+  image: node:24-alpine
+  before_script: []
+  script:
+    - node --version
+    - node --check frontend/assets/console.js
