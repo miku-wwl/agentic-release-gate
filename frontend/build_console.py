@@ -207,7 +207,7 @@ def overview(cp):
         <div class="gate-callout"><span class="gate-icon" aria-hidden="true">◇</span><div><strong>Human approval required</strong><p>Next gate: <code>HUMAN_APPROVAL</code></p></div><span class="gate-arrow" aria-hidden="true">→</span></div>
         <div class="code-line"><span>execution_authorized</span><strong>false</strong></div>
       </section>
-      <section class="panel candidate-panel"><div class="panel-top"><h2>Qualified candidate</h2>{pill("Phase 4.2 snapshot")}</div>
+      <section class="panel candidate-panel"><div class="panel-top"><h2>Qualified candidate</h2>{pill("Recorded CI checkpoint")}</div>
         <p class="label spaced">COMMIT IDENTITY</p><code class="commit">{esc(cp["gitlab_main_sha"])}</code>
         <dl class="facts"><div><dt>Target / gate</dt><dd>staging / eligibility</dd></div><div><dt>Policy</dt><dd>releasegate-policy-v2</dd></div><div><dt>Automatic CI</dt><dd class="allow-text">6 jobs passed</dd></div><div><dt>Pipeline overall</dt><dd class="pending-text">Manual · human gate unexecuted</dd></div></dl>
         {link(cp["references"]["pipeline"], "Inspect source pipeline")}
@@ -302,7 +302,7 @@ def research_page(research):
         + f"""
     <div class="research-metrics">{metric("SCENARIOS", "14", "Purposively selected conditions")}{metric("TRIALS", "42", "3 repetitions per scenario")}{metric("EXPECTED DECISIONS", "42 / 42", "Observed decisions matched", "allow")}{metric("FALSE ALLOW", "0", "Within this controlled sample", "allow")}{metric("FALSE DENY", "0", "Within this controlled sample", "allow")}</div>
     <aside class="research-limit"><span aria-hidden="true">ⓘ</span><p><strong>A controlled evaluation, not a production guarantee.</strong> Repeated trials are correlated. Three approval cases use synthetic POLICY_ONLY facts; they do not authenticate a human. No statistical significance or 100% production reliability is claimed.</p></aside>
-    <section class="panel"><div class="section-heading"><div><p class="eyebrow">RECORDED OUTCOMES</p><h2>Every scenario, with its boundary intact.</h2></div><span class="pill neutral">Phase 4.2 local evaluation</span></div><div class="table-wrap"><table class="scenario-table"><caption>Expected outcomes across three actual recorded trials per scenario</caption><thead><tr><th scope="col">Scenario</th><th scope="col">Expected</th><th scope="col">Method</th><th scope="col">Correct trials</th></tr></thead><tbody>{scenario_rows}</tbody></table></div></section>
+    <section class="panel"><div class="section-heading"><div><p class="eyebrow">RECORDED OUTCOMES</p><h2>Every scenario, with its boundary intact.</h2></div><span class="pill neutral">Controlled evaluation</span></div><div class="table-wrap"><table class="scenario-table"><caption>Expected outcomes across three actual recorded trials per scenario</caption><thead><tr><th scope="col">Scenario</th><th scope="col">Expected</th><th scope="col">Method</th><th scope="col">Correct trials</th></tr></thead><tbody>{scenario_rows}</tbody></table></div></section>
     <section class="panel provenance-panel"><h2>Trace the measurement</h2><dl class="binding-list"><div><dt>Evaluated commit</dt><dd><code>{esc(research["evaluated_commit_sha"])}</code></dd></div><div><dt>Source digest</dt><dd><code>{esc(research["evaluated_source_digest"])}</code></dd></div><div><dt>Script SHA256</dt><dd><code>{esc(research["script_sha256"])}</code></dd></div><div><dt>Environment</dt><dd>{esc(research["execution_environment"]["platform"])} · Python {esc(research["tools"]["python"])}</dd></div></dl><p class="source-note">Historical, source-bound research. Later Console edits are not relabelled as this measured commit. Raw hashes, commands, modes and limitations remain in the original data.</p><a class="text-link" href="evidence/research-results.json">Inspect all 42 recorded observations →</a></section>"""
     )
 
@@ -311,7 +311,7 @@ def audit_page(cp, advisory):
     cards = [
         (
             "CI / QUALIFIED CHECKPOINT",
-            "Final Phase 4.2 pipeline",
+            "Qualified CI checkpoint",
             "Six automatic jobs passed; overall manual. The human review job remains unexecuted.",
             "pipeline",
             "Pipeline #2983447020",
@@ -349,7 +349,7 @@ def audit_page(cp, advisory):
             "Open the original CI, recommendation and merge records. All links are read-only public references.",
         )
         + f"""
-    <div class="audit-grid">{body}</div><section class="panel"><div class="section-heading"><div><p class="eyebrow">MERGE RECORDS</p><h2>Two repositories. Preserved histories.</h2></div>{pill("Phase 4.2 records")}</div><div class="merge-grid"><article><span class="source-logo">GL</span><div><h3>GitLab MR !4 · merged</h3><p>{esc(cp["gitlab_merged_at"])}</p><code class="commit">{esc(cp["gitlab_main_sha"])}</code>{link(cp["references"]["gitlab_mr"], "View GitLab merge")}</div></article><article><span class="source-logo">GH</span><div><h3>GitHub PR #2 · merged</h3><p>{esc(cp["github_merged_at"])}</p><code class="commit">{esc(cp["github_main_sha"])}</code>{link(cp["references"]["github_pr"], "View GitHub merge")}</div></article></div></section>
+    <div class="audit-grid">{body}</div><section class="panel"><div class="section-heading"><div><p class="eyebrow">MERGE RECORDS</p><h2>Two repositories. Preserved histories.</h2></div>{pill("Recorded merge history")}</div><div class="merge-grid"><article><span class="source-logo">GL</span><div><h3>GitLab MR !4 · merged</h3><p>{esc(cp["gitlab_merged_at"])}</p><code class="commit">{esc(cp["gitlab_main_sha"])}</code>{link(cp["references"]["gitlab_mr"], "View GitLab merge")}</div></article><article><span class="source-logo">GH</span><div><h3>GitHub PR #2 · merged</h3><p>{esc(cp["github_merged_at"])}</p><code class="commit">{esc(cp["github_main_sha"])}</code>{link(cp["references"]["github_pr"], "View GitHub merge")}</div></article></div></section>
     <section class="panel advisory-record"><div><p class="eyebrow">HISTORICAL · OFFLINE REFERENCE ONLY</p><h2>Duo advises. It does not authorize.</h2><p>{esc(advisory["finding"])}</p><p>Reviewed SHA <code>{esc(advisory["reviewed_sha"])}</code></p><p>Session 9451709 · {esc(advisory["review_timestamp"])}</p></div><aside><p class="label">AUTONOMY SCOPE</p><strong>Assisted verified</strong><p>Supervised: NOT_VERIFIED<br>Custom Flow execution: NOT_VERIFIED<br>Production execution: DISABLED</p>{link(cp["references"]["duo_session"], "Open historical session")}</aside></section><p class="source-note">Static records cannot attest a live platform state. The build validates the supplied data and preserves its source hashes; it does not authenticate a current human or runner.</p>"""
     )
 

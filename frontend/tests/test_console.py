@@ -42,10 +42,34 @@ class Document(HTMLParser):
     def __init__(self, text):
         super().__init__(convert_charrefs=True)
         self.nodes = []
+        self.text = []
         self.feed(text)
 
     def handle_starttag(self, tag, attrs):
         self.nodes.append((tag, dict(attrs)))
+
+    def handle_data(self, data):
+        self.text.append(data)
+
+
+@pytest.mark.parametrize(
+    ("page", "removed", "replacement"),
+    [
+        ("index.html", "Phase 4.2 snapshot", "Recorded CI checkpoint"),
+        ("research.html", "Phase 4.2 local evaluation", "Controlled evaluation"),
+        ("audit-trail.html", "Final Phase 4.2 pipeline", "Qualified CI checkpoint"),
+        ("audit-trail.html", "Phase 4.2 records", "Recorded merge history"),
+    ],
+)
+def test_product_copy_preserves_evidence_without_internal_phase_labels(
+    site, page, removed, replacement
+):
+    visible_text = {
+        name: " ".join(" ".join(Document((site / name).read_text(encoding="utf-8")).text).split())
+        for name in console.PAGES
+    }
+    assert replacement in visible_text[page]
+    assert all(removed not in text for text in visible_text.values())
 
 
 def test_pages_links_semantics_and_read_only_surface(site):
