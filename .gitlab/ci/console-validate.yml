@@ -5,6 +5,7 @@ console_build:
     - uv run --no-sync pytest -q frontend/tests
     - uv run --no-project --with tinycss2==1.4.0 python frontend/check_static.py
     - uv run --no-sync python frontend/build_console.py --output-dir dist/console
+    - 'printf "PAGES_REVIEW_URL=%s\n" "$CI_PAGES_URL"'
 
 console_javascript:
   stage: validation

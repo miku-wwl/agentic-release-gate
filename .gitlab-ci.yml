@@ -2,9 +2,10 @@
 # No production deployment, Runtime authorization or invented Duo job is present.
 image: python:3.12.13-slim
 
-# Static product validation only. Pages publishing remains an unincluded template.
+# Pages is omitted unless an exact main SHA is approved; publishing stays manual.
 include:
   - local: .gitlab/ci/console-validate.yml
+  - local: .gitlab/pages.console.yml
 
 stages: [validation, tests, security, policy, evidence, release_gate]
 
