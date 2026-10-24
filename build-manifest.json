@@ -1,0 +1,33 @@
+{
+  "data_scope": "Historical qualified checkpoint and explicitly labelled demo fixtures",
+  "execution_authorized": false,
+  "files": {
+    "assets/console.css": "4e6a0a7c45c507c04814f675a9eca077fccca3f4732c2ffedbda5f89cfd05b2a",
+    "assets/console.js": "17f0d054aff11839b2f2a8161d83b2d9dfb352875f454bb2b4a7dcb1c3af210f",
+    "assets/mark.svg": "313340c981c10b3473cbfa0cfe7190a481749e773640845e2e49091c53643c82",
+    "audit-trail.html": "7b91e72553c55ab8653fcbe0d62e7ce1a40b8361d3ff51293d5c4238c97854db",
+    "decision-explorer.html": "8c34d936b31d2a2a203de46c9b9e36979ff4c6f9cafbb22aa7e7dd6e6a8f09c9",
+    "evidence-chain.html": "70bf3764217cdfd3ceee07ee86bf879733c6fbc2a9c51cf4abf4c5968c0a3cfa",
+    "evidence/negative-report.json": "f8c8c54a157b5dbc463c9f2d7b6b4eabd9434d914fb45a327e7862b4fbc494d9",
+    "evidence/positive-report.json": "21e512a673f95b9c6d2ae3ec53dcfba1c48b1b60be4358f95586c1fc7ff123a6",
+    "evidence/research-results.json": "70f4c0a45e135a668a4d584b97e2fb16109621318421937182aaa2a396af678f",
+    "index.html": "7c4e83d2908bc1f2ddfe1251ca27ac597cc571ff54bcc796ec5299f07dcd69ef",
+    "research.html": "4fcc6d88b0a77e7f98a048e34c2955155cadf47c72ad0f8eeef210527eea62a3"
+  },
+  "inputs": {
+    "docs/phase4/duo-advisory.json": "7da89053d3d1e202a94b42282a93d54d1523d9ed6af9f67f8ce5ddbcf27c3baa",
+    "docs/phase4/evidence/artifact-manifest.json": "f678d8e660f34fd5b65e4da96591086c0ab349398a2be824dc2b6b2634c76b9c",
+    "docs/phase4/evidence/research-results.json": "70f4c0a45e135a668a4d584b97e2fb16109621318421937182aaa2a396af678f",
+    "docs/phase4/examples/complete/report.json": "21e512a673f95b9c6d2ae3ec53dcfba1c48b1b60be4358f95586c1fc7ff123a6",
+    "docs/phase4/examples/high_security/report.json": "f8c8c54a157b5dbc463c9f2d7b6b4eabd9434d914fb45a327e7862b4fbc494d9",
+    "frontend/assets/console.css": "4e6a0a7c45c507c04814f675a9eca077fccca3f4732c2ffedbda5f89cfd05b2a",
+    "frontend/assets/console.js": "17f0d054aff11839b2f2a8161d83b2d9dfb352875f454bb2b4a7dcb1c3af210f",
+    "frontend/assets/mark.svg": "313340c981c10b3473cbfa0cfe7190a481749e773640845e2e49091c53643c82",
+    "frontend/build_console.py": "0d4cd7983f73f3f309ab73888bd6988bea6b8019e7924e15410063b8754546ba",
+    "frontend/data/checkpoint.json": "87cc31642791e566ac7aaa1017477bf367b640f2f23ce09f44c6a226188c0a35",
+    "tests/required-tests.json": "43e36e2ec937c00bf8fa66990611a3f9731430f7a2b09ebfb9d55224b6fd27ac"
+  },
+  "product": "ReleaseGate read-only Decision Console",
+  "production_execution": "DISABLED",
+  "schema_version": 1
+}
