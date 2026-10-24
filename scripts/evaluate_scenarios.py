@@ -6,6 +6,7 @@ import hashlib
 import importlib.metadata
 import json
 import os
+import platform
 import shutil
 import statistics
 import subprocess
@@ -46,7 +47,19 @@ SCENARIOS = {
 @contextmanager
 def local_snapshot_environment():
     """Parent policy-only loads must share the inner commands' local context too."""
-    names = ("GITLAB_CI", "CI_PROJECT_ID", "CI_PIPELINE_ID", "CI_JOB_ID", "CI_COMMIT_SHA")
+    names = (
+        "GITLAB_CI",
+        "CI_PROJECT_ID",
+        "CI_PIPELINE_ID",
+        "CI_JOB_ID",
+        "CI_COMMIT_SHA",
+        "CI_PIPELINE_URL",
+        "CI_JOB_URL",
+        "CI_RUNNER_ID",
+        "CI_RUNNER_DESCRIPTION",
+        "CI_RUNNER_VERSION",
+        "CI_RUNNER_EXECUTABLE_ARCH",
+    )
     saved = {name: os.environ.get(name) for name in names}
     try:
         for name in names:
@@ -306,6 +319,23 @@ def run(output: Path, *, sha: str, trials: int, host_execution: dict) -> dict:
         "generated_at": datetime.now(UTC).isoformat(),
         "host_commit_sha": sha,
         "host_source_digest": host_digest,
+        "evaluated_commit_sha": sha,
+        "evaluated_source_digest": host_digest,
+        "execution_environment": {
+            "origin": "gitlab-ci" if host_execution.get("GITLAB_CI") == "true" else "local",
+            "platform": platform.platform(),
+            "machine": platform.machine(),
+            "python_implementation": platform.python_implementation(),
+            "runner": host_execution,
+        },
+        "source_digest_scope": [
+            "src/**/*.py",
+            "tests/**/*.py",
+            "tests/required-tests.json",
+            "pyproject.toml",
+            ".gitlab-ci.yml",
+            "uv.lock",
+        ],
         "trials_per_scenario": trials,
         "host_execution": host_execution,
         "host_context_verification": "ENVIRONMENT_VALUES_ONLY; not independent attestation",
@@ -317,6 +347,11 @@ def run(output: Path, *, sha: str, trials: int, host_execution: dict) -> dict:
             },
         },
         "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "raw_artifact_hashes": {
+            path.relative_to(output).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
+            for path in sorted((output / "snapshots").rglob("*"))
+            if path.is_file() and path.name in {"tests.junit.xml", "security.bandit.json"}
+        },
         "metrics": metrics(rows),
         "results": rows,
         "limitations": [

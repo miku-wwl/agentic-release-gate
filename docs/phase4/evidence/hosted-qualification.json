@@ -1,76 +1,115 @@
 {
-  "branch_pipeline": {
-    "id": 2983196180,
-    "status": "success"
+  "final_main_authority": {
+    "delivery_manifest": "MANIFEST-SHA256.json in releasegate-phase42-final-review.zip",
+    "delivery_report": ".artifacts/phase42-final-review.md (outside Git; also review/PHASE42-FINAL-REPORT.md in delivery ZIP)",
+    "reason": "Final merge SHA/job IDs cannot be embedded in the same commit that creates them. No cyclic evidence commits.",
+    "repository_pipeline_list": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines?ref=main",
+    "source": "Final GitLab main pipeline artifacts, downloaded and independently checked after merge"
   },
-  "commit_sha": "4a99e9e42c1ef95ec3af91d8f9c8e69c186b35e9",
-  "evidence_status": "VERIFIED",
-  "jobs": [
-    {
-      "duration_seconds": 15.957125,
-      "id": 17430569509,
-      "name": "validate",
-      "status": "success",
-      "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17430569509"
-    },
-    {
-      "duration_seconds": 24.102248,
-      "id": 17430569510,
-      "name": "tests",
-      "status": "success",
-      "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17430569510"
-    },
-    {
-      "duration_seconds": 18.770828,
-      "id": 17430569511,
-      "name": "security",
-      "status": "success",
-      "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17430569511"
-    },
-    {
-      "duration_seconds": 156.031286,
-      "id": 17430569512,
-      "name": "release_policy",
-      "status": "success",
-      "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17430569512"
-    },
-    {
-      "duration_seconds": 23.905416,
-      "id": 17430569513,
-      "name": "evidence_bundle",
-      "status": "success",
-      "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17430569513"
-    },
-    {
-      "duration_seconds": 33.306651,
-      "id": 17430569514,
-      "name": "research_evaluation",
-      "status": "success",
-      "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17430569514"
-    },
-    {
-      "duration_seconds": 23.589914,
-      "id": 17430569515,
-      "name": "release_boundary_demo",
-      "status": "success",
-      "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17430569515"
-    }
-  ],
+  "historical_phase4_record": "hosted-qualification-phase4-historical.json",
   "limitations": [
-    "Selected API observations, not a signed attestation.",
-    "No new Duo review of this implementation commit.",
-    "No human production approval, release execution or deployment."
+    "The Phase 4.1 checkpoint is historical, not a claim about Phase 4.2 final CI.",
+    "Six automatic successes and an unexecuted manual gate mean overall manual, not overall success.",
+    "No new Duo review or production authorization."
   ],
-  "merge_request_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/3",
-  "pipeline_id": 2983200071,
-  "pipeline_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2983200071",
-  "schema_version": 1,
-  "source": "GitLab public REST API, observed 2026-10-23 22:41-22:42 UTC",
-  "test_report_summary": {
-    "count": 139,
-    "error": 0,
-    "failed": 0,
-    "skipped": 0,
-    "success": 139
-  }
+  "phase41_verified_main": {
+    "automatic_success_count": 6,
+    "gate_status": "PASS_AUTOMATIC_JOBS_MANUAL_GATE_UNEXECUTED",
+    "jobs": [
+      {
+        "allow_failure": false,
+        "artifacts_expire_at": null,
+        "duration": null,
+        "id": 17431334259,
+        "name": "review_release_candidate",
+        "status": "manual",
+        "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17431334259"
+      },
+      {
+        "allow_failure": false,
+        "artifacts_expire_at": "2026-11-06T23:15:12.525Z",
+        "duration": 33.782224,
+        "id": 17431334258,
+        "name": "research_evaluation",
+        "status": "success",
+        "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17431334258"
+      },
+      {
+        "allow_failure": false,
+        "artifacts_expire_at": "2026-11-06T23:14:56.857Z",
+        "duration": 18.203809,
+        "id": 17431334257,
+        "name": "evidence_bundle",
+        "status": "success",
+        "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17431334257"
+      },
+      {
+        "allow_failure": false,
+        "artifacts_expire_at": "2026-11-06T23:14:37.062Z",
+        "duration": 19.359337,
+        "id": 17431334256,
+        "name": "release_policy",
+        "status": "success",
+        "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17431334256"
+      },
+      {
+        "allow_failure": false,
+        "artifacts_expire_at": "2026-11-06T23:14:16.273Z",
+        "duration": 19.480746,
+        "id": 17431334255,
+        "name": "security",
+        "status": "success",
+        "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17431334255"
+      },
+      {
+        "allow_failure": false,
+        "artifacts_expire_at": "2026-11-06T23:13:55.436Z",
+        "duration": 19.244455,
+        "id": 17431334254,
+        "name": "tests",
+        "status": "success",
+        "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17431334254"
+      },
+      {
+        "allow_failure": false,
+        "artifacts_expire_at": null,
+        "duration": 20.500696,
+        "id": 17431334253,
+        "name": "validate",
+        "status": "success",
+        "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17431334253"
+      }
+    ],
+    "main_sha": "a657d0e23cca01035ef50a9cc62ed1e6ae456da4",
+    "manual_job_executed": false,
+    "mr": {
+      "iid": 3,
+      "merge_commit_sha": "a657d0e23cca01035ef50a9cc62ed1e6ae456da4",
+      "merged_at": "2026-10-23T23:13:14.404Z",
+      "sha": "284534a77562cc4f8ea66387df055ee05692991b",
+      "squash_commit_sha": null,
+      "state": "merged",
+      "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/3"
+    },
+    "pipeline": {
+      "id": 2983297230,
+      "ref": "main",
+      "sha": "a657d0e23cca01035ef50a9cc62ed1e6ae456da4",
+      "status": "manual",
+      "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2983297230"
+    },
+    "tests": {
+      "count": 139,
+      "error": 0,
+      "failed": 0,
+      "skipped": 0,
+      "success": 139,
+      "suite_error": null,
+      "time": 0.333
+    }
+  },
+  "phase42_local_research": "research-results.json",
+  "phase42_source_verification": "phase42-research-verification.json",
+  "record_kind": "POST_MERGE_CHECKPOINT_AND_FINAL_ARTIFACT_LOCATOR",
+  "schema_version": 2
 }

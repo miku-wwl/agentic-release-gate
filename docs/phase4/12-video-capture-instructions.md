@@ -1,6 +1,7 @@
 # ChatGPT Work / IAB production handoff
 
-Status: **PLANNED recording; Phase 4 supplies production materials only**.
+Status: **PHASE5_VIDEO_STATUS=NOT_RECORDED**. Phase 4.2 supplies handoff materials only.
+Use **ChatGPT Desktop Work + the latest installed IAB Browser Video Skill**.
 Read `codex-iab-video-recording/SKILL.md` from the currently installed skill before
 production; use its current API documentation and helpers, not stale browser IDs.
 
@@ -38,3 +39,17 @@ Deliver future MP4 and sanitized QA/verification JSON. Publishing, uploading or
 submission is outside this coding phase. Keep the user's existing tabs and artifacts.
 If browser/session access is unavailable, mark capture BLOCKED and retain this
 handoff; do not generate substitute Agent Session footage.
+
+Phase 5 must use the final pipeline and artifact identities from the Phase 4.2
+external report/ZIP manifest, not the older Phase 4 handoff. Show genuine CI,
+Historical Duo Advisory (session 9451709), positive ALLOW → HUMAN_APPROVAL,
+negative DENY, the untouched manual Human Gate, and Production Execution Disabled.
+Use visible pointer and click indicators only from genuine logged IAB inputs.
+Inspect source-cursor calibration first; coordinate clicks/drag/scroll can support
+trace-grounded visualization. Locator-only clicks do not establish final pointer
+coordinates and must remain PARTIAL where required by the current skill. Never
+interpolate invented pointer paths. Target 155–170 seconds, English narration,
+1920×1080 export at 30fps; record actual source fps/resolution separately.
+
+Recording, final MP4 visual review, publication and Devpost submission belong to
+Phase 5. None is completed or authorized by this qualification phase.

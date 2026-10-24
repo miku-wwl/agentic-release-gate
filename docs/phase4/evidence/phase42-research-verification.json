@@ -1,0 +1,54 @@
+{
+  "all_scanner_file_scopes_verified": true,
+  "all_snapshot_source_digests_verified": true,
+  "deliberate_corrupt_raw_and_context_cases_preserved": true,
+  "evaluated_commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
+  "evaluated_source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
+  "execution_environment": {
+    "machine": "AMD64",
+    "origin": "local",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python_implementation": "CPython",
+    "runner": {
+      "CI_COMMIT_SHA": "",
+      "CI_JOB_ID": "",
+      "CI_JOB_URL": "",
+      "CI_PIPELINE_ID": "",
+      "CI_PIPELINE_URL": "",
+      "CI_PROJECT_ID": "",
+      "CI_RUNNER_DESCRIPTION": "",
+      "CI_RUNNER_EXECUTABLE_ARCH": "",
+      "CI_RUNNER_ID": "",
+      "CI_RUNNER_VERSION": "",
+      "GITLAB_CI": ""
+    }
+  },
+  "mandatory_test_identities": 139,
+  "metrics": {
+    "cli_latency_seconds": {
+      "max": 0.4984313000459224,
+      "mean": 0.3608790575738319,
+      "median": 0.3414264000020921,
+      "min": 0.2840206000255421,
+      "n": 33
+    },
+    "correct_decisions": 42,
+    "expected_allow": 3,
+    "expected_deny": 39,
+    "fail_closed_detection_rate": 1.0,
+    "false_allow": 0,
+    "false_deny": 0,
+    "total_scenarios": 14,
+    "trials_executed": 42
+  },
+  "raw_artifacts_verified": 48,
+  "script_sha256": "0f419fd83e767229863ddab099bf0b24a799e83b83881c34c72e38811ffca44d",
+  "source_files_hashed": 19,
+  "status": "PASS",
+  "tools": {
+    "bandit": "1.8.6",
+    "defusedxml": "0.7.1",
+    "pytest": "8.4.2",
+    "python": "3.12.13"
+  }
+}

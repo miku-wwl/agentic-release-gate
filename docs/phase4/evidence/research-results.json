@@ -1,16 +1,43 @@
 {
+  "evaluated_commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
+  "evaluated_source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
+  "execution_environment": {
+    "machine": "AMD64",
+    "origin": "local",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python_implementation": "CPython",
+    "runner": {
+      "CI_COMMIT_SHA": "",
+      "CI_JOB_ID": "",
+      "CI_JOB_URL": "",
+      "CI_PIPELINE_ID": "",
+      "CI_PIPELINE_URL": "",
+      "CI_PROJECT_ID": "",
+      "CI_RUNNER_DESCRIPTION": "",
+      "CI_RUNNER_EXECUTABLE_ARCH": "",
+      "CI_RUNNER_ID": "",
+      "CI_RUNNER_VERSION": "",
+      "GITLAB_CI": ""
+    }
+  },
   "experiment": "releasegate-evidence-integrity-v1",
-  "generated_at": "2026-10-23T22:27:58.924314+00:00",
-  "host_commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+  "generated_at": "2026-10-24T00:02:01.967554+00:00",
+  "host_commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
   "host_context_verification": "ENVIRONMENT_VALUES_ONLY; not independent attestation",
   "host_execution": {
     "CI_COMMIT_SHA": "",
     "CI_JOB_ID": "",
+    "CI_JOB_URL": "",
     "CI_PIPELINE_ID": "",
+    "CI_PIPELINE_URL": "",
     "CI_PROJECT_ID": "",
+    "CI_RUNNER_DESCRIPTION": "",
+    "CI_RUNNER_EXECUTABLE_ARCH": "",
+    "CI_RUNNER_ID": "",
+    "CI_RUNNER_VERSION": "",
     "GITLAB_CI": ""
   },
-  "host_source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+  "host_source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
   "limitations": [
     "Small purposive local sample; repeated trials are not independent attack samples.",
     "No statistical significance, production resistance, or authenticated approval claim.",
@@ -20,10 +47,10 @@
   ],
   "metrics": {
     "cli_latency_seconds": {
-      "max": 0.4105870999628678,
-      "mean": 0.346947830304447,
-      "median": 0.3435394000262022,
-      "min": 0.29495589999714866,
+      "max": 0.4984313000459224,
+      "mean": 0.3608790575738319,
+      "median": 0.3414264000020921,
+      "min": 0.2840206000255421,
       "n": 33
     },
     "correct_decisions": 42,
@@ -34,6 +61,56 @@
     "false_deny": 0,
     "total_scenarios": 14,
     "trials_executed": 42
+  },
+  "raw_artifact_hashes": {
+    "snapshots/1/complete/cases/context_mismatch/security.bandit.json": "25c51475c7a39e97696685876b26fea1807a02843da71151b8dfb987b084e96c",
+    "snapshots/1/complete/cases/context_mismatch/tests.junit.xml": "5436dd0cb8a745263445a121001500418c8d45a28cf7b92706ecffd6f779f012",
+    "snapshots/1/complete/cases/corrupt_raw/security.bandit.json": "25c51475c7a39e97696685876b26fea1807a02843da71151b8dfb987b084e96c",
+    "snapshots/1/complete/cases/corrupt_raw/tests.junit.xml": "7fc29da564033c2cbee2c2f77dc161cb194e209122423e70fac3b58229a629c6",
+    "snapshots/1/complete/cases/missing_security/security.bandit.json": "25c51475c7a39e97696685876b26fea1807a02843da71151b8dfb987b084e96c",
+    "snapshots/1/complete/cases/missing_security/tests.junit.xml": "5436dd0cb8a745263445a121001500418c8d45a28cf7b92706ecffd6f779f012",
+    "snapshots/1/complete/evidence/security.bandit.json": "25c51475c7a39e97696685876b26fea1807a02843da71151b8dfb987b084e96c",
+    "snapshots/1/complete/evidence/tests.junit.xml": "5436dd0cb8a745263445a121001500418c8d45a28cf7b92706ecffd6f779f012",
+    "snapshots/1/failed_test/evidence/security.bandit.json": "bce09254c29d0680ebb874fde249d9df70a21192128a7ddeb91ff594bc558f3d",
+    "snapshots/1/failed_test/evidence/tests.junit.xml": "186175c4b0531365f9a60721f633f4cdffb713612bac84f57246fa2b626785d9",
+    "snapshots/1/high_security/evidence/security.bandit.json": "1b452ac32d8f8ecda323fb31959fb3bcefa36e95cd2da7b094dca23c4535f02d",
+    "snapshots/1/high_security/evidence/tests.junit.xml": "826193b009a69ed1d0a6d7efd6c7d5141518102deb3c8f2ef7eb1672671d1e3d",
+    "snapshots/1/missing_identity/evidence/security.bandit.json": "418a4c2c9e662864cc3ffb64d392ece3e90d5387eb2a51c49bfafaf86a15d3be",
+    "snapshots/1/missing_identity/evidence/tests.junit.xml": "8cec27921ff25a60d17dc2e194f7a49fc118d1a84c859f2b8759abc3cc7215e3",
+    "snapshots/1/skipped_test/evidence/security.bandit.json": "3b9c0f75b45b9c75da588d5026fdd3960b011e1a7a5aa5f67b497d365a225098",
+    "snapshots/1/skipped_test/evidence/tests.junit.xml": "cfa23a4b4a3f7410bae418a31ce9998551ca73d418f9d22ea2ae35fea4946d47",
+    "snapshots/2/complete/cases/context_mismatch/security.bandit.json": "06fdd03fb50b09a012895774d4662dad5e34ae3ed69d392d74703aeaff93fdf8",
+    "snapshots/2/complete/cases/context_mismatch/tests.junit.xml": "0fc2a962d4ec97e9feeea957a5a7d51a693f9207d2d60b1aee3b6d414d8d9cc3",
+    "snapshots/2/complete/cases/corrupt_raw/security.bandit.json": "06fdd03fb50b09a012895774d4662dad5e34ae3ed69d392d74703aeaff93fdf8",
+    "snapshots/2/complete/cases/corrupt_raw/tests.junit.xml": "7fc29da564033c2cbee2c2f77dc161cb194e209122423e70fac3b58229a629c6",
+    "snapshots/2/complete/cases/missing_security/security.bandit.json": "06fdd03fb50b09a012895774d4662dad5e34ae3ed69d392d74703aeaff93fdf8",
+    "snapshots/2/complete/cases/missing_security/tests.junit.xml": "0fc2a962d4ec97e9feeea957a5a7d51a693f9207d2d60b1aee3b6d414d8d9cc3",
+    "snapshots/2/complete/evidence/security.bandit.json": "06fdd03fb50b09a012895774d4662dad5e34ae3ed69d392d74703aeaff93fdf8",
+    "snapshots/2/complete/evidence/tests.junit.xml": "0fc2a962d4ec97e9feeea957a5a7d51a693f9207d2d60b1aee3b6d414d8d9cc3",
+    "snapshots/2/failed_test/evidence/security.bandit.json": "b4c9c225ee2c0a053066d1c65b4610c18472c3f37eb691a6cc963e8d455e70c4",
+    "snapshots/2/failed_test/evidence/tests.junit.xml": "3a578af992c6cf1515bd07116c2e7745034dc289151b673b12653d385a78759a",
+    "snapshots/2/high_security/evidence/security.bandit.json": "62ea2e0bfb478ba757d70b6d3f2424a27457dfd089f7aa3906381926a3666776",
+    "snapshots/2/high_security/evidence/tests.junit.xml": "358f57f09dbc324ef2c15901087505e25ed48c55807f8039bbecb8f6b10e1648",
+    "snapshots/2/missing_identity/evidence/security.bandit.json": "b0426df5bb9d78dc8e12865909ba6d2213996db44bbe065301adbdcb094ad8d2",
+    "snapshots/2/missing_identity/evidence/tests.junit.xml": "a12968ecc0a572366f8b79d2eb6497e9738a6e52cbe924bb8f7ac53b43fa8976",
+    "snapshots/2/skipped_test/evidence/security.bandit.json": "cbc44cd9ecffa75e1dd3b302ae26e4441a0d6b98998b7b3f81e34feeda2ceb68",
+    "snapshots/2/skipped_test/evidence/tests.junit.xml": "f930a8dd45ff79699cff7e3af4ae7696ee14c28829fe373724f55aec894db34b",
+    "snapshots/3/complete/cases/context_mismatch/security.bandit.json": "8bd9a831c18e55dbf7286c2d4a884c877d77bd7b14910d1d2be7f0280ab93528",
+    "snapshots/3/complete/cases/context_mismatch/tests.junit.xml": "f5496f4afbe6dc96aeacbf087a8820b55f1fe53df31ad1c9db951d54b3cc05f4",
+    "snapshots/3/complete/cases/corrupt_raw/security.bandit.json": "8bd9a831c18e55dbf7286c2d4a884c877d77bd7b14910d1d2be7f0280ab93528",
+    "snapshots/3/complete/cases/corrupt_raw/tests.junit.xml": "7fc29da564033c2cbee2c2f77dc161cb194e209122423e70fac3b58229a629c6",
+    "snapshots/3/complete/cases/missing_security/security.bandit.json": "8bd9a831c18e55dbf7286c2d4a884c877d77bd7b14910d1d2be7f0280ab93528",
+    "snapshots/3/complete/cases/missing_security/tests.junit.xml": "f5496f4afbe6dc96aeacbf087a8820b55f1fe53df31ad1c9db951d54b3cc05f4",
+    "snapshots/3/complete/evidence/security.bandit.json": "8bd9a831c18e55dbf7286c2d4a884c877d77bd7b14910d1d2be7f0280ab93528",
+    "snapshots/3/complete/evidence/tests.junit.xml": "f5496f4afbe6dc96aeacbf087a8820b55f1fe53df31ad1c9db951d54b3cc05f4",
+    "snapshots/3/failed_test/evidence/security.bandit.json": "17d0f2ae570ef807228b205e2a9dfe1aace92165d50f4f2f5988d8f5eca16b8f",
+    "snapshots/3/failed_test/evidence/tests.junit.xml": "6aefe3d86a837bf9bee6e57f980101a7c305334c7fe1689fe89d56830ed8d1d4",
+    "snapshots/3/high_security/evidence/security.bandit.json": "7b9418bccb003fb30d28669d13ae12cd0ace3dab1db8b0c1a117d9bbfe958a8c",
+    "snapshots/3/high_security/evidence/tests.junit.xml": "27ee9e135919761378638af6503ec6d137d24b6a192a2eb63bbfcac2390f20b4",
+    "snapshots/3/missing_identity/evidence/security.bandit.json": "618828a205507e51765e561f125a67109660c5b206fe5df6bb669bb37f0b2b1d",
+    "snapshots/3/missing_identity/evidence/tests.junit.xml": "cc4dcd548b5fbb31e6726e58dbee240eec63eba72a6ef1f1f66c4520767adba7",
+    "snapshots/3/skipped_test/evidence/security.bandit.json": "ca99b1c8ab869eeb7b20a6ee114af8707ba934b3d4df0da845388a3895e54520",
+    "snapshots/3/skipped_test/evidence/tests.junit.xml": "8b8ac06483d4e097cc3d514c2ea15cd4c1df84104b8bc23131b52dc7ebaeb4fc"
   },
   "reproduce": "uv run --no-sync python scripts/evaluate_scenarios.py --trials 3 --output-dir .artifacts/research-new",
   "results": [
@@ -47,11 +124,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.630349999992177,
+          "duration_seconds": 2.261612600006629,
           "exit_code": 0,
-          "output_sha256": "bbac73b553b551411a45639adbbba0b1f49a063c141a38ccc13472d828ea8726"
+          "output_sha256": "ed6f1eea8d827b28c6b868c94a777b13b26f1c301b722ac1a8e74abc20c92596"
         },
         {
           "command": [
@@ -61,11 +138,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.210061100020539,
+          "duration_seconds": 0.9814191000186838,
           "exit_code": 0,
-          "output_sha256": "abf7a85f4e27714cc666d97649e44bf514a17e3257a737b5ef731565ad3d9904"
+          "output_sha256": "2299edd472ecd1a5352924ed53963ac6c8c6c09ae017126d56e7c891a06f80f7"
         },
         {
           "command": [
@@ -74,7 +151,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -82,16 +159,16 @@
             "--output",
             "cases/complete-decision.json"
           ],
-          "duration_seconds": 0.34005390002857894,
+          "duration_seconds": 0.42361100000562146,
           "exit_code": 0,
-          "output_sha256": "fea107319ae2241c9f9ef568c46be4d7ade5edbc5935f11db8a8dfaf65c169bc"
+          "output_sha256": "9dfd2ee0cac5624299125e293ae9eaf8e4a3d17bb2fe5fcc01a00b07e3a2205c"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "ALLOW",
-        "evidence_digest": "4dc606ec899bba3b288e28f0269c37ee55d55bfa8ef056600911d7343766b0aa",
+        "evidence_digest": "62c140601894cb52b2646853a1d6cb1323a348041ba6e4cf0dcbd505ac8ecb09",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": "HUMAN_APPROVAL",
@@ -101,7 +178,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.3407757000532001,
+      "duration_seconds": 0.42443030001595616,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 0,
@@ -110,14 +187,14 @@
       "observed": "ALLOW",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "78c9fc14c9f52ad613319540594626fbd4283f0eac29af94ad3d564c9b0e22e5",
+          "raw_sha256": "25c51475c7a39e97696685876b26fea1807a02843da71151b8dfb987b084e96c",
           "summary": {
             "findings": [
               {
@@ -137,14 +214,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7c8d75a0bf1fcb15a1d74abddc1c86769a2050c9ec0b5feea521a5d37e319516",
+          "raw_sha256": "5436dd0cb8a745263445a121001500418c8d45a28cf7b92706ecffd6f779f012",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -298,7 +375,7 @@
       "required_reason": "CHECKS_PASSED",
       "scenario": "complete",
       "snapshot": "snapshots/1/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 1
     },
     {
@@ -311,11 +388,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.7559464999940246,
+          "duration_seconds": 1.4481781999929808,
           "exit_code": 1,
-          "output_sha256": "1df83e5ae5db24afa2e1e8de128b541dc12981a288ac1c00ca3b74d93f9ebb11"
+          "output_sha256": "e7f7098b7089db8b7b4562a1bc4b24fb528f00e6efd8bfc8ed208b1f92237408"
         },
         {
           "command": [
@@ -325,11 +402,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.0962534000282176,
+          "duration_seconds": 1.0126190000446513,
           "exit_code": 0,
-          "output_sha256": "8b78eac68f7240a78700d6485fca8883f92ddf111154aaeff118ca94ea11bb7f"
+          "output_sha256": "9d354cda7cf1595ee4391aea3c34700a460006f837f40c853826a19461448f29"
         },
         {
           "command": [
@@ -338,7 +415,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -346,16 +423,16 @@
             "--output",
             "cases/failed_test-decision.json"
           ],
-          "duration_seconds": 0.3672535000368953,
+          "duration_seconds": 0.4978363999980502,
           "exit_code": 1,
-          "output_sha256": "7d7c67ab4161287f8447d28901c1701e89c77788c7004805173572731c088c9d"
+          "output_sha256": "a5c28de016649c220e91d640b613d987c3f9f9a2dac0865f0a03becb8ee04aba"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "95c90110a33cf629131a8e46d0a337cebcc8be8d622ce564b5f4105f26010b5d",
+        "evidence_digest": "5281d5132998f579cc08b11b85d0b9d5639e6e90a5810650163c622460baf6fa",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -365,7 +442,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.3678061999962665,
+      "duration_seconds": 0.4984313000459224,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -374,14 +451,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "5effeb664341e312f5ae58a719d701158835f34c0289fbda8941903ef7f14b39"
+            "source_digest": "4395d027ea0e7d36e5328f1a01aafd654fc5f8c1e08f11681a2b638f65c77fbf"
           },
-          "raw_sha256": "eec0188a2cbc5f444b5f77571794f8fa81fce14fc9db0f54b77c61ec600c3aec",
+          "raw_sha256": "bce09254c29d0680ebb874fde249d9df70a21192128a7ddeb91ff594bc558f3d",
           "summary": {
             "findings": [
               {
@@ -401,14 +478,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "5effeb664341e312f5ae58a719d701158835f34c0289fbda8941903ef7f14b39"
+            "source_digest": "4395d027ea0e7d36e5328f1a01aafd654fc5f8c1e08f11681a2b638f65c77fbf"
           },
-          "raw_sha256": "cdf1e97c4e2c8b5911c7d6a8070b4e0f1b1dc8ed287af2ec7fa729abbb755f58",
+          "raw_sha256": "186175c4b0531365f9a60721f633f4cdffb713612bac84f57246fa2b626785d9",
           "summary": {
             "case_ids": [
               "tests.test_required::test_required[0]",
@@ -426,7 +503,7 @@
       "required_reason": "TESTS_FAILED",
       "scenario": "failed_test",
       "snapshot": "snapshots/1/failed_test",
-      "source_digest": "5effeb664341e312f5ae58a719d701158835f34c0289fbda8941903ef7f14b39",
+      "source_digest": "4395d027ea0e7d36e5328f1a01aafd654fc5f8c1e08f11681a2b638f65c77fbf",
       "trial": 1
     },
     {
@@ -439,11 +516,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.6163369999849238,
+          "duration_seconds": 1.379084200016223,
           "exit_code": 0,
-          "output_sha256": "909563a302c1eff825b0ef1a285d5368044b95dae4606060cf7b6f364eac266b"
+          "output_sha256": "2c6b623a0df14ad1ff8377e079990592580e715f23ad8e6e9891e01f595cd1eb"
         },
         {
           "command": [
@@ -453,11 +530,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.203874500002712,
+          "duration_seconds": 1.0546491999994032,
           "exit_code": 0,
-          "output_sha256": "c7d03b54f3f9cc42b4d54611353338912a1c5ad4f0182a52541c55a898180571"
+          "output_sha256": "ea059c68c15e3ea93539815d6de46c19ec4bb378d47182de40449d2ee6b55307"
         },
         {
           "command": [
@@ -466,7 +543,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -474,16 +551,16 @@
             "--output",
             "cases/skipped_test-decision.json"
           ],
-          "duration_seconds": 0.30225800001062453,
+          "duration_seconds": 0.42710619996069,
           "exit_code": 1,
-          "output_sha256": "95147ca73ecd3d342f4da39dc9f433c4a4ed9436233507a89be7999ff0c0be90"
+          "output_sha256": "c12c87642add134d8123ffd7a7f59f7397b6d52b20b7a6d4b2487835f990dde9"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "459046802d4ecc614b18c724029c8478db858cff792fb1c894ca7c12a82c28d7",
+        "evidence_digest": "ebd4811ebf2689d587c1a0b7b81f0fdd162718f2c80f754e45b60e07432b54fe",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -493,7 +570,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.3029028999735601,
+      "duration_seconds": 0.4277489999658428,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -502,14 +579,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "4dbc131e836e78f6d9e0d18c9c57255de253ffd855cdba54ca97a7a53d24f1eb"
+            "source_digest": "4ef22a07e7511abee1508e0c9232fa8baf2c002246cfa9a299896bd0d1aa65e8"
           },
-          "raw_sha256": "6e2478caeec6d7448477e4939262f6fe9661924df0ebf6e9083271049ac24a95",
+          "raw_sha256": "3b9c0f75b45b9c75da588d5026fdd3960b011e1a7a5aa5f67b497d365a225098",
           "summary": {
             "findings": [
               {
@@ -529,14 +606,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "4dbc131e836e78f6d9e0d18c9c57255de253ffd855cdba54ca97a7a53d24f1eb"
+            "source_digest": "4ef22a07e7511abee1508e0c9232fa8baf2c002246cfa9a299896bd0d1aa65e8"
           },
-          "raw_sha256": "074f4ac01869eaf4e75f286f5c5d9a968e37ac242101eec0318ae652fd882929",
+          "raw_sha256": "cfa23a4b4a3f7410bae418a31ce9998551ca73d418f9d22ea2ae35fea4946d47",
           "summary": {
             "case_ids": [
               "tests.test_required::test_required[0]",
@@ -554,7 +631,7 @@
       "required_reason": "UNAPPROVED_TEST_SKIPS",
       "scenario": "skipped_test",
       "snapshot": "snapshots/1/skipped_test",
-      "source_digest": "4dbc131e836e78f6d9e0d18c9c57255de253ffd855cdba54ca97a7a53d24f1eb",
+      "source_digest": "4ef22a07e7511abee1508e0c9232fa8baf2c002246cfa9a299896bd0d1aa65e8",
       "trial": 1
     },
     {
@@ -567,11 +644,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.7192906999844126,
+          "duration_seconds": 1.4597421000362374,
           "exit_code": 0,
-          "output_sha256": "c86b89762704d30e1da3e4c60223dfd093cc1ba4758aa787e5a77b9a10223489"
+          "output_sha256": "576f09c3442546352ede13c59247c027fb65e6a4b7b782738505eb67b5c141dd"
         },
         {
           "command": [
@@ -581,11 +658,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.430701199977193,
+          "duration_seconds": 1.286581499967724,
           "exit_code": 0,
-          "output_sha256": "1c749b15952eb37af186189da5d92baadb28c23de51046717a793673dd0993d8"
+          "output_sha256": "35ae557bd110ba8299ff91d8f58d5d4d87bab8d407402ed78389646457eb1986"
         },
         {
           "command": [
@@ -594,7 +671,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -602,16 +679,16 @@
             "--output",
             "cases/missing_identity-decision.json"
           ],
-          "duration_seconds": 0.34528520004823804,
+          "duration_seconds": 0.48648590000811964,
           "exit_code": 1,
-          "output_sha256": "cc9243a0ad45e422f8fba4089608f78ae9dffdcb87e97b4c4c9b6576b72c3a94"
+          "output_sha256": "8d027ce5731b2e434db633d9b05c581ffdbbed14853eb0a67dbb0b6ecceb2009"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "ec0f8772aab306834df1121bd6a4296ed0f5dd4fc245e8579a95bcdbcb36e793",
+        "evidence_digest": "04ea6c2825c9a7c5af972f5a5ac63c1739acd75692bf629948815d3416ba79e9",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -621,7 +698,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.34579829999711365,
+      "duration_seconds": 0.4872857999871485,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -630,14 +707,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "edf3d56ab012d7a0a66f95fa585b41d051552ee22921e643f453c1639ba1f8cb"
+            "source_digest": "bd298da4f601d023a7122cffe0cd667dba2d8c78c0414fc820772a99b0d06e55"
           },
-          "raw_sha256": "2f75dfacccdcd1e2a8ce9edee15957ce79ac1758654e7a64a0871cc368bd33e7",
+          "raw_sha256": "418a4c2c9e662864cc3ffb64d392ece3e90d5387eb2a51c49bfafaf86a15d3be",
           "summary": {
             "findings": [
               {
@@ -657,14 +734,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "edf3d56ab012d7a0a66f95fa585b41d051552ee22921e643f453c1639ba1f8cb"
+            "source_digest": "bd298da4f601d023a7122cffe0cd667dba2d8c78c0414fc820772a99b0d06e55"
           },
-          "raw_sha256": "3e7a0346a56fa69c5efc0b1ffd3e28e996a68b1899233646fef3e86c69aad238",
+          "raw_sha256": "8cec27921ff25a60d17dc2e194f7a49fc118d1a84c859f2b8759abc3cc7215e3",
           "summary": {
             "case_ids": [
               "tests.test_required::test_required[0]",
@@ -681,7 +758,7 @@
       "required_reason": "MISSING_MANDATORY_TESTS",
       "scenario": "missing_identity",
       "snapshot": "snapshots/1/missing_identity",
-      "source_digest": "edf3d56ab012d7a0a66f95fa585b41d051552ee22921e643f453c1639ba1f8cb",
+      "source_digest": "bd298da4f601d023a7122cffe0cd667dba2d8c78c0414fc820772a99b0d06e55",
       "trial": 1
     },
     {
@@ -694,11 +771,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.630349999992177,
+          "duration_seconds": 2.261612600006629,
           "exit_code": 0,
-          "output_sha256": "bbac73b553b551411a45639adbbba0b1f49a063c141a38ccc13472d828ea8726"
+          "output_sha256": "ed6f1eea8d827b28c6b868c94a777b13b26f1c301b722ac1a8e74abc20c92596"
         },
         {
           "command": [
@@ -708,11 +785,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.210061100020539,
+          "duration_seconds": 0.9814191000186838,
           "exit_code": 0,
-          "output_sha256": "abf7a85f4e27714cc666d97649e44bf514a17e3257a737b5ef731565ad3d9904"
+          "output_sha256": "2299edd472ecd1a5352924ed53963ac6c8c6c09ae017126d56e7c891a06f80f7"
         },
         {
           "command": [
@@ -721,7 +798,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -729,16 +806,16 @@
             "--output",
             "cases/missing_security-decision.json"
           ],
-          "duration_seconds": 0.3607363000046462,
+          "duration_seconds": 0.436956999998074,
           "exit_code": 1,
-          "output_sha256": "8ba7a5ba6fa5e750101a522519dad63509b9eb817a3bdad8904c7a79020b5899"
+          "output_sha256": "70c1f055760f859542b5b1f8e1471d7cdae1be0620c3e6b1a3de7b96df3be06e"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "3de23455db9c2ac82fea3457a8b6e6fdef3348f80bf38c51d2ebaac90fae3eb2",
+        "evidence_digest": "87d82e1cf2994927c5e2b454b011f19a71a5cac3ccbd8cc78385ef78c2a62d92",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -748,7 +825,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.3614732000278309,
+      "duration_seconds": 0.4376712000230327,
       "evidence_directory": "cases/missing_security",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -757,14 +834,14 @@
       "observed": "DENY",
       "provenance": {
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7c8d75a0bf1fcb15a1d74abddc1c86769a2050c9ec0b5feea521a5d37e319516",
+          "raw_sha256": "5436dd0cb8a745263445a121001500418c8d45a28cf7b92706ecffd6f779f012",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -918,7 +995,7 @@
       "required_reason": "MISSING_SECURITY_EVIDENCE",
       "scenario": "missing_security",
       "snapshot": "snapshots/1/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 1
     },
     {
@@ -931,11 +1008,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.630349999992177,
+          "duration_seconds": 2.261612600006629,
           "exit_code": 0,
-          "output_sha256": "bbac73b553b551411a45639adbbba0b1f49a063c141a38ccc13472d828ea8726"
+          "output_sha256": "ed6f1eea8d827b28c6b868c94a777b13b26f1c301b722ac1a8e74abc20c92596"
         },
         {
           "command": [
@@ -945,11 +1022,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.210061100020539,
+          "duration_seconds": 0.9814191000186838,
           "exit_code": 0,
-          "output_sha256": "abf7a85f4e27714cc666d97649e44bf514a17e3257a737b5ef731565ad3d9904"
+          "output_sha256": "2299edd472ecd1a5352924ed53963ac6c8c6c09ae017126d56e7c891a06f80f7"
         },
         {
           "command": [
@@ -958,7 +1035,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "0000000000000000000000000000000000000000",
+            "1111111111111111111111111111111111111111",
             "--target",
             "staging",
             "--evidence-dir",
@@ -966,16 +1043,16 @@
             "--output",
             "cases/wrong_sha-decision.json"
           ],
-          "duration_seconds": 0.3196641000104137,
+          "duration_seconds": 0.3387071000179276,
           "exit_code": 1,
-          "output_sha256": "c07e689817a8ce923aefe25647104590724e48e4f9abc3a614880a7096813741"
+          "output_sha256": "84b3566c574b2578ceb62f6334e1e798d2146076379d17047680fa2ae2dd5df3"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "0000000000000000000000000000000000000000",
+        "commit_sha": "1111111111111111111111111111111111111111",
         "decision": "DENY",
-        "evidence_digest": "4dc606ec899bba3b288e28f0269c37ee55d55bfa8ef056600911d7343766b0aa",
+        "evidence_digest": "62c140601894cb52b2646853a1d6cb1323a348041ba6e4cf0dcbd505ac8ecb09",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -986,7 +1063,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.3208941000048071,
+      "duration_seconds": 0.33947030000854284,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -995,14 +1072,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "78c9fc14c9f52ad613319540594626fbd4283f0eac29af94ad3d564c9b0e22e5",
+          "raw_sha256": "25c51475c7a39e97696685876b26fea1807a02843da71151b8dfb987b084e96c",
           "summary": {
             "findings": [
               {
@@ -1022,14 +1099,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7c8d75a0bf1fcb15a1d74abddc1c86769a2050c9ec0b5feea521a5d37e319516",
+          "raw_sha256": "5436dd0cb8a745263445a121001500418c8d45a28cf7b92706ecffd6f779f012",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -1183,7 +1260,7 @@
       "required_reason": "TESTS_COMMIT_MISMATCH",
       "scenario": "wrong_sha",
       "snapshot": "snapshots/1/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 1
     },
     {
@@ -1196,11 +1273,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.630349999992177,
+          "duration_seconds": 2.261612600006629,
           "exit_code": 0,
-          "output_sha256": "bbac73b553b551411a45639adbbba0b1f49a063c141a38ccc13472d828ea8726"
+          "output_sha256": "ed6f1eea8d827b28c6b868c94a777b13b26f1c301b722ac1a8e74abc20c92596"
         },
         {
           "command": [
@@ -1210,11 +1287,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.210061100020539,
+          "duration_seconds": 0.9814191000186838,
           "exit_code": 0,
-          "output_sha256": "abf7a85f4e27714cc666d97649e44bf514a17e3257a737b5ef731565ad3d9904"
+          "output_sha256": "2299edd472ecd1a5352924ed53963ac6c8c6c09ae017126d56e7c891a06f80f7"
         },
         {
           "command": [
@@ -1223,7 +1300,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -1231,14 +1308,14 @@
             "--output",
             "cases/context_mismatch-decision.json"
           ],
-          "duration_seconds": 0.3877298000152223,
+          "duration_seconds": 0.29698899999493733,
           "exit_code": 1,
-          "output_sha256": "9ebd6add006fe8ce20b31c748a218b8bde8380e4a648aa284fdebbb934a82eb8"
+          "output_sha256": "2f0d28442065e6dcffe7652a19637043e4c0f7675fd745698aecc9f27a8fbd42"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
         "evidence_digest": null,
         "execution_authorized": false,
@@ -1251,7 +1328,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.38858149998122826,
+      "duration_seconds": 0.29766330000711605,
       "evidence_directory": "cases/context_mismatch",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -1260,14 +1337,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
             "source_digest": "0000000000000000000000000000000000000000000000000000000000000000"
           },
-          "raw_sha256": "78c9fc14c9f52ad613319540594626fbd4283f0eac29af94ad3d564c9b0e22e5",
+          "raw_sha256": "25c51475c7a39e97696685876b26fea1807a02843da71151b8dfb987b084e96c",
           "summary": {
             "findings": [
               {
@@ -1287,14 +1364,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7c8d75a0bf1fcb15a1d74abddc1c86769a2050c9ec0b5feea521a5d37e319516",
+          "raw_sha256": "5436dd0cb8a745263445a121001500418c8d45a28cf7b92706ecffd6f779f012",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -1448,7 +1525,7 @@
       "required_reason": "EVIDENCE_UNUSABLE",
       "scenario": "context_mismatch",
       "snapshot": "snapshots/1/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 1
     },
     {
@@ -1461,11 +1538,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.630349999992177,
+          "duration_seconds": 2.261612600006629,
           "exit_code": 0,
-          "output_sha256": "bbac73b553b551411a45639adbbba0b1f49a063c141a38ccc13472d828ea8726"
+          "output_sha256": "ed6f1eea8d827b28c6b868c94a777b13b26f1c301b722ac1a8e74abc20c92596"
         },
         {
           "command": [
@@ -1475,11 +1552,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.210061100020539,
+          "duration_seconds": 0.9814191000186838,
           "exit_code": 0,
-          "output_sha256": "abf7a85f4e27714cc666d97649e44bf514a17e3257a737b5ef731565ad3d9904"
+          "output_sha256": "2299edd472ecd1a5352924ed53963ac6c8c6c09ae017126d56e7c891a06f80f7"
         },
         {
           "command": [
@@ -1488,7 +1565,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -1496,14 +1573,14 @@
             "--output",
             "cases/corrupt_raw-decision.json"
           ],
-          "duration_seconds": 0.37411159998737276,
+          "duration_seconds": 0.42061050003394485,
           "exit_code": 1,
-          "output_sha256": "5ee37f9f7dc3e7a623134ca1e10e0ba8d3b7b1fb2cc40a34122d3daaa33e981a"
+          "output_sha256": "c1e74fb17450719da5acb52d9698c04430b2ef4fb41087fe124ac73746bb3e17"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
         "evidence_digest": null,
         "execution_authorized": false,
@@ -1516,7 +1593,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.37475909997010604,
+      "duration_seconds": 0.4214417999610305,
       "evidence_directory": "cases/corrupt_raw",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -1525,14 +1602,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "78c9fc14c9f52ad613319540594626fbd4283f0eac29af94ad3d564c9b0e22e5",
+          "raw_sha256": "25c51475c7a39e97696685876b26fea1807a02843da71151b8dfb987b084e96c",
           "summary": {
             "findings": [
               {
@@ -1552,14 +1629,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7c8d75a0bf1fcb15a1d74abddc1c86769a2050c9ec0b5feea521a5d37e319516",
+          "raw_sha256": "5436dd0cb8a745263445a121001500418c8d45a28cf7b92706ecffd6f779f012",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -1713,7 +1790,7 @@
       "required_reason": "EVIDENCE_UNUSABLE",
       "scenario": "corrupt_raw",
       "snapshot": "snapshots/1/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 1
     },
     {
@@ -1726,11 +1803,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.566808099974878,
+          "duration_seconds": 2.5171660999767482,
           "exit_code": 0,
-          "output_sha256": "ace6ae574abf1ed891ddd27b82fd21bf31600d68f12a96c474942ae9087a93ec"
+          "output_sha256": "90783e7f2da45ca95da11e478202ed3e450cc7dfb47fbf79f9664c9d647a0cf6"
         },
         {
           "command": [
@@ -1740,11 +1817,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.126263999962248,
+          "duration_seconds": 1.1504263000097126,
           "exit_code": 1,
-          "output_sha256": "31449b65691a7a667be2e2fdcb8094f1e3e4a977d357b2a71a8b817a0b3a96fe"
+          "output_sha256": "9c5b61678230114d917bd2e4a4de28bfa3bd2f3d232226ee62118c84e07e2e97"
         },
         {
           "command": [
@@ -1753,7 +1830,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -1761,16 +1838,16 @@
             "--output",
             "cases/high_security-decision.json"
           ],
-          "duration_seconds": 0.32675800001015887,
+          "duration_seconds": 0.4621392000117339,
           "exit_code": 1,
-          "output_sha256": "3781ff6c2560dc365902853489ad9630525ff66301cfcb5fe0b6d395a360656f"
+          "output_sha256": "91e2b3a60210df57d317bc43ddf34d0b25e0129384f0217ae3ff6425a045acea"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "b681ac2e3cc24e6215a6206a801004a3e25cb81f6996f00fb3bce0c1ef4d380a",
+        "evidence_digest": "ef1e391ad4e96f001ac92a6f3d3971e0744631c416df9c3076cbc3cc6a04d407",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -1780,7 +1857,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.32757839997066185,
+      "duration_seconds": 0.4628281999612227,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -1789,14 +1866,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3a4183016ef5ed8cfde6a0c2aedee38a24f5ea0ce0e9dc7a035d11251039c4d0"
+            "source_digest": "ad4753cb0fedf1b30eb57cfd2547a39f82130bbd25aaa28060d1f2293376952c"
           },
-          "raw_sha256": "3026a94068a25f94cd9ee4287c9576ebd82530da3fde53fd4ca59356722cd447",
+          "raw_sha256": "1b452ac32d8f8ecda323fb31959fb3bcefa36e95cd2da7b094dca23c4535f02d",
           "summary": {
             "findings": [
               {
@@ -1828,14 +1905,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3a4183016ef5ed8cfde6a0c2aedee38a24f5ea0ce0e9dc7a035d11251039c4d0"
+            "source_digest": "ad4753cb0fedf1b30eb57cfd2547a39f82130bbd25aaa28060d1f2293376952c"
           },
-          "raw_sha256": "2c98a973f54ea7a032847f943954355dc0151e2e11e075921a88f8e5e1ab8dc6",
+          "raw_sha256": "826193b009a69ed1d0a6d7efd6c7d5141518102deb3c8f2ef7eb1672671d1e3d",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -1989,7 +2066,7 @@
       "required_reason": "SECURITY_HIGH",
       "scenario": "high_security",
       "snapshot": "snapshots/1/high_security",
-      "source_digest": "3a4183016ef5ed8cfde6a0c2aedee38a24f5ea0ce0e9dc7a035d11251039c4d0",
+      "source_digest": "ad4753cb0fedf1b30eb57cfd2547a39f82130bbd25aaa28060d1f2293376952c",
       "trial": 1
     },
     {
@@ -2002,11 +2079,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.630349999992177,
+          "duration_seconds": 2.261612600006629,
           "exit_code": 0,
-          "output_sha256": "bbac73b553b551411a45639adbbba0b1f49a063c141a38ccc13472d828ea8726"
+          "output_sha256": "ed6f1eea8d827b28c6b868c94a777b13b26f1c301b722ac1a8e74abc20c92596"
         },
         {
           "command": [
@@ -2016,11 +2093,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.210061100020539,
+          "duration_seconds": 0.9814191000186838,
           "exit_code": 0,
-          "output_sha256": "abf7a85f4e27714cc666d97649e44bf514a17e3257a737b5ef731565ad3d9904"
+          "output_sha256": "2299edd472ecd1a5352924ed53963ac6c8c6c09ae017126d56e7c891a06f80f7"
         },
         {
           "command": [
@@ -2029,7 +2106,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "production",
             "--evidence-dir",
@@ -2039,16 +2116,16 @@
             "--gate",
             "final"
           ],
-          "duration_seconds": 0.33516590000363067,
+          "duration_seconds": 0.4585592999937944,
           "exit_code": 1,
-          "output_sha256": "bbe65fc176980e68340ddae97aa16762b85ae51c1947be5b8c1dc776978e60f4"
+          "output_sha256": "0462225b0f66ed2c18337a6c7f21e4c357fe874af158f6dc2f458ef3bf431413"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "4dc606ec899bba3b288e28f0269c37ee55d55bfa8ef056600911d7343766b0aa",
+        "evidence_digest": "62c140601894cb52b2646853a1d6cb1323a348041ba6e4cf0dcbd505ac8ecb09",
         "execution_authorized": false,
         "gate": "final",
         "next_gate": null,
@@ -2058,7 +2135,7 @@
         ],
         "target": "production"
       },
-      "duration_seconds": 0.3356550000025891,
+      "duration_seconds": 0.45958149997750297,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -2067,14 +2144,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "78c9fc14c9f52ad613319540594626fbd4283f0eac29af94ad3d564c9b0e22e5",
+          "raw_sha256": "25c51475c7a39e97696685876b26fea1807a02843da71151b8dfb987b084e96c",
           "summary": {
             "findings": [
               {
@@ -2094,14 +2171,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7c8d75a0bf1fcb15a1d74abddc1c86769a2050c9ec0b5feea521a5d37e319516",
+          "raw_sha256": "5436dd0cb8a745263445a121001500418c8d45a28cf7b92706ecffd6f779f012",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -2255,7 +2332,7 @@
       "required_reason": "PRODUCTION_APPROVAL_REQUIRED",
       "scenario": "missing_approval",
       "snapshot": "snapshots/1/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 1
     },
     {
@@ -2268,11 +2345,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.630349999992177,
+          "duration_seconds": 2.261612600006629,
           "exit_code": 0,
-          "output_sha256": "bbac73b553b551411a45639adbbba0b1f49a063c141a38ccc13472d828ea8726"
+          "output_sha256": "ed6f1eea8d827b28c6b868c94a777b13b26f1c301b722ac1a8e74abc20c92596"
         },
         {
           "command": [
@@ -2282,11 +2359,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.210061100020539,
+          "duration_seconds": 0.9814191000186838,
           "exit_code": 0,
-          "output_sha256": "abf7a85f4e27714cc666d97649e44bf514a17e3257a737b5ef731565ad3d9904"
+          "output_sha256": "2299edd472ecd1a5352924ed53963ac6c8c6c09ae017126d56e7c891a06f80f7"
         },
         {
           "api": "releasegate.policy.evaluate",
@@ -2297,9 +2374,9 @@
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "4dc606ec899bba3b288e28f0269c37ee55d55bfa8ef056600911d7343766b0aa",
+        "evidence_digest": "62c140601894cb52b2646853a1d6cb1323a348041ba6e4cf0dcbd505ac8ecb09",
         "execution_authorized": false,
         "gate": "final",
         "next_gate": null,
@@ -2309,7 +2386,7 @@
         ],
         "target": "production"
       },
-      "duration_seconds": 0.01900729996850714,
+      "duration_seconds": 0.023645099950954318,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": null,
@@ -2318,14 +2395,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "78c9fc14c9f52ad613319540594626fbd4283f0eac29af94ad3d564c9b0e22e5",
+          "raw_sha256": "25c51475c7a39e97696685876b26fea1807a02843da71151b8dfb987b084e96c",
           "summary": {
             "findings": [
               {
@@ -2345,14 +2422,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7c8d75a0bf1fcb15a1d74abddc1c86769a2050c9ec0b5feea521a5d37e319516",
+          "raw_sha256": "5436dd0cb8a745263445a121001500418c8d45a28cf7b92706ecffd6f779f012",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -2506,7 +2583,7 @@
       "required_reason": "STALE_OR_WRONG_APPROVAL",
       "scenario": "stale_approval_sha",
       "snapshot": "snapshots/1/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 1
     },
     {
@@ -2519,11 +2596,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.630349999992177,
+          "duration_seconds": 2.261612600006629,
           "exit_code": 0,
-          "output_sha256": "bbac73b553b551411a45639adbbba0b1f49a063c141a38ccc13472d828ea8726"
+          "output_sha256": "ed6f1eea8d827b28c6b868c94a777b13b26f1c301b722ac1a8e74abc20c92596"
         },
         {
           "command": [
@@ -2533,11 +2610,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.210061100020539,
+          "duration_seconds": 0.9814191000186838,
           "exit_code": 0,
-          "output_sha256": "abf7a85f4e27714cc666d97649e44bf514a17e3257a737b5ef731565ad3d9904"
+          "output_sha256": "2299edd472ecd1a5352924ed53963ac6c8c6c09ae017126d56e7c891a06f80f7"
         },
         {
           "api": "releasegate.policy.evaluate",
@@ -2548,9 +2625,9 @@
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "4dc606ec899bba3b288e28f0269c37ee55d55bfa8ef056600911d7343766b0aa",
+        "evidence_digest": "62c140601894cb52b2646853a1d6cb1323a348041ba6e4cf0dcbd505ac8ecb09",
         "execution_authorized": false,
         "gate": "final",
         "next_gate": null,
@@ -2560,7 +2637,7 @@
         ],
         "target": "production"
       },
-      "duration_seconds": 0.011906999978236854,
+      "duration_seconds": 0.01640269998461008,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": null,
@@ -2569,14 +2646,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "78c9fc14c9f52ad613319540594626fbd4283f0eac29af94ad3d564c9b0e22e5",
+          "raw_sha256": "25c51475c7a39e97696685876b26fea1807a02843da71151b8dfb987b084e96c",
           "summary": {
             "findings": [
               {
@@ -2596,14 +2673,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7c8d75a0bf1fcb15a1d74abddc1c86769a2050c9ec0b5feea521a5d37e319516",
+          "raw_sha256": "5436dd0cb8a745263445a121001500418c8d45a28cf7b92706ecffd6f779f012",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -2757,7 +2834,7 @@
       "required_reason": "STALE_OR_WRONG_APPROVAL",
       "scenario": "wrong_approval_target",
       "snapshot": "snapshots/1/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 1
     },
     {
@@ -2770,11 +2847,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.630349999992177,
+          "duration_seconds": 2.261612600006629,
           "exit_code": 0,
-          "output_sha256": "bbac73b553b551411a45639adbbba0b1f49a063c141a38ccc13472d828ea8726"
+          "output_sha256": "ed6f1eea8d827b28c6b868c94a777b13b26f1c301b722ac1a8e74abc20c92596"
         },
         {
           "command": [
@@ -2784,11 +2861,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.210061100020539,
+          "duration_seconds": 0.9814191000186838,
           "exit_code": 0,
-          "output_sha256": "abf7a85f4e27714cc666d97649e44bf514a17e3257a737b5ef731565ad3d9904"
+          "output_sha256": "2299edd472ecd1a5352924ed53963ac6c8c6c09ae017126d56e7c891a06f80f7"
         },
         {
           "api": "releasegate.policy.evaluate",
@@ -2799,9 +2876,9 @@
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "4dc606ec899bba3b288e28f0269c37ee55d55bfa8ef056600911d7343766b0aa",
+        "evidence_digest": "62c140601894cb52b2646853a1d6cb1323a348041ba6e4cf0dcbd505ac8ecb09",
         "execution_authorized": false,
         "gate": "final",
         "next_gate": null,
@@ -2811,7 +2888,7 @@
         ],
         "target": "production"
       },
-      "duration_seconds": 0.01209289999678731,
+      "duration_seconds": 0.021622200030833483,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": null,
@@ -2820,14 +2897,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "78c9fc14c9f52ad613319540594626fbd4283f0eac29af94ad3d564c9b0e22e5",
+          "raw_sha256": "25c51475c7a39e97696685876b26fea1807a02843da71151b8dfb987b084e96c",
           "summary": {
             "findings": [
               {
@@ -2847,14 +2924,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7c8d75a0bf1fcb15a1d74abddc1c86769a2050c9ec0b5feea521a5d37e319516",
+          "raw_sha256": "5436dd0cb8a745263445a121001500418c8d45a28cf7b92706ecffd6f779f012",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -3008,7 +3085,7 @@
       "required_reason": "STALE_OR_WRONG_APPROVAL",
       "scenario": "wrong_approval_digest",
       "snapshot": "snapshots/1/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 1
     },
     {
@@ -3021,11 +3098,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.630349999992177,
+          "duration_seconds": 2.261612600006629,
           "exit_code": 0,
-          "output_sha256": "bbac73b553b551411a45639adbbba0b1f49a063c141a38ccc13472d828ea8726"
+          "output_sha256": "ed6f1eea8d827b28c6b868c94a777b13b26f1c301b722ac1a8e74abc20c92596"
         },
         {
           "command": [
@@ -3035,11 +3112,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.210061100020539,
+          "duration_seconds": 0.9814191000186838,
           "exit_code": 0,
-          "output_sha256": "abf7a85f4e27714cc666d97649e44bf514a17e3257a737b5ef731565ad3d9904"
+          "output_sha256": "2299edd472ecd1a5352924ed53963ac6c8c6c09ae017126d56e7c891a06f80f7"
         },
         {
           "command": [
@@ -3056,7 +3133,7 @@
             ],
             "runtime": "NOT_INTEGRATED"
           },
-          "duration_seconds": 0.30729409999912605,
+          "duration_seconds": 0.49209349998272955,
           "exit_code": 3,
           "output_sha256": "3f34efffb525597ec49ead615ff98a02b1630deb00b3fb7437e3e20bfc7eb167"
         }
@@ -3070,7 +3147,7 @@
         ],
         "runtime": "NOT_INTEGRATED"
       },
-      "duration_seconds": 0.3074878000188619,
+      "duration_seconds": 0.4923494999529794,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 3,
@@ -3079,14 +3156,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "78c9fc14c9f52ad613319540594626fbd4283f0eac29af94ad3d564c9b0e22e5",
+          "raw_sha256": "25c51475c7a39e97696685876b26fea1807a02843da71151b8dfb987b084e96c",
           "summary": {
             "findings": [
               {
@@ -3106,14 +3183,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7c8d75a0bf1fcb15a1d74abddc1c86769a2050c9ec0b5feea521a5d37e319516",
+          "raw_sha256": "5436dd0cb8a745263445a121001500418c8d45a28cf7b92706ecffd6f779f012",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -3267,7 +3344,7 @@
       "required_reason": "EXECUTION_NOT_CONFIGURED",
       "scenario": "release_unavailable",
       "snapshot": "snapshots/1/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 1
     },
     {
@@ -3280,11 +3357,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.407215199957136,
+          "duration_seconds": 3.027589400007855,
           "exit_code": 0,
-          "output_sha256": "04621a3547ec00b504c56a976eda3b19cada111da2d1f69bcd45cff1b95c6142"
+          "output_sha256": "9c14e68d0a4873eeaa4f918e3ef803512715f3af94173928ae218c0ef762cbb4"
         },
         {
           "command": [
@@ -3294,11 +3371,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1534479999681935,
+          "duration_seconds": 1.4193177999695763,
           "exit_code": 0,
-          "output_sha256": "2ff27a763e0a5d95da2f2d2aaa830adafb3f5660ebf8dfbfd78a0f8dd26e474c"
+          "output_sha256": "13a9611a3f3726cb99b257d1a3f3f42db4ab5df3157f45d2d0824a809277d1d5"
         },
         {
           "command": [
@@ -3307,7 +3384,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -3315,16 +3392,16 @@
             "--output",
             "cases/complete-decision.json"
           ],
-          "duration_seconds": 0.338171599956695,
+          "duration_seconds": 0.2932351999916136,
           "exit_code": 0,
-          "output_sha256": "dbc8914ec1991e9ea409c9562266b053dc3083187a21c52fbd43a53ca5113d19"
+          "output_sha256": "24272687ad640e62f14d99ac4d2ad263b55698f707d2b513ade0f7286243c21a"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "ALLOW",
-        "evidence_digest": "465002052caeae7d734eedf8f273fa09d56b8ddbf681830296f99113f6de2df1",
+        "evidence_digest": "7bab58ba6d4a89bafdc5736b1d09d7afb8f5ef42c6b13beba0f14f14638fdc97",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": "HUMAN_APPROVAL",
@@ -3334,7 +3411,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.3389123000088148,
+      "duration_seconds": 0.29380440001841635,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 0,
@@ -3343,14 +3420,14 @@
       "observed": "ALLOW",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7765ec9200ee9213d65cfcc839da24e49560d884bb611b65e06a7bde8746ea84",
+          "raw_sha256": "06fdd03fb50b09a012895774d4662dad5e34ae3ed69d392d74703aeaff93fdf8",
           "summary": {
             "findings": [
               {
@@ -3370,14 +3447,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "cd28f9227d102fb2ca646824b6f7f7d4eaeea06ed3fc8f0c9b73815a901915cd",
+          "raw_sha256": "0fc2a962d4ec97e9feeea957a5a7d51a693f9207d2d60b1aee3b6d414d8d9cc3",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -3531,7 +3608,7 @@
       "required_reason": "CHECKS_PASSED",
       "scenario": "complete",
       "snapshot": "snapshots/2/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 2
     },
     {
@@ -3544,11 +3621,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.7333947000443004,
+          "duration_seconds": 1.7679456999758258,
           "exit_code": 1,
-          "output_sha256": "f855cf8c6e12328366d5758c9e7d9495ddac3d81efee47c91507711f18ffd92c"
+          "output_sha256": "69817db293d83d18705e433c12155212aacb57ceb93b0c9dbdf9b4be84c6b4bc"
         },
         {
           "command": [
@@ -3558,11 +3635,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.0845234000007622,
+          "duration_seconds": 1.3930960999568924,
           "exit_code": 0,
-          "output_sha256": "ed1b2a253f12ea6cb5297ef9318f00ae8c9a87e95c1ada0bd4d15f9c9ed5dedb"
+          "output_sha256": "e9efbdd212b6e79137d743fc05440879c8582d299772ef92b27fd051f8587187"
         },
         {
           "command": [
@@ -3571,7 +3648,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -3579,16 +3656,16 @@
             "--output",
             "cases/failed_test-decision.json"
           ],
-          "duration_seconds": 0.29437900002812967,
+          "duration_seconds": 0.3312658999930136,
           "exit_code": 1,
-          "output_sha256": "1a37420edb8bb9ee19a078f3fef28c2c6ea7a8811fa327e550ebb79cb242d57c"
+          "output_sha256": "e253c9b63b0d08f054821293fc201114bfaf54deef9920118b128af12d5811e7"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "85690c01d319daf6b27bdf62c45f7387ca7961a1ba6fd6ed3fe29b842440be4f",
+        "evidence_digest": "eec47d7af83216a8beb670670e31b3b9c7078c960ec9a197ad57e65e04d1cc71",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -3598,7 +3675,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.29495589999714866,
+      "duration_seconds": 0.33189920004224405,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -3607,14 +3684,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "5effeb664341e312f5ae58a719d701158835f34c0289fbda8941903ef7f14b39"
+            "source_digest": "4395d027ea0e7d36e5328f1a01aafd654fc5f8c1e08f11681a2b638f65c77fbf"
           },
-          "raw_sha256": "c492354890cf78ef13ada1566093d6944b74cfca476a132bc0a7330ed976369d",
+          "raw_sha256": "b4c9c225ee2c0a053066d1c65b4610c18472c3f37eb691a6cc963e8d455e70c4",
           "summary": {
             "findings": [
               {
@@ -3634,14 +3711,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "5effeb664341e312f5ae58a719d701158835f34c0289fbda8941903ef7f14b39"
+            "source_digest": "4395d027ea0e7d36e5328f1a01aafd654fc5f8c1e08f11681a2b638f65c77fbf"
           },
-          "raw_sha256": "b0f4faa78f3aeda3ec321fff24b2893bb2e75cf52f082c1307947be8895faaf5",
+          "raw_sha256": "3a578af992c6cf1515bd07116c2e7745034dc289151b673b12653d385a78759a",
           "summary": {
             "case_ids": [
               "tests.test_required::test_required[0]",
@@ -3659,7 +3736,7 @@
       "required_reason": "TESTS_FAILED",
       "scenario": "failed_test",
       "snapshot": "snapshots/2/failed_test",
-      "source_digest": "5effeb664341e312f5ae58a719d701158835f34c0289fbda8941903ef7f14b39",
+      "source_digest": "4395d027ea0e7d36e5328f1a01aafd654fc5f8c1e08f11681a2b638f65c77fbf",
       "trial": 2
     },
     {
@@ -3672,11 +3749,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.506226300029084,
+          "duration_seconds": 1.5819890999700874,
           "exit_code": 0,
-          "output_sha256": "1ceed288769546fdd7c0716dfb14880f641928ae18b9ee5809ede4d338705806"
+          "output_sha256": "6096096a91ba92b86c8e5db3bdbb3432d794c6b1dc7b2079ec6d0614a30ed886"
         },
         {
           "command": [
@@ -3686,11 +3763,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1647526000160724,
+          "duration_seconds": 1.2584750999812968,
           "exit_code": 0,
-          "output_sha256": "8c860e91b9d230cb2f9e43245e75bac60ccae4a5452b6196462686813125db92"
+          "output_sha256": "db7e1a36e66dca042f95776ca5c25f8ff928d23b9eb0ef867da2b93e4d5e525e"
         },
         {
           "command": [
@@ -3699,7 +3776,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -3707,16 +3784,16 @@
             "--output",
             "cases/skipped_test-decision.json"
           ],
-          "duration_seconds": 0.34268919995520264,
+          "duration_seconds": 0.35275910003110766,
           "exit_code": 1,
-          "output_sha256": "d5ca5fe543733222aa1aba5d3ca460cc1b8c7a64fe95126c3f63a953e4f672e0"
+          "output_sha256": "ad0c485d6abbbae75b323546707b5b79439bec91c8e435d35d95ab546ad28dd9"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "e61f13c2f5bd57e7bd1de67cf7e4f4665e90215b3b3df830ae3731fc4558de51",
+        "evidence_digest": "c3dfac3a2c94b9b8c19e0be4b97291fc9d855d0e45eee3320787bf61e8aa7273",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -3726,7 +3803,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.3435394000262022,
+      "duration_seconds": 0.35343449999345466,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -3735,14 +3812,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "4dbc131e836e78f6d9e0d18c9c57255de253ffd855cdba54ca97a7a53d24f1eb"
+            "source_digest": "4ef22a07e7511abee1508e0c9232fa8baf2c002246cfa9a299896bd0d1aa65e8"
           },
-          "raw_sha256": "a1c6c6675059d4bc2e5b31c245e3a349e75ff2e2f0e9d785de92a6f5626b905e",
+          "raw_sha256": "cbc44cd9ecffa75e1dd3b302ae26e4441a0d6b98998b7b3f81e34feeda2ceb68",
           "summary": {
             "findings": [
               {
@@ -3762,14 +3839,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "4dbc131e836e78f6d9e0d18c9c57255de253ffd855cdba54ca97a7a53d24f1eb"
+            "source_digest": "4ef22a07e7511abee1508e0c9232fa8baf2c002246cfa9a299896bd0d1aa65e8"
           },
-          "raw_sha256": "3a4f7a5e4a88d8265fbafc6c64a72a5fe16aa2a5ba185c6c70577a8c609888c3",
+          "raw_sha256": "f930a8dd45ff79699cff7e3af4ae7696ee14c28829fe373724f55aec894db34b",
           "summary": {
             "case_ids": [
               "tests.test_required::test_required[0]",
@@ -3787,7 +3864,7 @@
       "required_reason": "UNAPPROVED_TEST_SKIPS",
       "scenario": "skipped_test",
       "snapshot": "snapshots/2/skipped_test",
-      "source_digest": "4dbc131e836e78f6d9e0d18c9c57255de253ffd855cdba54ca97a7a53d24f1eb",
+      "source_digest": "4ef22a07e7511abee1508e0c9232fa8baf2c002246cfa9a299896bd0d1aa65e8",
       "trial": 2
     },
     {
@@ -3800,11 +3877,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.591968499997165,
+          "duration_seconds": 1.6792756000068039,
           "exit_code": 0,
-          "output_sha256": "448b7bf2c4c86a955d5678859fb4b133b9e585c1aa6e983b9fdbe20f18db3521"
+          "output_sha256": "fb2d773509145dbdb8a2b427cf9b2c22a5d52168a19b33037b75ccfbf996eec4"
         },
         {
           "command": [
@@ -3814,11 +3891,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1761177000007592,
+          "duration_seconds": 1.3874430999858305,
           "exit_code": 0,
-          "output_sha256": "fc4c70625d8782590356c32b071e6bcdaa225c21563e003541f782bcf9cfdbc7"
+          "output_sha256": "e43296cb95c181d2fd3c9d66043086cf4dd82e53f33a1ee5ebee7884cbc7597f"
         },
         {
           "command": [
@@ -3827,7 +3904,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -3835,16 +3912,16 @@
             "--output",
             "cases/missing_identity-decision.json"
           ],
-          "duration_seconds": 0.32795329997316003,
+          "duration_seconds": 0.3156604999676347,
           "exit_code": 1,
-          "output_sha256": "6eecec9c9ee8b22f0afd7bf74890a9115d79cc2360de8f113d3fdac198bab1a5"
+          "output_sha256": "54237cef8958b131937770b7b4f6bcd65fdf02b542d228f1514cde78a2752630"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "d68a785590d1fdd4a886159d8c116dbd96af53233f936cd8b671d83562867c53",
+        "evidence_digest": "f789d491f6ab689e317f90f4d7ef25d30067e8bd5855a1873ec6cfe3f3d36a06",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -3854,7 +3931,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.3285193999763578,
+      "duration_seconds": 0.3163561999681406,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -3863,14 +3940,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "edf3d56ab012d7a0a66f95fa585b41d051552ee22921e643f453c1639ba1f8cb"
+            "source_digest": "bd298da4f601d023a7122cffe0cd667dba2d8c78c0414fc820772a99b0d06e55"
           },
-          "raw_sha256": "52b7299cbb858479b1d33c2966acadf75bd69d997e91ca207041313801b6279b",
+          "raw_sha256": "b0426df5bb9d78dc8e12865909ba6d2213996db44bbe065301adbdcb094ad8d2",
           "summary": {
             "findings": [
               {
@@ -3890,14 +3967,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "edf3d56ab012d7a0a66f95fa585b41d051552ee22921e643f453c1639ba1f8cb"
+            "source_digest": "bd298da4f601d023a7122cffe0cd667dba2d8c78c0414fc820772a99b0d06e55"
           },
-          "raw_sha256": "eb480af2dbefada817b97e768f28f233af7b056a765b2df9281305d35d9cc05e",
+          "raw_sha256": "a12968ecc0a572366f8b79d2eb6497e9738a6e52cbe924bb8f7ac53b43fa8976",
           "summary": {
             "case_ids": [
               "tests.test_required::test_required[0]",
@@ -3914,7 +3991,7 @@
       "required_reason": "MISSING_MANDATORY_TESTS",
       "scenario": "missing_identity",
       "snapshot": "snapshots/2/missing_identity",
-      "source_digest": "edf3d56ab012d7a0a66f95fa585b41d051552ee22921e643f453c1639ba1f8cb",
+      "source_digest": "bd298da4f601d023a7122cffe0cd667dba2d8c78c0414fc820772a99b0d06e55",
       "trial": 2
     },
     {
@@ -3927,11 +4004,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.407215199957136,
+          "duration_seconds": 3.027589400007855,
           "exit_code": 0,
-          "output_sha256": "04621a3547ec00b504c56a976eda3b19cada111da2d1f69bcd45cff1b95c6142"
+          "output_sha256": "9c14e68d0a4873eeaa4f918e3ef803512715f3af94173928ae218c0ef762cbb4"
         },
         {
           "command": [
@@ -3941,11 +4018,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1534479999681935,
+          "duration_seconds": 1.4193177999695763,
           "exit_code": 0,
-          "output_sha256": "2ff27a763e0a5d95da2f2d2aaa830adafb3f5660ebf8dfbfd78a0f8dd26e474c"
+          "output_sha256": "13a9611a3f3726cb99b257d1a3f3f42db4ab5df3157f45d2d0824a809277d1d5"
         },
         {
           "command": [
@@ -3954,7 +4031,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -3962,16 +4039,16 @@
             "--output",
             "cases/missing_security-decision.json"
           ],
-          "duration_seconds": 0.308397899963893,
+          "duration_seconds": 0.29979900002945215,
           "exit_code": 1,
-          "output_sha256": "e82dbeb390c28a2916a19f61d604bd167b6c2c8303271e4393db6d62e68a4cac"
+          "output_sha256": "36ea5e15aedd91a9b46da9bbd1c23991efeef18f1bc2d10c138dd50e1da017a4"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "cd85ed0b45c002fac1becdaa8f6bb64698cda340af4b0048c34c78799585e3fd",
+        "evidence_digest": "3c4602e331101db514b3f4683336743422a2f942bb34fa05837022206a6e6f09",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -3981,7 +4058,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.3092381000169553,
+      "duration_seconds": 0.30040579999331385,
       "evidence_directory": "cases/missing_security",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -3990,14 +4067,14 @@
       "observed": "DENY",
       "provenance": {
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "cd28f9227d102fb2ca646824b6f7f7d4eaeea06ed3fc8f0c9b73815a901915cd",
+          "raw_sha256": "0fc2a962d4ec97e9feeea957a5a7d51a693f9207d2d60b1aee3b6d414d8d9cc3",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -4151,7 +4228,7 @@
       "required_reason": "MISSING_SECURITY_EVIDENCE",
       "scenario": "missing_security",
       "snapshot": "snapshots/2/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 2
     },
     {
@@ -4164,11 +4241,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.407215199957136,
+          "duration_seconds": 3.027589400007855,
           "exit_code": 0,
-          "output_sha256": "04621a3547ec00b504c56a976eda3b19cada111da2d1f69bcd45cff1b95c6142"
+          "output_sha256": "9c14e68d0a4873eeaa4f918e3ef803512715f3af94173928ae218c0ef762cbb4"
         },
         {
           "command": [
@@ -4178,11 +4255,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1534479999681935,
+          "duration_seconds": 1.4193177999695763,
           "exit_code": 0,
-          "output_sha256": "2ff27a763e0a5d95da2f2d2aaa830adafb3f5660ebf8dfbfd78a0f8dd26e474c"
+          "output_sha256": "13a9611a3f3726cb99b257d1a3f3f42db4ab5df3157f45d2d0824a809277d1d5"
         },
         {
           "command": [
@@ -4191,7 +4268,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "0000000000000000000000000000000000000000",
+            "1111111111111111111111111111111111111111",
             "--target",
             "staging",
             "--evidence-dir",
@@ -4199,16 +4276,16 @@
             "--output",
             "cases/wrong_sha-decision.json"
           ],
-          "duration_seconds": 0.3210901999846101,
+          "duration_seconds": 0.3167046000016853,
           "exit_code": 1,
-          "output_sha256": "4e1cec39a57cb4961f87a3b86c66fcb25219a18454e52b5652ff99ead336412e"
+          "output_sha256": "97309680dd2ce9dc04c599b411cea1e8c01ea39f6ff0f80f2904f5ed0f861151"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "0000000000000000000000000000000000000000",
+        "commit_sha": "1111111111111111111111111111111111111111",
         "decision": "DENY",
-        "evidence_digest": "465002052caeae7d734eedf8f273fa09d56b8ddbf681830296f99113f6de2df1",
+        "evidence_digest": "7bab58ba6d4a89bafdc5736b1d09d7afb8f5ef42c6b13beba0f14f14638fdc97",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -4219,7 +4296,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.3217435000115074,
+      "duration_seconds": 0.31732560001546517,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -4228,14 +4305,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7765ec9200ee9213d65cfcc839da24e49560d884bb611b65e06a7bde8746ea84",
+          "raw_sha256": "06fdd03fb50b09a012895774d4662dad5e34ae3ed69d392d74703aeaff93fdf8",
           "summary": {
             "findings": [
               {
@@ -4255,14 +4332,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "cd28f9227d102fb2ca646824b6f7f7d4eaeea06ed3fc8f0c9b73815a901915cd",
+          "raw_sha256": "0fc2a962d4ec97e9feeea957a5a7d51a693f9207d2d60b1aee3b6d414d8d9cc3",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -4416,7 +4493,7 @@
       "required_reason": "TESTS_COMMIT_MISMATCH",
       "scenario": "wrong_sha",
       "snapshot": "snapshots/2/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 2
     },
     {
@@ -4429,11 +4506,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.407215199957136,
+          "duration_seconds": 3.027589400007855,
           "exit_code": 0,
-          "output_sha256": "04621a3547ec00b504c56a976eda3b19cada111da2d1f69bcd45cff1b95c6142"
+          "output_sha256": "9c14e68d0a4873eeaa4f918e3ef803512715f3af94173928ae218c0ef762cbb4"
         },
         {
           "command": [
@@ -4443,11 +4520,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1534479999681935,
+          "duration_seconds": 1.4193177999695763,
           "exit_code": 0,
-          "output_sha256": "2ff27a763e0a5d95da2f2d2aaa830adafb3f5660ebf8dfbfd78a0f8dd26e474c"
+          "output_sha256": "13a9611a3f3726cb99b257d1a3f3f42db4ab5df3157f45d2d0824a809277d1d5"
         },
         {
           "command": [
@@ -4456,7 +4533,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -4464,14 +4541,14 @@
             "--output",
             "cases/context_mismatch-decision.json"
           ],
-          "duration_seconds": 0.31938209995860234,
+          "duration_seconds": 0.3301622999715619,
           "exit_code": 1,
-          "output_sha256": "9ebd6add006fe8ce20b31c748a218b8bde8380e4a648aa284fdebbb934a82eb8"
+          "output_sha256": "2f0d28442065e6dcffe7652a19637043e4c0f7675fd745698aecc9f27a8fbd42"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
         "evidence_digest": null,
         "execution_authorized": false,
@@ -4484,7 +4561,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.32018460001563653,
+      "duration_seconds": 0.33073579997289926,
       "evidence_directory": "cases/context_mismatch",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -4493,14 +4570,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
             "source_digest": "0000000000000000000000000000000000000000000000000000000000000000"
           },
-          "raw_sha256": "7765ec9200ee9213d65cfcc839da24e49560d884bb611b65e06a7bde8746ea84",
+          "raw_sha256": "06fdd03fb50b09a012895774d4662dad5e34ae3ed69d392d74703aeaff93fdf8",
           "summary": {
             "findings": [
               {
@@ -4520,14 +4597,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "cd28f9227d102fb2ca646824b6f7f7d4eaeea06ed3fc8f0c9b73815a901915cd",
+          "raw_sha256": "0fc2a962d4ec97e9feeea957a5a7d51a693f9207d2d60b1aee3b6d414d8d9cc3",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -4681,7 +4758,7 @@
       "required_reason": "EVIDENCE_UNUSABLE",
       "scenario": "context_mismatch",
       "snapshot": "snapshots/2/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 2
     },
     {
@@ -4694,11 +4771,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.407215199957136,
+          "duration_seconds": 3.027589400007855,
           "exit_code": 0,
-          "output_sha256": "04621a3547ec00b504c56a976eda3b19cada111da2d1f69bcd45cff1b95c6142"
+          "output_sha256": "9c14e68d0a4873eeaa4f918e3ef803512715f3af94173928ae218c0ef762cbb4"
         },
         {
           "command": [
@@ -4708,11 +4785,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1534479999681935,
+          "duration_seconds": 1.4193177999695763,
           "exit_code": 0,
-          "output_sha256": "2ff27a763e0a5d95da2f2d2aaa830adafb3f5660ebf8dfbfd78a0f8dd26e474c"
+          "output_sha256": "13a9611a3f3726cb99b257d1a3f3f42db4ab5df3157f45d2d0824a809277d1d5"
         },
         {
           "command": [
@@ -4721,7 +4798,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -4729,14 +4806,14 @@
             "--output",
             "cases/corrupt_raw-decision.json"
           ],
-          "duration_seconds": 0.31202950002625585,
+          "duration_seconds": 0.37304360000416636,
           "exit_code": 1,
-          "output_sha256": "5ee37f9f7dc3e7a623134ca1e10e0ba8d3b7b1fb2cc40a34122d3daaa33e981a"
+          "output_sha256": "c1e74fb17450719da5acb52d9698c04430b2ef4fb41087fe124ac73746bb3e17"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
         "evidence_digest": null,
         "execution_authorized": false,
@@ -4749,7 +4826,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.31281079998007044,
+      "duration_seconds": 0.3736526000429876,
       "evidence_directory": "cases/corrupt_raw",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -4758,14 +4835,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7765ec9200ee9213d65cfcc839da24e49560d884bb611b65e06a7bde8746ea84",
+          "raw_sha256": "06fdd03fb50b09a012895774d4662dad5e34ae3ed69d392d74703aeaff93fdf8",
           "summary": {
             "findings": [
               {
@@ -4785,14 +4862,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "cd28f9227d102fb2ca646824b6f7f7d4eaeea06ed3fc8f0c9b73815a901915cd",
+          "raw_sha256": "0fc2a962d4ec97e9feeea957a5a7d51a693f9207d2d60b1aee3b6d414d8d9cc3",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -4946,7 +5023,7 @@
       "required_reason": "EVIDENCE_UNUSABLE",
       "scenario": "corrupt_raw",
       "snapshot": "snapshots/2/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 2
     },
     {
@@ -4959,11 +5036,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.359148500021547,
+          "duration_seconds": 2.4489158000214957,
           "exit_code": 0,
-          "output_sha256": "7b211bc953e7b51a260f5d1d36877b2ac6cdc01ce72eff74cd7d1588cdfeda52"
+          "output_sha256": "63175400ed833980fe7f02a70fbc1d2eb8b4c97a0b06e4c82c807482a958a367"
         },
         {
           "command": [
@@ -4973,11 +5050,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1401020000339486,
+          "duration_seconds": 1.1554529999848455,
           "exit_code": 1,
-          "output_sha256": "b7ad9401432fce90855b6d1f834d8686fddea3b7d3449843c7cdd77147a1b77a"
+          "output_sha256": "44329c55020136b55cb738c56684be4fb3b417dd4fbcf4c9418020b53ae7ff3f"
         },
         {
           "command": [
@@ -4986,7 +5063,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -4994,16 +5071,16 @@
             "--output",
             "cases/high_security-decision.json"
           ],
-          "duration_seconds": 0.37996980000752956,
+          "duration_seconds": 0.34538979997159913,
           "exit_code": 1,
-          "output_sha256": "72b2b67f4d4e680cf4276ea2d0f6dfd03994c6e8b8b5bf39719a7ffa0cad518d"
+          "output_sha256": "a726529fc29fc96ba4533c0b10da56c8951730e0c68d1f79613f17a78c08ca91"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "58e0349c5426e1101e48bb60f5812a41c3b4e0908e2d9a38a841bed64f7b2da5",
+        "evidence_digest": "8f1dd117ff0c38cde9f1661da273d13c51dfa30809704ac51c05f4021f31a0e4",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -5013,7 +5090,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.3810472000041045,
+      "duration_seconds": 0.3459277999936603,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -5022,14 +5099,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3a4183016ef5ed8cfde6a0c2aedee38a24f5ea0ce0e9dc7a035d11251039c4d0"
+            "source_digest": "ad4753cb0fedf1b30eb57cfd2547a39f82130bbd25aaa28060d1f2293376952c"
           },
-          "raw_sha256": "07234b2f60cdbcc76b2ee305662c8c96ee399c30e60232caed71258296919a00",
+          "raw_sha256": "62ea2e0bfb478ba757d70b6d3f2424a27457dfd089f7aa3906381926a3666776",
           "summary": {
             "findings": [
               {
@@ -5061,14 +5138,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3a4183016ef5ed8cfde6a0c2aedee38a24f5ea0ce0e9dc7a035d11251039c4d0"
+            "source_digest": "ad4753cb0fedf1b30eb57cfd2547a39f82130bbd25aaa28060d1f2293376952c"
           },
-          "raw_sha256": "b1695a538c41a8239ffe09bdec66951cf3251a35f973062b900cd5527c84a993",
+          "raw_sha256": "358f57f09dbc324ef2c15901087505e25ed48c55807f8039bbecb8f6b10e1648",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -5222,7 +5299,7 @@
       "required_reason": "SECURITY_HIGH",
       "scenario": "high_security",
       "snapshot": "snapshots/2/high_security",
-      "source_digest": "3a4183016ef5ed8cfde6a0c2aedee38a24f5ea0ce0e9dc7a035d11251039c4d0",
+      "source_digest": "ad4753cb0fedf1b30eb57cfd2547a39f82130bbd25aaa28060d1f2293376952c",
       "trial": 2
     },
     {
@@ -5235,11 +5312,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.407215199957136,
+          "duration_seconds": 3.027589400007855,
           "exit_code": 0,
-          "output_sha256": "04621a3547ec00b504c56a976eda3b19cada111da2d1f69bcd45cff1b95c6142"
+          "output_sha256": "9c14e68d0a4873eeaa4f918e3ef803512715f3af94173928ae218c0ef762cbb4"
         },
         {
           "command": [
@@ -5249,11 +5326,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1534479999681935,
+          "duration_seconds": 1.4193177999695763,
           "exit_code": 0,
-          "output_sha256": "2ff27a763e0a5d95da2f2d2aaa830adafb3f5660ebf8dfbfd78a0f8dd26e474c"
+          "output_sha256": "13a9611a3f3726cb99b257d1a3f3f42db4ab5df3157f45d2d0824a809277d1d5"
         },
         {
           "command": [
@@ -5262,7 +5339,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "production",
             "--evidence-dir",
@@ -5272,16 +5349,16 @@
             "--gate",
             "final"
           ],
-          "duration_seconds": 0.3844476999947801,
+          "duration_seconds": 0.3510594999534078,
           "exit_code": 1,
-          "output_sha256": "bc8aae24d04ab99e065851be4d28f151d944bf2cacbb719c3ba1db7fe9c84904"
+          "output_sha256": "876a65f2b4fc8a7bb127122795733a1a25731d4061b78a401af84a148a92499c"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "465002052caeae7d734eedf8f273fa09d56b8ddbf681830296f99113f6de2df1",
+        "evidence_digest": "7bab58ba6d4a89bafdc5736b1d09d7afb8f5ef42c6b13beba0f14f14638fdc97",
         "execution_authorized": false,
         "gate": "final",
         "next_gate": null,
@@ -5291,7 +5368,7 @@
         ],
         "target": "production"
       },
-      "duration_seconds": 0.3850240999599919,
+      "duration_seconds": 0.35162020003190264,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -5300,14 +5377,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7765ec9200ee9213d65cfcc839da24e49560d884bb611b65e06a7bde8746ea84",
+          "raw_sha256": "06fdd03fb50b09a012895774d4662dad5e34ae3ed69d392d74703aeaff93fdf8",
           "summary": {
             "findings": [
               {
@@ -5327,14 +5404,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "cd28f9227d102fb2ca646824b6f7f7d4eaeea06ed3fc8f0c9b73815a901915cd",
+          "raw_sha256": "0fc2a962d4ec97e9feeea957a5a7d51a693f9207d2d60b1aee3b6d414d8d9cc3",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -5488,7 +5565,7 @@
       "required_reason": "PRODUCTION_APPROVAL_REQUIRED",
       "scenario": "missing_approval",
       "snapshot": "snapshots/2/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 2
     },
     {
@@ -5501,11 +5578,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.407215199957136,
+          "duration_seconds": 3.027589400007855,
           "exit_code": 0,
-          "output_sha256": "04621a3547ec00b504c56a976eda3b19cada111da2d1f69bcd45cff1b95c6142"
+          "output_sha256": "9c14e68d0a4873eeaa4f918e3ef803512715f3af94173928ae218c0ef762cbb4"
         },
         {
           "command": [
@@ -5515,11 +5592,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1534479999681935,
+          "duration_seconds": 1.4193177999695763,
           "exit_code": 0,
-          "output_sha256": "2ff27a763e0a5d95da2f2d2aaa830adafb3f5660ebf8dfbfd78a0f8dd26e474c"
+          "output_sha256": "13a9611a3f3726cb99b257d1a3f3f42db4ab5df3157f45d2d0824a809277d1d5"
         },
         {
           "api": "releasegate.policy.evaluate",
@@ -5530,9 +5607,9 @@
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "465002052caeae7d734eedf8f273fa09d56b8ddbf681830296f99113f6de2df1",
+        "evidence_digest": "7bab58ba6d4a89bafdc5736b1d09d7afb8f5ef42c6b13beba0f14f14638fdc97",
         "execution_authorized": false,
         "gate": "final",
         "next_gate": null,
@@ -5542,7 +5619,7 @@
         ],
         "target": "production"
       },
-      "duration_seconds": 0.016541599994525313,
+      "duration_seconds": 0.009441099944524467,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": null,
@@ -5551,14 +5628,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7765ec9200ee9213d65cfcc839da24e49560d884bb611b65e06a7bde8746ea84",
+          "raw_sha256": "06fdd03fb50b09a012895774d4662dad5e34ae3ed69d392d74703aeaff93fdf8",
           "summary": {
             "findings": [
               {
@@ -5578,14 +5655,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "cd28f9227d102fb2ca646824b6f7f7d4eaeea06ed3fc8f0c9b73815a901915cd",
+          "raw_sha256": "0fc2a962d4ec97e9feeea957a5a7d51a693f9207d2d60b1aee3b6d414d8d9cc3",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -5739,7 +5816,7 @@
       "required_reason": "STALE_OR_WRONG_APPROVAL",
       "scenario": "stale_approval_sha",
       "snapshot": "snapshots/2/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 2
     },
     {
@@ -5752,11 +5829,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.407215199957136,
+          "duration_seconds": 3.027589400007855,
           "exit_code": 0,
-          "output_sha256": "04621a3547ec00b504c56a976eda3b19cada111da2d1f69bcd45cff1b95c6142"
+          "output_sha256": "9c14e68d0a4873eeaa4f918e3ef803512715f3af94173928ae218c0ef762cbb4"
         },
         {
           "command": [
@@ -5766,11 +5843,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1534479999681935,
+          "duration_seconds": 1.4193177999695763,
           "exit_code": 0,
-          "output_sha256": "2ff27a763e0a5d95da2f2d2aaa830adafb3f5660ebf8dfbfd78a0f8dd26e474c"
+          "output_sha256": "13a9611a3f3726cb99b257d1a3f3f42db4ab5df3157f45d2d0824a809277d1d5"
         },
         {
           "api": "releasegate.policy.evaluate",
@@ -5781,9 +5858,9 @@
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "465002052caeae7d734eedf8f273fa09d56b8ddbf681830296f99113f6de2df1",
+        "evidence_digest": "7bab58ba6d4a89bafdc5736b1d09d7afb8f5ef42c6b13beba0f14f14638fdc97",
         "execution_authorized": false,
         "gate": "final",
         "next_gate": null,
@@ -5793,7 +5870,7 @@
         ],
         "target": "production"
       },
-      "duration_seconds": 0.011204500042367727,
+      "duration_seconds": 0.019666400039568543,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": null,
@@ -5802,14 +5879,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7765ec9200ee9213d65cfcc839da24e49560d884bb611b65e06a7bde8746ea84",
+          "raw_sha256": "06fdd03fb50b09a012895774d4662dad5e34ae3ed69d392d74703aeaff93fdf8",
           "summary": {
             "findings": [
               {
@@ -5829,14 +5906,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "cd28f9227d102fb2ca646824b6f7f7d4eaeea06ed3fc8f0c9b73815a901915cd",
+          "raw_sha256": "0fc2a962d4ec97e9feeea957a5a7d51a693f9207d2d60b1aee3b6d414d8d9cc3",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -5990,7 +6067,7 @@
       "required_reason": "STALE_OR_WRONG_APPROVAL",
       "scenario": "wrong_approval_target",
       "snapshot": "snapshots/2/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 2
     },
     {
@@ -6003,11 +6080,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.407215199957136,
+          "duration_seconds": 3.027589400007855,
           "exit_code": 0,
-          "output_sha256": "04621a3547ec00b504c56a976eda3b19cada111da2d1f69bcd45cff1b95c6142"
+          "output_sha256": "9c14e68d0a4873eeaa4f918e3ef803512715f3af94173928ae218c0ef762cbb4"
         },
         {
           "command": [
@@ -6017,11 +6094,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1534479999681935,
+          "duration_seconds": 1.4193177999695763,
           "exit_code": 0,
-          "output_sha256": "2ff27a763e0a5d95da2f2d2aaa830adafb3f5660ebf8dfbfd78a0f8dd26e474c"
+          "output_sha256": "13a9611a3f3726cb99b257d1a3f3f42db4ab5df3157f45d2d0824a809277d1d5"
         },
         {
           "api": "releasegate.policy.evaluate",
@@ -6032,9 +6109,9 @@
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "465002052caeae7d734eedf8f273fa09d56b8ddbf681830296f99113f6de2df1",
+        "evidence_digest": "7bab58ba6d4a89bafdc5736b1d09d7afb8f5ef42c6b13beba0f14f14638fdc97",
         "execution_authorized": false,
         "gate": "final",
         "next_gate": null,
@@ -6044,7 +6121,7 @@
         ],
         "target": "production"
       },
-      "duration_seconds": 0.01292690000263974,
+      "duration_seconds": 0.012486000021453947,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": null,
@@ -6053,14 +6130,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7765ec9200ee9213d65cfcc839da24e49560d884bb611b65e06a7bde8746ea84",
+          "raw_sha256": "06fdd03fb50b09a012895774d4662dad5e34ae3ed69d392d74703aeaff93fdf8",
           "summary": {
             "findings": [
               {
@@ -6080,14 +6157,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "cd28f9227d102fb2ca646824b6f7f7d4eaeea06ed3fc8f0c9b73815a901915cd",
+          "raw_sha256": "0fc2a962d4ec97e9feeea957a5a7d51a693f9207d2d60b1aee3b6d414d8d9cc3",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -6241,7 +6318,7 @@
       "required_reason": "STALE_OR_WRONG_APPROVAL",
       "scenario": "wrong_approval_digest",
       "snapshot": "snapshots/2/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 2
     },
     {
@@ -6254,11 +6331,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.407215199957136,
+          "duration_seconds": 3.027589400007855,
           "exit_code": 0,
-          "output_sha256": "04621a3547ec00b504c56a976eda3b19cada111da2d1f69bcd45cff1b95c6142"
+          "output_sha256": "9c14e68d0a4873eeaa4f918e3ef803512715f3af94173928ae218c0ef762cbb4"
         },
         {
           "command": [
@@ -6268,11 +6345,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1534479999681935,
+          "duration_seconds": 1.4193177999695763,
           "exit_code": 0,
-          "output_sha256": "2ff27a763e0a5d95da2f2d2aaa830adafb3f5660ebf8dfbfd78a0f8dd26e474c"
+          "output_sha256": "13a9611a3f3726cb99b257d1a3f3f42db4ab5df3157f45d2d0824a809277d1d5"
         },
         {
           "command": [
@@ -6289,7 +6366,7 @@
             ],
             "runtime": "NOT_INTEGRATED"
           },
-          "duration_seconds": 0.3200844000093639,
+          "duration_seconds": 0.31222930003423244,
           "exit_code": 3,
           "output_sha256": "3f34efffb525597ec49ead615ff98a02b1630deb00b3fb7437e3e20bfc7eb167"
         }
@@ -6303,7 +6380,7 @@
         ],
         "runtime": "NOT_INTEGRATED"
       },
-      "duration_seconds": 0.3203423999948427,
+      "duration_seconds": 0.3125,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 3,
@@ -6312,14 +6389,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "7765ec9200ee9213d65cfcc839da24e49560d884bb611b65e06a7bde8746ea84",
+          "raw_sha256": "06fdd03fb50b09a012895774d4662dad5e34ae3ed69d392d74703aeaff93fdf8",
           "summary": {
             "findings": [
               {
@@ -6339,14 +6416,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "cd28f9227d102fb2ca646824b6f7f7d4eaeea06ed3fc8f0c9b73815a901915cd",
+          "raw_sha256": "0fc2a962d4ec97e9feeea957a5a7d51a693f9207d2d60b1aee3b6d414d8d9cc3",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -6500,7 +6577,7 @@
       "required_reason": "EXECUTION_NOT_CONFIGURED",
       "scenario": "release_unavailable",
       "snapshot": "snapshots/2/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 2
     },
     {
@@ -6513,11 +6590,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.5945624000160024,
+          "duration_seconds": 2.3517078000004403,
           "exit_code": 0,
-          "output_sha256": "aaeff43fea7189ddcdef8d3ac41f94750db4bc60988592c135252417ab9bdccd"
+          "output_sha256": "d9159432e2fe60fb352a201733ebab4ee3d39f06dc45ac48cb44bf6754f24bbb"
         },
         {
           "command": [
@@ -6527,11 +6604,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1335481000132859,
+          "duration_seconds": 1.0486774999881163,
           "exit_code": 0,
-          "output_sha256": "2faf8a520f333a9e368ff0ca135adead687a995d90322996bd7df092b573cf0a"
+          "output_sha256": "bc5ce30d72ded27be3b460d1dbf5f2594c080838e294ff9f2d3d0e750d1f3506"
         },
         {
           "command": [
@@ -6540,7 +6617,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -6548,16 +6625,16 @@
             "--output",
             "cases/complete-decision.json"
           ],
-          "duration_seconds": 0.3365990999736823,
+          "duration_seconds": 0.2883886999916285,
           "exit_code": 0,
-          "output_sha256": "112fe63d43df93e47c36c374a437fa5aacfcfcfbb10a6985759ec9c184a1c38a"
+          "output_sha256": "d4c39b52e0c54d92eb692da4b5180f7a70854ee8c2b29295915a69c3b8845f70"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "ALLOW",
-        "evidence_digest": "f94292dc416cd62c52b222d16c1353fbb4dc84eb21a24cce01cdb14854cc1a5d",
+        "evidence_digest": "3b7b1a885eb604676beeb842771cf1c7263293db0de0dc5a5584c8464bd7f1b0",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": "HUMAN_APPROVAL",
@@ -6567,7 +6644,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.3374447000096552,
+      "duration_seconds": 0.2908995999605395,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 0,
@@ -6576,14 +6653,14 @@
       "observed": "ALLOW",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "6e7acb0d1db63463a1b28eadc465dbfb72cd20736fb55df67fd3df36ac113b78",
+          "raw_sha256": "8bd9a831c18e55dbf7286c2d4a884c877d77bd7b14910d1d2be7f0280ab93528",
           "summary": {
             "findings": [
               {
@@ -6603,14 +6680,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "a7cc334617d560827fdf1570f5d0335cfbf464f1a57b67427b1488fda358714d",
+          "raw_sha256": "f5496f4afbe6dc96aeacbf087a8820b55f1fe53df31ad1c9db951d54b3cc05f4",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -6764,7 +6841,7 @@
       "required_reason": "CHECKS_PASSED",
       "scenario": "complete",
       "snapshot": "snapshots/3/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 3
     },
     {
@@ -6777,11 +6854,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.6383878000197,
+          "duration_seconds": 1.5415857000043616,
           "exit_code": 1,
-          "output_sha256": "1a06704d8ff62ff68becaec2ca627aed39d316f2117f722ec99520a22f25a302"
+          "output_sha256": "20e2b5351feb406ba5b5e0a37e196fda0e95f1a4ff5321a42551a4f5a78d9932"
         },
         {
           "command": [
@@ -6791,11 +6868,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.4840339999645948,
+          "duration_seconds": 1.029079100000672,
           "exit_code": 0,
-          "output_sha256": "e88fa68cc5c73b2f5849f4b7aab3eeb214731e9d532dcd6ba301a310b5eeed6b"
+          "output_sha256": "6c2d0f639c6f1fa3c80f2804060649552a3d3c2e391d1e0fa6478917123b1b1a"
         },
         {
           "command": [
@@ -6804,7 +6881,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -6812,16 +6889,16 @@
             "--output",
             "cases/failed_test-decision.json"
           ],
-          "duration_seconds": 0.3517146999947727,
+          "duration_seconds": 0.2970620000269264,
           "exit_code": 1,
-          "output_sha256": "da086e3fd792cada0c9764c4a1483c417db5f86fdb7d78e5d46c70e84db20ae9"
+          "output_sha256": "49d036dfbe631353c30518eef51a17d312db2d6825dd993ac4509e82c41431f9"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "6e469ad9e9b7e0049416544a7428d31a61921fc8ca3f618183d64a4c798c3969",
+        "evidence_digest": "f4e4955e86f28fbd76d7c885dfabbaf0144392796c10f520694035b9a4be6d44",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -6831,7 +6908,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.3522593999514356,
+      "duration_seconds": 0.297613300033845,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -6840,14 +6917,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "5effeb664341e312f5ae58a719d701158835f34c0289fbda8941903ef7f14b39"
+            "source_digest": "4395d027ea0e7d36e5328f1a01aafd654fc5f8c1e08f11681a2b638f65c77fbf"
           },
-          "raw_sha256": "0ad2211a0a480d0c20cb9e3207b880252b8a72393f9e6a07c1f7646140c1ffca",
+          "raw_sha256": "17d0f2ae570ef807228b205e2a9dfe1aace92165d50f4f2f5988d8f5eca16b8f",
           "summary": {
             "findings": [
               {
@@ -6867,14 +6944,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "5effeb664341e312f5ae58a719d701158835f34c0289fbda8941903ef7f14b39"
+            "source_digest": "4395d027ea0e7d36e5328f1a01aafd654fc5f8c1e08f11681a2b638f65c77fbf"
           },
-          "raw_sha256": "1a41c77285f12f8fac0562be97379fa5b5fd50b33c70061084bffae5b8d0358e",
+          "raw_sha256": "6aefe3d86a837bf9bee6e57f980101a7c305334c7fe1689fe89d56830ed8d1d4",
           "summary": {
             "case_ids": [
               "tests.test_required::test_required[0]",
@@ -6892,7 +6969,7 @@
       "required_reason": "TESTS_FAILED",
       "scenario": "failed_test",
       "snapshot": "snapshots/3/failed_test",
-      "source_digest": "5effeb664341e312f5ae58a719d701158835f34c0289fbda8941903ef7f14b39",
+      "source_digest": "4395d027ea0e7d36e5328f1a01aafd654fc5f8c1e08f11681a2b638f65c77fbf",
       "trial": 3
     },
     {
@@ -6905,11 +6982,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.6975441999966279,
+          "duration_seconds": 1.4955384000204504,
           "exit_code": 0,
-          "output_sha256": "cf2db4a39a9b73843cf35089aa355755f7d6d0bfd16f39e229e6ff908c1560f3"
+          "output_sha256": "607f59e09d9b4e0938633a0233a08a450df4df5be55ae8d3530c3c4f6877b0be"
         },
         {
           "command": [
@@ -6919,11 +6996,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1259647000115365,
+          "duration_seconds": 1.05022450000979,
           "exit_code": 0,
-          "output_sha256": "549f6b718712da7ecbd439fac9fded3b3ce542f8a6502ac599e7967479210bc9"
+          "output_sha256": "7d9c7d2b12d8d75ed6de154d72509934f6e149adf66d3e1c17549e842c3a6540"
         },
         {
           "command": [
@@ -6932,7 +7009,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -6940,16 +7017,16 @@
             "--output",
             "cases/skipped_test-decision.json"
           ],
-          "duration_seconds": 0.3764498000382446,
+          "duration_seconds": 0.3123998999944888,
           "exit_code": 1,
-          "output_sha256": "d1d226c04626892a89e5fb6335b2decdd90c78797f014399d12ba6af9d0aae61"
+          "output_sha256": "f955a580916d236c5486ae563bba3cba4d3980b47ca6374f0e9e665722196f37"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "1ab3926ed740a0533a73bf42473972a27dcf409d71bce678a2002dd4e4289a2c",
+        "evidence_digest": "4978cd4cc7335ca4fb7e4f82593cd62f10a1bdd9afbe54c8913220ae5b71721b",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -6959,7 +7036,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.3772389000514522,
+      "duration_seconds": 0.3129588000010699,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -6968,14 +7045,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "4dbc131e836e78f6d9e0d18c9c57255de253ffd855cdba54ca97a7a53d24f1eb"
+            "source_digest": "4ef22a07e7511abee1508e0c9232fa8baf2c002246cfa9a299896bd0d1aa65e8"
           },
-          "raw_sha256": "f164d20bbbf1b8769ba6429308ffca36d703cacb6d7ffed6f43530eeb648c2bf",
+          "raw_sha256": "ca99b1c8ab869eeb7b20a6ee114af8707ba934b3d4df0da845388a3895e54520",
           "summary": {
             "findings": [
               {
@@ -6995,14 +7072,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "4dbc131e836e78f6d9e0d18c9c57255de253ffd855cdba54ca97a7a53d24f1eb"
+            "source_digest": "4ef22a07e7511abee1508e0c9232fa8baf2c002246cfa9a299896bd0d1aa65e8"
           },
-          "raw_sha256": "7f82d5e633e1152ccf987f84e4d4f0794fc81db08a2d8f1e868415d6cc609744",
+          "raw_sha256": "8b8ac06483d4e097cc3d514c2ea15cd4c1df84104b8bc23131b52dc7ebaeb4fc",
           "summary": {
             "case_ids": [
               "tests.test_required::test_required[0]",
@@ -7020,7 +7097,7 @@
       "required_reason": "UNAPPROVED_TEST_SKIPS",
       "scenario": "skipped_test",
       "snapshot": "snapshots/3/skipped_test",
-      "source_digest": "4dbc131e836e78f6d9e0d18c9c57255de253ffd855cdba54ca97a7a53d24f1eb",
+      "source_digest": "4ef22a07e7511abee1508e0c9232fa8baf2c002246cfa9a299896bd0d1aa65e8",
       "trial": 3
     },
     {
@@ -7033,11 +7110,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.5406884999829344,
+          "duration_seconds": 1.4831211999990046,
           "exit_code": 0,
-          "output_sha256": "4235f62e83503f1ce0d36ec96fa5f6a5a53066b7fbf2f0765bddb743fad60a58"
+          "output_sha256": "c0339cf27e16309f96eb044c1775f015c94ef59e2af8e69d3fea02c39cc2a917"
         },
         {
           "command": [
@@ -7047,11 +7124,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1297221999848261,
+          "duration_seconds": 1.032898799981922,
           "exit_code": 0,
-          "output_sha256": "47583b9a48a88bc02b88f2f86154d87139a8954c55c0934399f746b558d63d0e"
+          "output_sha256": "7dfe2c0b05d99b0556d95a683fa0f2462adc1342d4612f80119af8e69b6de5ae"
         },
         {
           "command": [
@@ -7060,7 +7137,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -7068,16 +7145,16 @@
             "--output",
             "cases/missing_identity-decision.json"
           ],
-          "duration_seconds": 0.30415580002591014,
+          "duration_seconds": 0.28351360000669956,
           "exit_code": 1,
-          "output_sha256": "04f6b880a986859d642863229352029441cb1f654094c1abf14b8df07d013caa"
+          "output_sha256": "51c15078d91f7d2976f300bc9fb082e07d892a8898aa21e0d9cfd90ac2f7b4ef"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "5eef71be8c1e329b3515e8004438d749db87500dcfb10efe27e2df22bd39efac",
+        "evidence_digest": "3a23fd7a0d054ac24eaad2366dc9c681e8f3a4944a4f0e81ddc955388135bee0",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -7087,7 +7164,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.30482439999468625,
+      "duration_seconds": 0.2840206000255421,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -7096,14 +7173,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "edf3d56ab012d7a0a66f95fa585b41d051552ee22921e643f453c1639ba1f8cb"
+            "source_digest": "bd298da4f601d023a7122cffe0cd667dba2d8c78c0414fc820772a99b0d06e55"
           },
-          "raw_sha256": "1a9c14bc9e047ab9f078da041234da31fb6cdd87aad7a9101fb2a926161f7d71",
+          "raw_sha256": "618828a205507e51765e561f125a67109660c5b206fe5df6bb669bb37f0b2b1d",
           "summary": {
             "findings": [
               {
@@ -7123,14 +7200,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "edf3d56ab012d7a0a66f95fa585b41d051552ee22921e643f453c1639ba1f8cb"
+            "source_digest": "bd298da4f601d023a7122cffe0cd667dba2d8c78c0414fc820772a99b0d06e55"
           },
-          "raw_sha256": "9bdc9c62eee077526f29553b669ca21a54fddb8bc453800eb5e911ffe4baadc7",
+          "raw_sha256": "cc4dcd548b5fbb31e6726e58dbee240eec63eba72a6ef1f1f66c4520767adba7",
           "summary": {
             "case_ids": [
               "tests.test_required::test_required[0]",
@@ -7147,7 +7224,7 @@
       "required_reason": "MISSING_MANDATORY_TESTS",
       "scenario": "missing_identity",
       "snapshot": "snapshots/3/missing_identity",
-      "source_digest": "edf3d56ab012d7a0a66f95fa585b41d051552ee22921e643f453c1639ba1f8cb",
+      "source_digest": "bd298da4f601d023a7122cffe0cd667dba2d8c78c0414fc820772a99b0d06e55",
       "trial": 3
     },
     {
@@ -7160,11 +7237,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.5945624000160024,
+          "duration_seconds": 2.3517078000004403,
           "exit_code": 0,
-          "output_sha256": "aaeff43fea7189ddcdef8d3ac41f94750db4bc60988592c135252417ab9bdccd"
+          "output_sha256": "d9159432e2fe60fb352a201733ebab4ee3d39f06dc45ac48cb44bf6754f24bbb"
         },
         {
           "command": [
@@ -7174,11 +7251,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1335481000132859,
+          "duration_seconds": 1.0486774999881163,
           "exit_code": 0,
-          "output_sha256": "2faf8a520f333a9e368ff0ca135adead687a995d90322996bd7df092b573cf0a"
+          "output_sha256": "bc5ce30d72ded27be3b460d1dbf5f2594c080838e294ff9f2d3d0e750d1f3506"
         },
         {
           "command": [
@@ -7187,7 +7264,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -7195,16 +7272,16 @@
             "--output",
             "cases/missing_security-decision.json"
           ],
-          "duration_seconds": 0.39963199995690957,
+          "duration_seconds": 0.34642539999913424,
           "exit_code": 1,
-          "output_sha256": "b5393036594f3dfe075c4fe82168472ead43cadd7b0ec493078fb01cca35e5b9"
+          "output_sha256": "d103c448fe2c4f1fa87f50311dfc08780ae8d6ce36aa5369bb1ecd6ecfeb920d"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "ecc1c4084574c5f3cf4985a6bf713980e9c9d9fe9eef662581c5e7113266ed60",
+        "evidence_digest": "c934dd512eb8a315f0380514e03e779d05e8f86f59a69fc25c4847fcf055068a",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -7214,7 +7291,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.40029419999336824,
+      "duration_seconds": 0.3469935999601148,
       "evidence_directory": "cases/missing_security",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -7223,14 +7300,14 @@
       "observed": "DENY",
       "provenance": {
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "a7cc334617d560827fdf1570f5d0335cfbf464f1a57b67427b1488fda358714d",
+          "raw_sha256": "f5496f4afbe6dc96aeacbf087a8820b55f1fe53df31ad1c9db951d54b3cc05f4",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -7384,7 +7461,7 @@
       "required_reason": "MISSING_SECURITY_EVIDENCE",
       "scenario": "missing_security",
       "snapshot": "snapshots/3/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 3
     },
     {
@@ -7397,11 +7474,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.5945624000160024,
+          "duration_seconds": 2.3517078000004403,
           "exit_code": 0,
-          "output_sha256": "aaeff43fea7189ddcdef8d3ac41f94750db4bc60988592c135252417ab9bdccd"
+          "output_sha256": "d9159432e2fe60fb352a201733ebab4ee3d39f06dc45ac48cb44bf6754f24bbb"
         },
         {
           "command": [
@@ -7411,11 +7488,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1335481000132859,
+          "duration_seconds": 1.0486774999881163,
           "exit_code": 0,
-          "output_sha256": "2faf8a520f333a9e368ff0ca135adead687a995d90322996bd7df092b573cf0a"
+          "output_sha256": "bc5ce30d72ded27be3b460d1dbf5f2594c080838e294ff9f2d3d0e750d1f3506"
         },
         {
           "command": [
@@ -7424,7 +7501,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "0000000000000000000000000000000000000000",
+            "1111111111111111111111111111111111111111",
             "--target",
             "staging",
             "--evidence-dir",
@@ -7432,16 +7509,16 @@
             "--output",
             "cases/wrong_sha-decision.json"
           ],
-          "duration_seconds": 0.37979730003280565,
+          "duration_seconds": 0.3408617000095546,
           "exit_code": 1,
-          "output_sha256": "8fe16aad35837ebcbd664d7bfee3d5f256a0321dc16a1b51bda2091c456bd77a"
+          "output_sha256": "684124f297964e94f6d73a8f426ca715dc4a83f7ec0776e4c824d91cb93a288d"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "0000000000000000000000000000000000000000",
+        "commit_sha": "1111111111111111111111111111111111111111",
         "decision": "DENY",
-        "evidence_digest": "f94292dc416cd62c52b222d16c1353fbb4dc84eb21a24cce01cdb14854cc1a5d",
+        "evidence_digest": "3b7b1a885eb604676beeb842771cf1c7263293db0de0dc5a5584c8464bd7f1b0",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -7452,7 +7529,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.38047240005107597,
+      "duration_seconds": 0.3414264000020921,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -7461,14 +7538,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "6e7acb0d1db63463a1b28eadc465dbfb72cd20736fb55df67fd3df36ac113b78",
+          "raw_sha256": "8bd9a831c18e55dbf7286c2d4a884c877d77bd7b14910d1d2be7f0280ab93528",
           "summary": {
             "findings": [
               {
@@ -7488,14 +7565,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "a7cc334617d560827fdf1570f5d0335cfbf464f1a57b67427b1488fda358714d",
+          "raw_sha256": "f5496f4afbe6dc96aeacbf087a8820b55f1fe53df31ad1c9db951d54b3cc05f4",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -7649,7 +7726,7 @@
       "required_reason": "TESTS_COMMIT_MISMATCH",
       "scenario": "wrong_sha",
       "snapshot": "snapshots/3/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 3
     },
     {
@@ -7662,11 +7739,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.5945624000160024,
+          "duration_seconds": 2.3517078000004403,
           "exit_code": 0,
-          "output_sha256": "aaeff43fea7189ddcdef8d3ac41f94750db4bc60988592c135252417ab9bdccd"
+          "output_sha256": "d9159432e2fe60fb352a201733ebab4ee3d39f06dc45ac48cb44bf6754f24bbb"
         },
         {
           "command": [
@@ -7676,11 +7753,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1335481000132859,
+          "duration_seconds": 1.0486774999881163,
           "exit_code": 0,
-          "output_sha256": "2faf8a520f333a9e368ff0ca135adead687a995d90322996bd7df092b573cf0a"
+          "output_sha256": "bc5ce30d72ded27be3b460d1dbf5f2594c080838e294ff9f2d3d0e750d1f3506"
         },
         {
           "command": [
@@ -7689,7 +7766,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -7697,14 +7774,14 @@
             "--output",
             "cases/context_mismatch-decision.json"
           ],
-          "duration_seconds": 0.3650379999889992,
+          "duration_seconds": 0.29492029995890334,
           "exit_code": 1,
-          "output_sha256": "9ebd6add006fe8ce20b31c748a218b8bde8380e4a648aa284fdebbb934a82eb8"
+          "output_sha256": "2f0d28442065e6dcffe7652a19637043e4c0f7675fd745698aecc9f27a8fbd42"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
         "evidence_digest": null,
         "execution_authorized": false,
@@ -7717,7 +7794,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.36569330003112555,
+      "duration_seconds": 0.295541699975729,
       "evidence_directory": "cases/context_mismatch",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -7726,14 +7803,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
             "source_digest": "0000000000000000000000000000000000000000000000000000000000000000"
           },
-          "raw_sha256": "6e7acb0d1db63463a1b28eadc465dbfb72cd20736fb55df67fd3df36ac113b78",
+          "raw_sha256": "8bd9a831c18e55dbf7286c2d4a884c877d77bd7b14910d1d2be7f0280ab93528",
           "summary": {
             "findings": [
               {
@@ -7753,14 +7830,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "a7cc334617d560827fdf1570f5d0335cfbf464f1a57b67427b1488fda358714d",
+          "raw_sha256": "f5496f4afbe6dc96aeacbf087a8820b55f1fe53df31ad1c9db951d54b3cc05f4",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -7914,7 +7991,7 @@
       "required_reason": "EVIDENCE_UNUSABLE",
       "scenario": "context_mismatch",
       "snapshot": "snapshots/3/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 3
     },
     {
@@ -7927,11 +8004,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.5945624000160024,
+          "duration_seconds": 2.3517078000004403,
           "exit_code": 0,
-          "output_sha256": "aaeff43fea7189ddcdef8d3ac41f94750db4bc60988592c135252417ab9bdccd"
+          "output_sha256": "d9159432e2fe60fb352a201733ebab4ee3d39f06dc45ac48cb44bf6754f24bbb"
         },
         {
           "command": [
@@ -7941,11 +8018,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1335481000132859,
+          "duration_seconds": 1.0486774999881163,
           "exit_code": 0,
-          "output_sha256": "2faf8a520f333a9e368ff0ca135adead687a995d90322996bd7df092b573cf0a"
+          "output_sha256": "bc5ce30d72ded27be3b460d1dbf5f2594c080838e294ff9f2d3d0e750d1f3506"
         },
         {
           "command": [
@@ -7954,7 +8031,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -7962,14 +8039,14 @@
             "--output",
             "cases/corrupt_raw-decision.json"
           ],
-          "duration_seconds": 0.409963299985975,
+          "duration_seconds": 0.303388400003314,
           "exit_code": 1,
-          "output_sha256": "5ee37f9f7dc3e7a623134ca1e10e0ba8d3b7b1fb2cc40a34122d3daaa33e981a"
+          "output_sha256": "c1e74fb17450719da5acb52d9698c04430b2ef4fb41087fe124ac73746bb3e17"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
         "evidence_digest": null,
         "execution_authorized": false,
@@ -7982,7 +8059,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.4105870999628678,
+      "duration_seconds": 0.30403280002065003,
       "evidence_directory": "cases/corrupt_raw",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -7991,14 +8068,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "6e7acb0d1db63463a1b28eadc465dbfb72cd20736fb55df67fd3df36ac113b78",
+          "raw_sha256": "8bd9a831c18e55dbf7286c2d4a884c877d77bd7b14910d1d2be7f0280ab93528",
           "summary": {
             "findings": [
               {
@@ -8018,14 +8095,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "a7cc334617d560827fdf1570f5d0335cfbf464f1a57b67427b1488fda358714d",
+          "raw_sha256": "f5496f4afbe6dc96aeacbf087a8820b55f1fe53df31ad1c9db951d54b3cc05f4",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -8179,7 +8256,7 @@
       "required_reason": "EVIDENCE_UNUSABLE",
       "scenario": "corrupt_raw",
       "snapshot": "snapshots/3/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 3
     },
     {
@@ -8192,11 +8269,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.621817799983546,
+          "duration_seconds": 2.7739577000029385,
           "exit_code": 0,
-          "output_sha256": "26aad40bc07526b660a7340156208e39b99b352c1a70a5471ddda78f5f464cd5"
+          "output_sha256": "37d456d3485976fccccb51a52d426d6888b5b338f8f96bed03de4689068e6b0b"
         },
         {
           "command": [
@@ -8206,11 +8283,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.2316763999988325,
+          "duration_seconds": 1.1693402000237256,
           "exit_code": 1,
-          "output_sha256": "51f4b00be04d28a574b45d33b6352f41a109f788cc475a0bbb8efd7da955ef64"
+          "output_sha256": "94b91d665e2a1a30c6af4133f0c9c743e292dd441976f38c9e7fe02d1729c75d"
         },
         {
           "command": [
@@ -8219,7 +8296,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "staging",
             "--evidence-dir",
@@ -8227,16 +8304,16 @@
             "--output",
             "cases/high_security-decision.json"
           ],
-          "duration_seconds": 0.3695570999989286,
+          "duration_seconds": 0.3549631999921985,
           "exit_code": 1,
-          "output_sha256": "6efdf6d06b5e29354f5ce0fba757dbc8a01fe7fcbd4979c2460f8f13909b16a7"
+          "output_sha256": "29e62f7db7052af66d924b4616461e3f3444a96c12fdbcdb97b4fccb60325924"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "c44f3f22aa260a460241397419ac8d49fe77b81f336657a87ed897f013c99767",
+        "evidence_digest": "2a07e366423304b6ca207115697c5193a51198079a613667f5e971ebf6cd7b9c",
         "execution_authorized": false,
         "gate": "eligibility",
         "next_gate": null,
@@ -8246,7 +8323,7 @@
         ],
         "target": "staging"
       },
-      "duration_seconds": 0.37028480001026765,
+      "duration_seconds": 0.3554829999920912,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -8255,14 +8332,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3a4183016ef5ed8cfde6a0c2aedee38a24f5ea0ce0e9dc7a035d11251039c4d0"
+            "source_digest": "ad4753cb0fedf1b30eb57cfd2547a39f82130bbd25aaa28060d1f2293376952c"
           },
-          "raw_sha256": "1b83b89a038a34c4a66e2567bfac42614466d3500526d929e69075a60ec0c3d5",
+          "raw_sha256": "7b9418bccb003fb30d28669d13ae12cd0ace3dab1db8b0c1a117d9bbfe958a8c",
           "summary": {
             "findings": [
               {
@@ -8294,14 +8371,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3a4183016ef5ed8cfde6a0c2aedee38a24f5ea0ce0e9dc7a035d11251039c4d0"
+            "source_digest": "ad4753cb0fedf1b30eb57cfd2547a39f82130bbd25aaa28060d1f2293376952c"
           },
-          "raw_sha256": "61235782eea1f1a9e452c335f1d74d6e39b83ab36a1e51296c4e3cb86cfdd5a5",
+          "raw_sha256": "27ee9e135919761378638af6503ec6d137d24b6a192a2eb63bbfcac2390f20b4",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -8455,7 +8532,7 @@
       "required_reason": "SECURITY_HIGH",
       "scenario": "high_security",
       "snapshot": "snapshots/3/high_security",
-      "source_digest": "3a4183016ef5ed8cfde6a0c2aedee38a24f5ea0ce0e9dc7a035d11251039c4d0",
+      "source_digest": "ad4753cb0fedf1b30eb57cfd2547a39f82130bbd25aaa28060d1f2293376952c",
       "trial": 3
     },
     {
@@ -8468,11 +8545,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.5945624000160024,
+          "duration_seconds": 2.3517078000004403,
           "exit_code": 0,
-          "output_sha256": "aaeff43fea7189ddcdef8d3ac41f94750db4bc60988592c135252417ab9bdccd"
+          "output_sha256": "d9159432e2fe60fb352a201733ebab4ee3d39f06dc45ac48cb44bf6754f24bbb"
         },
         {
           "command": [
@@ -8482,11 +8559,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1335481000132859,
+          "duration_seconds": 1.0486774999881163,
           "exit_code": 0,
-          "output_sha256": "2faf8a520f333a9e368ff0ca135adead687a995d90322996bd7df092b573cf0a"
+          "output_sha256": "bc5ce30d72ded27be3b460d1dbf5f2594c080838e294ff9f2d3d0e750d1f3506"
         },
         {
           "command": [
@@ -8495,7 +8572,7 @@
             "releasegate",
             "evaluate",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0",
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
             "--target",
             "production",
             "--evidence-dir",
@@ -8505,16 +8582,16 @@
             "--gate",
             "final"
           ],
-          "duration_seconds": 0.35546180000528693,
+          "duration_seconds": 0.3212167999590747,
           "exit_code": 1,
-          "output_sha256": "50f32d8bc8a2f0345042cbb4b7571446fbd0c5b3a3131d9a975bf490b8ab478e"
+          "output_sha256": "5ad570e0f5f3ee4d599d431a212370fcf267eed9b23836da3f8f5d54703391ef"
         }
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "f94292dc416cd62c52b222d16c1353fbb4dc84eb21a24cce01cdb14854cc1a5d",
+        "evidence_digest": "3b7b1a885eb604676beeb842771cf1c7263293db0de0dc5a5584c8464bd7f1b0",
         "execution_authorized": false,
         "gate": "final",
         "next_gate": null,
@@ -8524,7 +8601,7 @@
         ],
         "target": "production"
       },
-      "duration_seconds": 0.35617959999945015,
+      "duration_seconds": 0.32182459998875856,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 1,
@@ -8533,14 +8610,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "6e7acb0d1db63463a1b28eadc465dbfb72cd20736fb55df67fd3df36ac113b78",
+          "raw_sha256": "8bd9a831c18e55dbf7286c2d4a884c877d77bd7b14910d1d2be7f0280ab93528",
           "summary": {
             "findings": [
               {
@@ -8560,14 +8637,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "a7cc334617d560827fdf1570f5d0335cfbf464f1a57b67427b1488fda358714d",
+          "raw_sha256": "f5496f4afbe6dc96aeacbf087a8820b55f1fe53df31ad1c9db951d54b3cc05f4",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -8721,7 +8798,7 @@
       "required_reason": "PRODUCTION_APPROVAL_REQUIRED",
       "scenario": "missing_approval",
       "snapshot": "snapshots/3/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 3
     },
     {
@@ -8734,11 +8811,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.5945624000160024,
+          "duration_seconds": 2.3517078000004403,
           "exit_code": 0,
-          "output_sha256": "aaeff43fea7189ddcdef8d3ac41f94750db4bc60988592c135252417ab9bdccd"
+          "output_sha256": "d9159432e2fe60fb352a201733ebab4ee3d39f06dc45ac48cb44bf6754f24bbb"
         },
         {
           "command": [
@@ -8748,11 +8825,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1335481000132859,
+          "duration_seconds": 1.0486774999881163,
           "exit_code": 0,
-          "output_sha256": "2faf8a520f333a9e368ff0ca135adead687a995d90322996bd7df092b573cf0a"
+          "output_sha256": "bc5ce30d72ded27be3b460d1dbf5f2594c080838e294ff9f2d3d0e750d1f3506"
         },
         {
           "api": "releasegate.policy.evaluate",
@@ -8763,9 +8840,9 @@
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "f94292dc416cd62c52b222d16c1353fbb4dc84eb21a24cce01cdb14854cc1a5d",
+        "evidence_digest": "3b7b1a885eb604676beeb842771cf1c7263293db0de0dc5a5584c8464bd7f1b0",
         "execution_authorized": false,
         "gate": "final",
         "next_gate": null,
@@ -8775,7 +8852,7 @@
         ],
         "target": "production"
       },
-      "duration_seconds": 0.017609899980016053,
+      "duration_seconds": 0.013717200024984777,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": null,
@@ -8784,14 +8861,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "6e7acb0d1db63463a1b28eadc465dbfb72cd20736fb55df67fd3df36ac113b78",
+          "raw_sha256": "8bd9a831c18e55dbf7286c2d4a884c877d77bd7b14910d1d2be7f0280ab93528",
           "summary": {
             "findings": [
               {
@@ -8811,14 +8888,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "a7cc334617d560827fdf1570f5d0335cfbf464f1a57b67427b1488fda358714d",
+          "raw_sha256": "f5496f4afbe6dc96aeacbf087a8820b55f1fe53df31ad1c9db951d54b3cc05f4",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -8972,7 +9049,7 @@
       "required_reason": "STALE_OR_WRONG_APPROVAL",
       "scenario": "stale_approval_sha",
       "snapshot": "snapshots/3/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 3
     },
     {
@@ -8985,11 +9062,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.5945624000160024,
+          "duration_seconds": 2.3517078000004403,
           "exit_code": 0,
-          "output_sha256": "aaeff43fea7189ddcdef8d3ac41f94750db4bc60988592c135252417ab9bdccd"
+          "output_sha256": "d9159432e2fe60fb352a201733ebab4ee3d39f06dc45ac48cb44bf6754f24bbb"
         },
         {
           "command": [
@@ -8999,11 +9076,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1335481000132859,
+          "duration_seconds": 1.0486774999881163,
           "exit_code": 0,
-          "output_sha256": "2faf8a520f333a9e368ff0ca135adead687a995d90322996bd7df092b573cf0a"
+          "output_sha256": "bc5ce30d72ded27be3b460d1dbf5f2594c080838e294ff9f2d3d0e750d1f3506"
         },
         {
           "api": "releasegate.policy.evaluate",
@@ -9014,9 +9091,9 @@
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "f94292dc416cd62c52b222d16c1353fbb4dc84eb21a24cce01cdb14854cc1a5d",
+        "evidence_digest": "3b7b1a885eb604676beeb842771cf1c7263293db0de0dc5a5584c8464bd7f1b0",
         "execution_authorized": false,
         "gate": "final",
         "next_gate": null,
@@ -9026,7 +9103,7 @@
         ],
         "target": "production"
       },
-      "duration_seconds": 0.01932429999578744,
+      "duration_seconds": 0.010152100003324449,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": null,
@@ -9035,14 +9112,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "6e7acb0d1db63463a1b28eadc465dbfb72cd20736fb55df67fd3df36ac113b78",
+          "raw_sha256": "8bd9a831c18e55dbf7286c2d4a884c877d77bd7b14910d1d2be7f0280ab93528",
           "summary": {
             "findings": [
               {
@@ -9062,14 +9139,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "a7cc334617d560827fdf1570f5d0335cfbf464f1a57b67427b1488fda358714d",
+          "raw_sha256": "f5496f4afbe6dc96aeacbf087a8820b55f1fe53df31ad1c9db951d54b3cc05f4",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -9223,7 +9300,7 @@
       "required_reason": "STALE_OR_WRONG_APPROVAL",
       "scenario": "wrong_approval_target",
       "snapshot": "snapshots/3/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 3
     },
     {
@@ -9236,11 +9313,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.5945624000160024,
+          "duration_seconds": 2.3517078000004403,
           "exit_code": 0,
-          "output_sha256": "aaeff43fea7189ddcdef8d3ac41f94750db4bc60988592c135252417ab9bdccd"
+          "output_sha256": "d9159432e2fe60fb352a201733ebab4ee3d39f06dc45ac48cb44bf6754f24bbb"
         },
         {
           "command": [
@@ -9250,11 +9327,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1335481000132859,
+          "duration_seconds": 1.0486774999881163,
           "exit_code": 0,
-          "output_sha256": "2faf8a520f333a9e368ff0ca135adead687a995d90322996bd7df092b573cf0a"
+          "output_sha256": "bc5ce30d72ded27be3b460d1dbf5f2594c080838e294ff9f2d3d0e750d1f3506"
         },
         {
           "api": "releasegate.policy.evaluate",
@@ -9265,9 +9342,9 @@
       ],
       "correct": true,
       "decision": {
-        "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+        "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
         "decision": "DENY",
-        "evidence_digest": "f94292dc416cd62c52b222d16c1353fbb4dc84eb21a24cce01cdb14854cc1a5d",
+        "evidence_digest": "3b7b1a885eb604676beeb842771cf1c7263293db0de0dc5a5584c8464bd7f1b0",
         "execution_authorized": false,
         "gate": "final",
         "next_gate": null,
@@ -9277,7 +9354,7 @@
         ],
         "target": "production"
       },
-      "duration_seconds": 0.020039400027599186,
+      "duration_seconds": 0.009564000007230788,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": null,
@@ -9286,14 +9363,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "6e7acb0d1db63463a1b28eadc465dbfb72cd20736fb55df67fd3df36ac113b78",
+          "raw_sha256": "8bd9a831c18e55dbf7286c2d4a884c877d77bd7b14910d1d2be7f0280ab93528",
           "summary": {
             "findings": [
               {
@@ -9313,14 +9390,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "a7cc334617d560827fdf1570f5d0335cfbf464f1a57b67427b1488fda358714d",
+          "raw_sha256": "f5496f4afbe6dc96aeacbf087a8820b55f1fe53df31ad1c9db951d54b3cc05f4",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -9474,7 +9551,7 @@
       "required_reason": "STALE_OR_WRONG_APPROVAL",
       "scenario": "wrong_approval_digest",
       "snapshot": "snapshots/3/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 3
     },
     {
@@ -9487,11 +9564,11 @@
             "run-check",
             "tests",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 2.5945624000160024,
+          "duration_seconds": 2.3517078000004403,
           "exit_code": 0,
-          "output_sha256": "aaeff43fea7189ddcdef8d3ac41f94750db4bc60988592c135252417ab9bdccd"
+          "output_sha256": "d9159432e2fe60fb352a201733ebab4ee3d39f06dc45ac48cb44bf6754f24bbb"
         },
         {
           "command": [
@@ -9501,11 +9578,11 @@
             "run-check",
             "security",
             "--sha",
-            "81aadcf643f3375046c79c4ff611096923cd93a0"
+            "0d25df7495fb111102bf0a64fc92a55c3b555bfa"
           ],
-          "duration_seconds": 1.1335481000132859,
+          "duration_seconds": 1.0486774999881163,
           "exit_code": 0,
-          "output_sha256": "2faf8a520f333a9e368ff0ca135adead687a995d90322996bd7df092b573cf0a"
+          "output_sha256": "bc5ce30d72ded27be3b460d1dbf5f2594c080838e294ff9f2d3d0e750d1f3506"
         },
         {
           "command": [
@@ -9522,7 +9599,7 @@
             ],
             "runtime": "NOT_INTEGRATED"
           },
-          "duration_seconds": 0.3628833999973722,
+          "duration_seconds": 0.3814871000358835,
           "exit_code": 3,
           "output_sha256": "3f34efffb525597ec49ead615ff98a02b1630deb00b3fb7437e3e20bfc7eb167"
         }
@@ -9536,7 +9613,7 @@
         ],
         "runtime": "NOT_INTEGRATED"
       },
-      "duration_seconds": 0.3639697000035085,
+      "duration_seconds": 0.3816501999972388,
       "evidence_directory": "evidence",
       "evidence_source": "LOCAL_ISOLATED_SNAPSHOT",
       "exit_code": 3,
@@ -9545,14 +9622,14 @@
       "observed": "DENY",
       "provenance": {
         "security": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "6e7acb0d1db63463a1b28eadc465dbfb72cd20736fb55df67fd3df36ac113b78",
+          "raw_sha256": "8bd9a831c18e55dbf7286c2d4a884c877d77bd7b14910d1d2be7f0280ab93528",
           "summary": {
             "findings": [
               {
@@ -9572,14 +9649,14 @@
           }
         },
         "tests": {
-          "commit_sha": "81aadcf643f3375046c79c4ff611096923cd93a0",
+          "commit_sha": "0d25df7495fb111102bf0a64fc92a55c3b555bfa",
           "context": {
             "origin": "local-working-tree",
             "pipeline_id": "",
             "project_id": "",
-            "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18"
+            "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4"
           },
-          "raw_sha256": "a7cc334617d560827fdf1570f5d0335cfbf464f1a57b67427b1488fda358714d",
+          "raw_sha256": "f5496f4afbe6dc96aeacbf087a8820b55f1fe53df31ad1c9db951d54b3cc05f4",
           "summary": {
             "case_ids": [
               "tests.test_advisory::test_advisory_rejects_unsupported_values[schema_version-True]",
@@ -9733,12 +9810,20 @@
       "required_reason": "EXECUTION_NOT_CONFIGURED",
       "scenario": "release_unavailable",
       "snapshot": "snapshots/3/complete",
-      "source_digest": "3124ed96b8a93d7e56c58164333fe7676e7e909466d4a9f8eec06be9c123df18",
+      "source_digest": "08b334201952e6ca624d2e9edffba42d899c535a111ede4f0e00c70ed5c15cd4",
       "trial": 3
     }
   ],
   "schema_version": 1,
-  "script_sha256": "977da719b011c6f84908ffe3ad7b45ead306f7eecc339d150b032fe6effc905b",
+  "script_sha256": "0f419fd83e767229863ddab099bf0b24a799e83b83881c34c72e38811ffca44d",
+  "source_digest_scope": [
+    "src/**/*.py",
+    "tests/**/*.py",
+    "tests/required-tests.json",
+    "pyproject.toml",
+    ".gitlab-ci.yml",
+    "uv.lock"
+  ],
   "tools": {
     "bandit": "1.8.6",
     "defusedxml": "0.7.1",

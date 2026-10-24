@@ -6,7 +6,7 @@ contains onboarding and community resources. The original workspace README is
 preserved in [gitlab-initial-README.md](docs/gitlab-initial-README.md) as historical
 content; its template push instructions do not govern this import.
 
-This branch is a tracked content import from GitHub commit
+The original GitLab import used GitHub commit
 `98d81957f19afa8d7de8843236b7497d5baac2b3`, based on the GitLab initialization
 commit. The GitHub and GitLab histories remain independent.
 
@@ -18,13 +18,16 @@ Commit-bound release evidence and deterministic policy for GitLab Transcend
 and Bandit evidence qualify a candidate; ReleaseGate presents an inspectable
 ALLOW/DENY for human review.
 
-**Status (2026-10-24):** [MR !1](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/1)
-was merged into GitLab main on October 16. The project is public and MIT licensed.
-Historical main CI passed five automatic jobs and the original 96 mandatory tests;
-its overall status remains manual at the untouched blocking candidate-review job.
-Phase 4 adds reproducible evidence experiments, historical Duo advisory ingestion
-and Markdown/JSON/static HTML human reports. Exact current qualification is in the
-[Phase 4 handoff](docs/phase4/14-final-handoff.md).
+**Status (2026-10-24):** Phase 4.1 merged [GitLab MR !3](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/merge_requests/3)
+and [GitHub PR #1](https://github.com/miku-wwl/agentic-release-gate/pull/1).
+Their 67 tracked files matched exactly. The Phase 4.1 main pipeline passed six
+automatic jobs and 139 tests; its overall status is manual at the unexecuted human
+candidate-review gate. Phase 4.2 refreshed research against the committed source
+digest: 42/42 correct, with zero false ALLOW/DENY. See
+[post-merge qualification](docs/phase4/15-post-merge-qualification.md) for the evidence
+timeline and the final main CI/artifact authority. Final Phase 4.2 merge identities
+and cross-platform hashes are recorded in the external delivery report and ZIP
+manifest, avoiding self-referential commits. The project is public and MIT licensed.
 
 AUTONOMY_STATUS=ASSISTED_VERIFIED. SUPERVISED_STATUS=NOT_VERIFIED.
 The genuine historical Code Review session found missing git in the slim CI image.
@@ -96,7 +99,7 @@ through AI Catalog; the file alone does not install a flow. See [Duo setup and l
 - [Phase 1 handoff and actual verification](docs/phase1-handoff.md)
 - [Phase 1.1 Runtime compatibility update](docs/phase1.1-handoff.md)
 
-MIT licensed. AGENTS.md is preserved. The Phase 4 feature-branch publication and review MR are authorized; deployment and automatic merge are excluded.
+MIT licensed. AGENTS.md is preserved. Phase 4.2 uses normal reviewed MR/PR merges; production execution remains disabled.
 
 ## Human review and reproducible evaluation
 
@@ -116,12 +119,14 @@ mandatory application identities; Phase 4 adds mandatory coverage for new featur
 
 - [Baseline audit](docs/phase4/00-baseline-audit.md)
 - [Method and reproduction](docs/phase4/01-research-methodology.md)
-- [Executed results](docs/phase4/02-experimental-results.md)
+- [Historical Phase 4 results](docs/phase4/02-experimental-results.md)
+- [Phase 4.2 refreshed qualification](docs/phase4/15-post-merge-qualification.md)
 - [Threat model and limits](docs/phase4/03-threat-model-and-validity.md)
 - [Review report](docs/phase4/06-human-review-experience.md)
 - [Lifecycle coverage](docs/phase4/07-devsecops-lifecycle-matrix.md)
 - [New video storyboard](docs/phase4/09-video-storyboard.md) — materials only; recording pending
 
-Phase 4 uses a normal GitLab-main-based feature branch and review MR. It preserves
-GitLab initialization history, MR !2, all existing policy gates and the Python 3.12
-lock. No main push, merge, deployment or final video publication is included.
+Phase 4.2 uses a GitLab-main-based feature branch and normal MR, then a separate
+GitHub-history-based mirror PR. GitLab initialization history, MR !2, all policy
+gates and the Python 3.12 lock are preserved. Phase 5 recording, visual acceptance,
+publication and competition submission remain pending.

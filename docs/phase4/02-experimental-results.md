@@ -1,5 +1,8 @@
 # Executed evidence integrity evaluation
 
+> This document records the historical Phase 4 handoff and experiment.
+> See [Phase 4.2 qualification](15-post-merge-qualification.md) for current provenance and delivery status.
+
 Status: PASS
 
 ```json

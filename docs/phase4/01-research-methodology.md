@@ -9,12 +9,12 @@ measurements; this method document makes no measured claims by itself.
 ## Procedure and sample
 
 ```text
-uv sync --frozen --extra dev
+uv sync --locked --extra dev
 uv run --no-sync python scripts/evaluate_scenarios.py --trials 3 --output-dir .artifacts/research-new
 ```
 
 Output must be a new directory to prevent reuse of prior successful measurements.
-There are **14 scenarios × 3 trials = 42 planned observations**. Each trial collects
+There are **14 scenarios 脳 3 trials = 42 planned observations**. Each trial collects
 fresh pytest and Bandit artifacts in five independent snapshots: complete, failed
 test, skipped test, missing identity, and high security finding. The complete and
 high-security snapshots run the full current application suite. Other test
@@ -73,3 +73,20 @@ No significance, confidence interval, defect reduction or performance gain is cl
 Rerun with a new output directory after checkout of the recorded candidate; timing
 and raw-report hashes may vary, but decisions/reasons should reproduce. Working-tree
 digests explicitly identify uncommitted content; commit identity alone cannot do so.
+
+## Phase 4.2 qualification
+
+The refreshed JSON explicitly records `evaluated_commit_sha`,
+`evaluated_source_digest`, `execution_environment`, runner/tool versions and
+`raw_artifact_hashes`. Compatibility `host_*` fields identify the same run.
+The digest covers Python files in src/tests, the mandatory manifest, pyproject,
+CI YAML and uv.lock. Script identity is bound separately by `script_sha256`;
+documentation is covered by the final cross-repository and ZIP file manifests.
+Use exact Git blob bytes when comparing to CI; Windows checkout newline conversion
+changes byte digests. No policy, test identity or scenario expectation was relaxed.
+
+The original JSON remains byte-for-byte in `research-results-phase4-historical.json`.
+The refreshed local run predates the documentation commit by design. Identical
+source and script hashes connect it to the final candidate. Final main CI artifacts
+identify the actual merge SHA and pipeline/job URLs; the external delivery report
+and manifest record those IDs without generating recursive evidence commits.

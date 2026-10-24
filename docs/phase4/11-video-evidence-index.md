@@ -12,8 +12,10 @@
 | Main review boundary | https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/jobs/17220332236 | remains manual, never play for filming |
 | Intentional failure | https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase/-/pipelines/2949021100 | retained MR !2; not changed in Phase 4 |
 | Positive / negative reports | [examples](examples/) and original research snapshot artifacts | LOCAL_TESTED, real pytest/Bandit collection, not platform simulation |
-| Repeated evaluation | [experimental results](02-experimental-results.md), [JSON](evidence/research-results.json) | actual sample and timing; no significance claim |
-| Phase 4 qualification | [final handoff](14-final-handoff.md) | use recorded final MR/commit/pipeline URLs; never substitute historical main success |
+| Historical evaluation | [Phase 4 results](02-experimental-results.md), [original JSON](evidence/research-results-phase4-historical.json) | original experiment; not final source qualification |
+| Refreshed evaluation | [Phase 4.2 qualification](15-post-merge-qualification.md), [JSON](evidence/research-results.json) | measured local run bound by exact source and script digests |
+| Phase 4.2 final CI | External `.artifacts/phase42-final-review.md` and ZIP `MANIFEST-SHA256.json` | use exact final MR/PR/main/pipeline/job identities from the delivered report |
+| Phase 4 handoff | [historical handoff](14-final-handoff.md) | historical timeline only |
 
 Before filming, reopen each required platform source using current browser access.
 Historical audit proves the earlier read, not future browser availability. Download

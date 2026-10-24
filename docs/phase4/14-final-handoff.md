@@ -1,5 +1,8 @@
 # Phase 4 final engineering handoff
 
+> This document records the historical Phase 4 handoff and experiment.
+> See [Phase 4.2 qualification](15-post-merge-qualification.md) for current provenance and delivery status.
+
 Prepared 24 October 2026, Pacific/Auckland. This file describes engineering evidence,
 not a production release or competition submission. Genuine publication qualification
 is recorded separately from the local measurements below.
