@@ -50,6 +50,38 @@ def test_recycled_windows_pid_cannot_match_an_earlier_process():
         activated_interpreter([current, dict(current, pid=789)], process)
 
 
+def test_posix_cli_activation_is_distinct_from_its_inner_check():
+    process = {
+        "pid": 123,
+        "started_at": "2026-10-25T01:00:01+00:00",
+        "finished_at": "2026-10-25T01:00:05+00:00",
+    }
+    cli = {"event": "activated", "pid": 123, "ppid": 100, "at": "2026-10-25T01:00:02+00:00"}
+    inner = {"event": "activated", "pid": 456, "ppid": 123, "at": "2026-10-25T01:00:03+00:00"}
+    assert activated_interpreter([cli, inner], process) == 123
+
+
+def test_status_redaction_preserves_json_types_and_unmodified_original_state(tmp_path):
+    manager = LiveManager(ROOT)
+    run = Run(tmp_path / str(uuid4()), "allow")
+    credential = "synthetic" + "-credential"
+    original = "password=" + credential + '"'
+    run.value.update(error=original, nested={"text": [original, {"count": 7}], "boundary": False})
+    manager.runs[run.directory.name] = run
+    try:
+        state = manager.get(run.directory.name)
+        encoded = json.dumps(state)
+        assert json.loads(encoded) == state
+        assert credential not in encoded and "[REDACTED]" in encoded
+        assert state["nested"]["text"][1]["count"] == 7
+        assert state["nested"]["boundary"] is False
+        assert run.value["error"] == original
+        assert run.value["nested"]["text"][0] == original
+    finally:
+        manager.runs.clear()
+        manager.close()
+
+
 def wait_for(manager, run_id, timeout=100):
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
@@ -316,8 +348,11 @@ def test_uuid_paths_redaction_and_minimal_process_environment(tmp_path):
         safe_path(tmp_path, tmp_path / ".." / "elsewhere")
     token = "glpat-" + "A" * 30
     assert token not in redact(token, root=ROOT)
-    assert "secret123" not in redact('password="secret123"', root=ROOT)
-    assert "user:secret@" not in redact("https://user:secret@example.test", root=ROOT)
+    sample = "secret" + "123"
+    password = redact("password=" + json.dumps(sample), root=ROOT)
+    assert sample not in password and "[REDACTED]" in password
+    url = redact("https://" + "user" + ":" + "secret" + "@example.test", root=ROOT)
+    assert "user:secret@" not in url and "[REDACTED]" in url
     manager = LiveManager(ROOT)
     run = Run(tmp_path, "allow")
     env = manager._environment(run, tmp_path, tmp_path)

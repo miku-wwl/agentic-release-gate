@@ -93,12 +93,16 @@ def valid_id(value):
 
 def activated_interpreter(events, process):
     # Windows can reuse an exited check's PID for a later CLI launcher in one run.
-    activated = [
+    window = [
         event
         for event in events
         if event["event"] == "activated"
         and process["started_at"] <= event["at"] <= process["finished_at"]
-        and (event["pid"] == process["pid"] or event["ppid"] == process["pid"])
+    ]
+    # POSIX launches the interpreter directly; its inner checks also activate.
+    # Only Windows redirectors need the interpreter-child fallback.
+    activated = [event for event in window if event["pid"] == process["pid"]] or [
+        event for event in window if event["ppid"] == process["pid"]
     ]
     if len(activated) != 1:
         raise LiveError("Verification execution guard was not confirmed")
@@ -118,6 +122,17 @@ def redact(text, *, root):
         text = text.replace(path, label).replace(path.replace("\\", "/"), label)
         text = text.replace(path.replace("\\", "\\\\"), label)
     return text
+
+
+def redact_values(value, *, root):
+    """Sanitize data before JSON encoding so redaction cannot damage JSON syntax."""
+    if isinstance(value, str):
+        return redact(value, root=root)
+    if isinstance(value, dict):
+        return {key: redact_values(item, root=root) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [redact_values(item, root=root) for item in value]
+    return value
 
 
 def guard_source(forbidden, events):
@@ -250,7 +265,7 @@ class LiveManager:
             value = copy.deepcopy(run.value)
             if value["finished_at"] is None:
                 value["duration_seconds"] = round(time.monotonic() - run.started, 3)
-            return json.loads(redact(json.dumps(value), root=self.root))
+            return redact_values(value, root=self.root)
 
     def cancel(self, run_id):
         with self.lock:
