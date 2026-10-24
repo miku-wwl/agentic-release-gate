@@ -3,6 +3,9 @@
 import hashlib
 import importlib.util
 import json
+import os
+import shutil
+import stat
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -248,3 +251,101 @@ def test_client_has_no_execution_or_html_injection_sinks():
     ):
         assert sink not in source
     assert "textContent" in source
+
+
+@pytest.fixture
+def asset_root(tmp_path):
+    root = tmp_path / "source"
+    shutil.copytree(ROOT / "frontend/assets", root / "frontend/assets")
+    return root
+
+
+def create_test_symlink(link, target, monkeypatch):
+    """Use real links in CI; Windows without privilege tests OS-link metadata."""
+    try:
+        link.symlink_to(target, target_is_directory=target.is_dir())
+    except OSError as exc:
+        if os.name != "nt" or getattr(exc, "winerror", None) != 1314:
+            raise
+        # Do not enable Developer Mode or weaken OS settings to create test links.
+        if target.is_dir():
+            link.mkdir()
+        else:
+            link.write_text("not copied", encoding="utf-8")
+        original = Path.lstat
+
+        def link_metadata(path, *args, **kwargs):
+            result = original(path, *args, **kwargs)
+            if path == link:
+                fields = list(result)
+                fields[stat.ST_MODE] = stat.S_IFLNK | 0o777
+                return os.stat_result(fields)
+            return result
+
+        monkeypatch.setattr(Path, "lstat", link_metadata)
+    assert link.is_symlink()
+
+
+def test_only_reviewed_assets_are_copied_and_manifested(site):
+    expected = {"console.css", "console.js", "mark.svg"}
+    assert set(console.STATIC_ASSETS) == expected
+    assert {p.name for p in (site / "assets").iterdir()} == expected
+    manifest = json.loads((site / "build-manifest.json").read_text())
+    assert {p for p in manifest["inputs"] if p.startswith("frontend/assets/")} == {
+        "frontend/assets/" + name for name in expected
+    }
+
+
+@pytest.mark.parametrize("name", ["extra.js", "console.css.map", "unreviewed.svg"])
+def test_unknown_asset_file_rejects_build_before_output(asset_root, tmp_path, name):
+    (asset_root / "frontend/assets" / name).write_text("unreviewed", encoding="utf-8")
+    output = tmp_path / "output"
+    with pytest.raises(ValueError, match="Unknown static asset"):
+        console.build(output, root=asset_root)
+    assert not output.exists()
+
+
+def test_unknown_asset_directory_is_rejected(asset_root, tmp_path):
+    (asset_root / "frontend/assets/nested").mkdir()
+    with pytest.raises(ValueError, match="Unknown static asset"):
+        console.build(tmp_path / "output", root=asset_root)
+
+
+@pytest.mark.parametrize("name", ["console.css", "console.js", "mark.svg"])
+def test_missing_required_asset_is_rejected(asset_root, tmp_path, name):
+    (asset_root / "frontend/assets" / name).unlink()
+    with pytest.raises(ValueError, match="Required static asset is missing"):
+        console.build(tmp_path / "output", root=asset_root)
+
+
+def test_approved_asset_name_cannot_be_directory(asset_root, tmp_path):
+    path = asset_root / "frontend/assets/console.js"
+    path.unlink()
+    path.mkdir()
+    with pytest.raises(ValueError, match="regular file"):
+        console.build(tmp_path / "output", root=asset_root)
+
+
+@pytest.mark.parametrize("name", ["console.css", "console.js", "mark.svg"])
+def test_approved_asset_symlink_is_rejected(asset_root, tmp_path, monkeypatch, name):
+    external = tmp_path / "external.txt"
+    external.write_text("must not enter output", encoding="utf-8")
+    path = asset_root / "frontend/assets" / name
+    path.unlink()
+    create_test_symlink(path, external, monkeypatch)
+    output = tmp_path / "output"
+    with pytest.raises(ValueError, match="must not be a symlink"):
+        console.build(output, root=asset_root)
+    assert not output.exists()
+
+
+def test_asset_directory_symlink_is_rejected(tmp_path, monkeypatch):
+    root = tmp_path / "source"
+    (root / "frontend").mkdir(parents=True)
+    target = tmp_path / "external-assets"
+    target.mkdir()
+    create_test_symlink(root / "frontend/assets", target, monkeypatch)
+    output = tmp_path / "output"
+    with pytest.raises(ValueError, match="directory must not be a symlink"):
+        console.build(output, root=root)
+    assert not output.exists()

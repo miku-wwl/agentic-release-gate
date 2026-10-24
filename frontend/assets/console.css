@@ -1440,3 +1440,56 @@ th:last-child {
     font-size: 0.63rem;
   }
 }
+
+/* Recording-scale typography; preserve the existing mobile layout and visual system. */
+@media (min-width: 1200px) {
+  .sidebar nav a {
+    font-size: 1rem;
+  }
+  .nav-label,
+  .nav-number,
+  .eyebrow {
+    font-size: 0.75rem;
+  }
+  .topbar {
+    font-size: 0.875rem;
+  }
+  .topbar-boundary,
+  .label,
+  .pill,
+  .code-line,
+  .commit,
+  .metric .muted,
+  .chain-step p,
+  .chain-step .pill {
+    font-size: 0.8125rem;
+  }
+  .source-note,
+  .facts > div,
+  .fixture-banner,
+  .case-choice small,
+  .feature-link p,
+  .quiet-panel p {
+    font-size: 0.875rem;
+  }
+  .source-note {
+    line-height: 1.7;
+  }
+  .fixture-banner strong {
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+  }
+  .case-choice strong {
+    font-size: 1rem;
+  }
+  .case-choice .pill {
+    font-size: 0.75rem;
+  }
+  .scenario-table {
+    font-size: 0.875rem;
+  }
+  .scenario-table td:nth-child(3),
+  .scenario-table td:last-child > strong {
+    font-size: 0.8125rem;
+  }
+}

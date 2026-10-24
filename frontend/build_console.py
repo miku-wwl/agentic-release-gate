@@ -12,6 +12,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
+STATIC_ASSETS = ("console.css", "console.js", "mark.svg")
 LAB = "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43343080/showcase"
 HUB = "https://github.com/miku-wwl/agentic-release-gate"
 PAGES = {
@@ -77,6 +78,25 @@ def load_json(path):
 def source_bytes(root, name):
     # Text inputs use canonical Git LF bytes, independent of Windows checkout settings.
     return (root / name).read_bytes().replace(b"\r\n", b"\n")
+
+
+def validated_static_assets(root):
+    directory = root / "frontend/assets"
+    if directory.is_symlink():
+        raise ValueError("Static asset directory must not be a symlink")
+    if not directory.is_dir():
+        raise ValueError("Static asset directory is missing")
+    entries = tuple(directory.iterdir())
+    for entry in entries:
+        if entry.is_symlink():
+            raise ValueError("Static asset must not be a symlink: " + entry.name)
+        if entry.name not in STATIC_ASSETS:
+            raise ValueError("Unknown static asset: " + entry.name)
+        if not entry.is_file():
+            raise ValueError("Static asset must be a regular file: " + entry.name)
+    if {entry.name for entry in entries} != set(STATIC_ASSETS):
+        raise ValueError("Required static asset is missing")
+    return tuple("frontend/assets/" + name for name in STATIC_ASSETS)
 
 
 def validate_data(checkpoint, positive, negative, research, required):
@@ -349,6 +369,7 @@ def build(output, root=ROOT):
     output = output.resolve()
     if output.exists():
         raise ValueError("Use a new output directory; existing builds are preserved")
+    asset_paths = validated_static_assets(root)
     names = {
         "positive": "docs/phase4/examples/complete/report.json",
         "negative": "docs/phase4/examples/high_security/report.json",
@@ -381,11 +402,8 @@ def build(output, root=ROOT):
     (output / "evidence").mkdir()
     for name, content in contents.items():
         (output / name).write_bytes(shell(name, content).encode("utf-8"))
-    for path in (root / "frontend/assets").iterdir():
-        if path.is_file():
-            (output / "assets" / path.name).write_bytes(
-                source_bytes(root, path.relative_to(root).as_posix())
-            )
+    for name in asset_paths:
+        (output / "assets" / Path(name).name).write_bytes(source_bytes(root, name))
     for key, filename in (
         ("positive", "positive-report.json"),
         ("negative", "negative-report.json"),
@@ -404,11 +422,7 @@ def build(output, root=ROOT):
                 *names.values(),
                 "docs/phase4/evidence/artifact-manifest.json",
                 "frontend/build_console.py",
-                *sorted(
-                    p.relative_to(root).as_posix()
-                    for p in (root / "frontend/assets").iterdir()
-                    if p.is_file()
-                ),
+                *asset_paths,
             )
         },
         "files": {
