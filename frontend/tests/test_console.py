@@ -102,6 +102,10 @@ def test_xss_strings_are_text_not_nodes_or_attributes():
     pos["decision"]["reasons"] = [attack]
     pos["security"]["findings"][0]["file"] = attack
     pos["required_next_action"] = attack
+    # Even fields normally holding numbers must be escaped before rendering.
+    pos["tests"]["passed"] = attack
+    pos["tests"]["total"] = attack
+    pos["security"]["scanned_files"] = attack
     rendered = console.case_panel(pos, "positive")
     assert attack not in rendered and "&lt;script&gt;" in rendered
     assert not any(
