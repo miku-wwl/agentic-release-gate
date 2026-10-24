@@ -24,6 +24,7 @@ from releasegate.live import (
     LiveManager,
     LiveServer,
     Run,
+    activated_interpreter,
     guard_source,
     redact,
     safe_path,
@@ -32,6 +33,21 @@ from releasegate.live import (
 from releasegate.policy import evaluate
 
 ROOT = Path(__file__).resolve().parents[2]
+
+
+def test_recycled_windows_pid_cannot_match_an_earlier_process():
+    process = {
+        "pid": 123,
+        "started_at": "2026-10-25T01:00:04+00:00",
+        "finished_at": "2026-10-25T01:00:05+00:00",
+    }
+    old = {"event": "activated", "pid": 123, "ppid": 100, "at": "2026-10-25T01:00:01+00:00"}
+    current = {"event": "activated", "pid": 456, "ppid": 123, "at": "2026-10-25T01:00:04.1+00:00"}
+    assert activated_interpreter([old, current], process) == 456
+    with pytest.raises(LiveError, match="guard was not confirmed"):
+        activated_interpreter([old], process)
+    with pytest.raises(LiveError, match="guard was not confirmed"):
+        activated_interpreter([current, dict(current, pid=789)], process)
 
 
 def wait_for(manager, run_id, timeout=100):

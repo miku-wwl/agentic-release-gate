@@ -18,6 +18,7 @@
 .live-repository code { display: block; margin: 12px 0; font-size: 14px; overflow-wrap: anywhere; }
 .live-repository p:last-child { color: var(--muted); font-size: 13px; }
 .live-app .panel { padding: 28px; min-width: 0; }
+.live-app .source-note { font-size: 14px; line-height: 1.65; }
 .live-section-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 20px; }
 .live-section-heading p, .live-controls p { color: var(--muted); font-size: 15px; }
 .live-section-heading h2 + p { margin-top: 5px; }

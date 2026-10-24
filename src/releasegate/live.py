@@ -91,6 +91,20 @@ def valid_id(value):
         return False
 
 
+def activated_interpreter(events, process):
+    # Windows can reuse an exited check's PID for a later CLI launcher in one run.
+    activated = [
+        event
+        for event in events
+        if event["event"] == "activated"
+        and process["started_at"] <= event["at"] <= process["finished_at"]
+        and (event["pid"] == process["pid"] or event["ppid"] == process["pid"])
+    ]
+    if len(activated) != 1:
+        raise LiveError("Verification execution guard was not confirmed")
+    return activated[0]["pid"]
+
+
 def redact(text, *, root):
     text = SECRET.sub("[REDACTED]", str(text))
     text = re.sub(r"https?://[^\s/:]+:[^\s/@]+@", "https://[REDACTED]@", text)
@@ -475,15 +489,7 @@ class LiveManager:
                 raise LiveError("Scan-only fixture execution was attempted and blocked")
             for process in run.value["processes"]:
                 # Windows venv python.exe is a redirector; its child is the real interpreter.
-                activated = [
-                    e
-                    for e in events
-                    if e["event"] == "activated"
-                    and (e["pid"] == process["pid"] or e["ppid"] == process["pid"])
-                ]
-                if len(activated) != 1:
-                    raise LiveError("Verification execution guard was not confirmed")
-                process["python_pid"] = activated[0]["pid"]
+                process["python_pid"] = activated_interpreter(events, process)
                 if process["step"] in {"tests", "security"}:
                     module = "pytest" if process["step"] == "tests" else "bandit"
                     spawned = any(
