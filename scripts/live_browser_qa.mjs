@@ -28,13 +28,14 @@ async function done(id) {
   throw new Error('Real backend job exceeded browser acceptance deadline');
 }
 async function geometry(page,label) {
-  const value=await page.evaluate(() => ({width:innerWidth,height:innerHeight,scrollWidth:document.documentElement.scrollWidth,deviceScale:devicePixelRatio,
+  const value=await page.evaluate(() => { const range=document.createRange();range.selectNodeContents(document.querySelector('.live-chain strong'));return ({width:innerWidth,height:innerHeight,scrollWidth:document.documentElement.scrollWidth,deviceScale:devicePixelRatio,commitLabelLines:range.getClientRects().length,
     clipped:[...document.querySelectorAll('button, h1, h2, nav a, .live-repository, .live-topbar')].filter(el => {
       const r=el.getBoundingClientRect();return r.width && (r.left < -1 || r.right > innerWidth+1);
     }).map(el=>({text:el.textContent.trim(),left:el.getBoundingClientRect().left,right:el.getBoundingClientRect().right})),
-    fonts:Object.fromEntries(['.live-sidebar nav a','#run-status','.source-note','.live-service'].map(selector=>[selector,getComputedStyle(document.querySelector(selector)).fontSize]))}));
+    fonts:Object.fromEntries(['.live-sidebar nav a','#run-status','.source-note','.live-service'].map(selector=>[selector,getComputedStyle(document.querySelector(selector)).fontSize]))});});
   assert.equal(value.scrollWidth,value.width,`${label}: horizontal overflow`);
   assert.deepEqual(value.clipped,[],`${label}: clipped product controls or headings`);
+  assert.equal(value.commitLabelLines,1,`${label}: evidence label breaks inside a word`);
   return {label,...value};
 }
 async function screenshot(page,name,fullPage=false) {
