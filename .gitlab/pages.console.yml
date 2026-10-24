@@ -1,0 +1,15 @@
+# INERT TEMPLATE: not included by .gitlab-ci.yml.
+# Only enable after separate explicit user authorization for the reviewed commit,
+# payload and intended Pages audience. This variable is an operational fence,
+# not authenticated production approval. Never change Pages visibility silently.
+console_pages:
+  stage: evidence
+  script:
+    - uv run --no-sync python frontend/build_console.py --output-dir dist/console
+  pages:
+    publish: dist/console
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true" && $RELEASEGATE_PAGES_APPROVED_SHA == $CI_COMMIT_SHA'
+      when: manual
+      allow_failure: false
+    - when: never
