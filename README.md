@@ -44,6 +44,20 @@ integration belongs to a separately authorized persistent-execution milestone; s
 
 ## Run locally
 
+The **[Live Verification Console](docs/live-verification.md)** runs actual pytest,
+Bandit, evidence validation and policy evaluation from browser controls:
+
+```powershell
+uv sync --frozen --extra dev
+uv run --no-sync python -m releasegate.live --port 8776
+```
+
+Open <http://127.0.0.1:8776/>. Every run uses a new isolated snapshot of committed
+HEAD and new artifacts. The controlled rejection adds a scan-only fixture; it
+never executes that fixture. Human approval remains required and unexecuted.
+This local application is separate from the public static showcase and GitLab Duo.
+See the guide for cancellation, evidence inspection and reproducible browser QA.
+
 Requires Python 3.12 and [uv](https://docs.astral.sh/uv/). Commands work in PowerShell:
 
 ```powershell
@@ -108,8 +122,11 @@ frontend with Overview, Positive/Negative DEMO FIXTURE navigation, Evidence Chai
 bounded Research and original Audit Trail sources. It preserves Policy and all
 139 mandatory identities. [Phase 4.3 architecture and handoff](docs/phase4.3/console-handoff.md)
 and [local visual QA](docs/phase4.3/qa-report.md) explain its reference-data scope.
-The Pages template is prepared but unincluded; no public deployment is authorized.
-Phase 4.3 feature MR/PR review does not authorize merging or publication.
+The reviewed static showcase is published separately on
+[GitHub Pages](https://miku-wwl.github.io/agentic-release-gate/). It displays static
+reference evidence, not live localhost execution. Changes to the public payload
+require separate explicit publication authorization. The GitLab Pages include
+remains gated by its approved-source rule; this local application does not enable it.
 
 ```powershell
 uv run --no-sync python frontend/build_console.py --output-dir dist/console

@@ -2,6 +2,10 @@
 console_build:
   stage: validation
   script:
+    # Live verification exports committed Git snapshots, including in its tests.
+    - apt-get update
+    - apt-get install --yes --no-install-recommends git
+    - git --version
     - uv run --no-sync pytest -q frontend/tests
     - uv run --no-project --with tinycss2==1.4.0 python frontend/check_static.py
     - uv run --no-sync python frontend/build_console.py --output-dir dist/console
@@ -14,3 +18,4 @@ console_javascript:
   script:
     - node --version
     - node --check frontend/assets/console.js
+    - node --test frontend/tests/live_copy.test.cjs
