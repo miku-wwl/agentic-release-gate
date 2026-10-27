@@ -17,7 +17,7 @@ pytest suite, Bandit collector, evidence validator and Policy v2. There is no
 production executor, Runtime Action, LLM request, external source fetch or human
 approval adapter. The Python 3.12 lock and original mandatory manifest remain.
 
-Controls planned before publication: non-root process; no credentials or Docker
+Implemented controls required before publication: non-root process; no credentials or Docker
 socket; reduced child environment; kernel network denial in the Linux worker;
 scan-only fixture execution guard; 60-second total deadline; process-group kill;
 bounded outputs, memory, requests and retained history; one active run; global
@@ -195,8 +195,47 @@ not hard caps. Actual cost remains pending until billing data is available.
 
 ## Acceptance and submission state
 
-Implementation and local checks are in progress. No public LIVE acceptance or
-GitLab synchronization is claimed by this document until recorded separately.
+Local hardening and acceptance passed on 27 October 2026, within the authorized
+45-minute investigation. The tested image source was
+`34b4c4282aed3e804d4ab295439980ea671ed3b2`; later QA/documentation edits do not
+silently change that image identity. Windows regression passed 249 tests, with
+the two Linux-only cases independently passing inside the actual constrained
+Linux image. The Linux public suite passed 33/33 in three repeated initial
+acceptances and again in the final image; a root-based CI simulation also passed
+33/33 with the actual network probe dropped to non-root and zero capabilities.
+Ruff, JavaScript checks and both CSS stylesheets passed.
+
+The observed common-UID collision was 33 processes/141 threads under UID 10001,
+despite only one visible PID/thread inside the diagnostic PID namespace. Dedicated
+UID 43343 passed with the unchanged NPROC 32/32 budget. The timeout test now waits
+for an atomic ready acknowledgment from a real child, proves it is alive in the
+owned process group, then verifies watchdog SIGKILL, no running child and DENY.
+The production 60-second budget is unchanged. Post-test service inventory returned
+to two Gunicorn processes/six threads, with no verification worker left running.
+
+Genuine desktop browser runs against the final local image were:
+
+- `8b7b6eab-1dee-4e8d-bcf5-b220d8b8a5ba`: ALLOW, 139 tests passed,
+  HUMAN_APPROVAL, 11.38 seconds.
+- `40ee2ddd-9881-4d30-9542-bc60ed18abfd`: DENY / SECURITY_HIGH, 139 tests passed,
+  no next gate, 10.81 seconds.
+
+Each ran actual Bandit and raw-evidence validation. The fixture was never executed.
+The browser captured actual RUNNING/completion, inspected sanitized evidence and
+then passed all five pages at all three viewports using explicitly cached result
+inspection. An initial rapid-navigation QA attempt hit real HTTP 429; the accepted
+QA paced navigation instead of raising server limits. Both fresh-run evidence and
+cached-inspection reports remain distinct. The public LIVE acceptance flag remains
+off; no new image was pushed and Azure was not updated during this local phase.
+The working static public baseline remained HTTP 200 with valid TLS.
+
+Local raw records, screenshots and diagnostic limits/PID evidence are retained in
+`.artifacts/public-live/DIAGNOSIS-AND-RETEST.md`, `browser-final/`,
+`browser-accepted/`, and the associated Linux test logs. These private local QA
+folders are not in the Docker context or GitLab source payload.
+
+The broader public deployment/submission task remains incomplete. No public LIVE
+acceptance or GitLab synchronization is claimed by this local checkpoint.
 GitLab remote writes require the user's approval of the completed diff. Preserve
 existing CI, manual Human Gate, history, Duo evidence and MIT LICENSE. Do not
 merge the independent GitHub and GitLab histories.

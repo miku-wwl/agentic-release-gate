@@ -14,7 +14,13 @@ const browser = await chromium.launch({headless: true, executablePath: chrome});
 const page = await browser.newPage({viewport: {width: 1920, height: 1080}});
 const errors = [];
 const assertions = [];
+const network = [];
 page.on("pageerror", (error) => errors.push(error.message));
+page.on("response", (response) => {
+  const row = {at:new Date().toISOString(),url:response.url(),method:response.request().method(),status:response.status()};
+  if (network.length < 500) network.push(row);
+  if (row.status >= 400) console.log(JSON.stringify({http_error:row}));
+});
 const routes = ["/", "/decision-explorer.html", "/evidence-chain.html", "/research.html", "/audit-trail.html"];
 const runs = [];
 
@@ -22,7 +28,13 @@ async function ready() {
   // The established 320px layout hides this decorative topbar badge. Its
   // backend-populated text remains a readiness signal; visible panels and
   // production-boundary visibility are checked separately from readiness.
-  await page.locator("#public-mode").filter({hasText: /LIVE VERIFICATION|VERIFICATION PREVIEW/}).waitFor({state: "attached", timeout: 30000});
+  try {
+    await page.locator("#public-mode").filter({hasText: /LIVE VERIFICATION|VERIFICATION PREVIEW/}).waitFor({state: "attached", timeout: 30000});
+  } catch (error) {
+    await page.screenshot({path:path.join(output,"readiness-failure.png"),fullPage:true});
+    console.log(JSON.stringify({readiness_failure:await page.evaluate(()=>({mode:document.getElementById("public-mode")?.textContent,notice:document.getElementById("live-notice")?.textContent,url:location.href}))}));
+    throw error;
+  }
   assert.equal(await page.locator(".topbar-boundary").isVisible(), true);
   if (page.viewportSize().width >= 360) assert.equal(await page.locator("#public-mode").isVisible(), true);
 }
@@ -65,6 +77,7 @@ try {
       assert.equal(run.policy_decision, scenario === "POSITIVE_CANDIDATE" ? "ALLOW" : "DENY");
       if (scenario === "SECURITY_HIGH") assert.ok(run.denial_reasons.includes("SECURITY_HIGH"));
       else assert.equal(run.next_gate, "HUMAN_APPROVAL");
+      await page.evaluate(() => window.scrollTo(0, 0));
       await page.screenshot({path: path.join(output, scenario === "POSITIVE_CANDIDATE" ? "desktop-allow.png" : "desktop-deny.png"), fullPage: true});
       await page.locator("#inspect-evidence").click();
       await page.locator("#live-evidence").waitFor({state: "visible"});
@@ -84,6 +97,10 @@ try {
   for (const viewport of [{width:1920,height:1080}, {width:390,height:844}, {width:320,height:800}]) {
     await page.setViewportSize(viewport);
     for (const route of routes) {
+      // Respect the published global request budget while checking 15 pages.
+      // This is QA navigation pacing, not a fabricated backend state or result.
+      await new Promise((resolve) => setTimeout(resolve, 750));
+      console.log(JSON.stringify({viewport,route}));
       const response = await page.goto(base + route, {waitUntil: "networkidle"});
       assert.equal(response.status(), 200);
       await ready();
@@ -102,6 +119,7 @@ try {
     await page.locator("#view-cached").click();
     assert.equal(await page.locator("#live-decision").textContent(), "DENY");
     assert.match(await page.locator("#result-origin").textContent(), /CACHED COMPLETED RESULT/);
+    await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({path: path.join(output, `${viewport.width}-cached-deny.png`), fullPage:true});
     if (viewport.width < 400) {
       const menu = page.locator(".menu-button");
@@ -112,4 +130,7 @@ try {
   assert.deepEqual(errors, []);
   await writeFile(path.join(output, "browser-acceptance.json"), JSON.stringify({status:"PASS",base,mode:fresh?"FRESH_RUNS":"CACHED_INSPECTION",run_ids:runs.map((run)=>run.run_id),assertions,errors},null,2));
   console.log(JSON.stringify({status:"PASS",base,run_ids:runs.map((run)=>run.run_id),viewports:3,pages:5,screenshots:output}));
-} finally { await browser.close(); }
+} finally {
+  await writeFile(path.join(output,"browser-network.json"),JSON.stringify(network,null,2));
+  await browser.close();
+}
