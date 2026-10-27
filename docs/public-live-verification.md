@@ -197,13 +197,18 @@ reads the private key internally and prints only sanitized acceptance evidence.
 can select `PUBLIC`, after hosted gates pass. This operator key never authorizes
 production release or human approval.
 
-The existing static revision retains 100% canonical-host traffic during staging.
-The new revision starts at zero canonical-host traffic, with the original image
-and revision preserved. Revision labels have separate HTTPS routes; their APIs
-remain operator-protected. No extra Container App or service is required. Each
-revision retains min 0/max 1 and the same CPU/memory; inactive prior revisions have
-no running replica. Multiple active revisions can transiently coexist during an
-explicit staged rollout; no always-on replica is introduced.
+For environments supporting Multiple Revisions, keep the existing static revision
+at 100% canonical-host traffic during staging. Revision-label APIs remain
+operator-protected. Azure Express rejected this mode on the existing environment.
+The user explicitly authorized a Single Revision static bridge: STAGING serves
+the original 12 reference files byte-for-byte from `/app/reference-site`, with
+every `/api/demo/*` read and write protected by the server-side operator key.
+The two public live assets are unavailable in that mode. Verify all 12 hashes
+over HTTPS before and after the bridge update. Preserve the original image and
+revision, and immediately restore the immutable static image on deployment error.
+Only after actual Azure security and business acceptance may PUBLIC mode open
+anonymous verification and serve the live UI from `/app/site`. No extra Container
+App or service is required; CPU/memory and min 0/max 1 remain unchanged.
 
 Reuse the existing Consumption app/hostname, 0.5 CPU, 1 GiB, min 0/max 1 and no
 logging destination. Set `PUBLIC_ORIGIN` to the verified HTTPS origin. Leave
@@ -223,6 +228,12 @@ existing app and verify the static smoke test. No extra app/environment is neede
 az containerapp update --name releasegate-public-demo --resource-group rg-releasegate-hackathon26 --image docker.io/minglai/releasegate-demo@sha256:994d6b794bae2a85fa0aab3ed830106516dc10f672f75ab7b6c7eb7dabc882fd
 python deploy/azure/smoke_test.py https://releasegate-public-demo.yellowtree-4e6734d2.australiaeast.azurecontainerapps.io
 ```
+
+In Single mode rollback creates a replacement revision from the original digest;
+it does not depend on Multiple-mode traffic weights. Remove the three public-mode
+environment variables when restoring the static image. The private local rollback
+script records the exact subscription, resource group, original revision/digest and
+unchanged resource limits; it is not an HTTP execution endpoint.
 
 Target incremental cost is USD 0 under unused subscription-shared Consumption
 grants and modest traffic. Active checks and requests can consume those grants;

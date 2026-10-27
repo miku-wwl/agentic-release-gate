@@ -478,3 +478,49 @@ def test_locked_api_stays_closed_without_bootstrap(manager, public_site):
     app = PublicApplication(manager, public_site, "http://127.0.0.1:8778", execution_mode="LOCKED")
     reply, _ = call(app, "/api/demo/scenarios", HTTP_AUTHORIZATION="Bearer " + "x" * 64)
     assert reply["status"] == 403 and manager.starts == 0
+
+
+def test_staging_bridge_preserves_every_reference_byte_and_exposes_no_live_assets(
+    manager, tmp_path
+):
+    spec = importlib.util.spec_from_file_location(
+        "reference_builder", ROOT / "frontend/build_console.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    site = tmp_path / "reference-site"
+    module.build(site)
+    app = PublicApplication(
+        manager, site, "http://127.0.0.1:8778", execution_mode="STAGING", operator_key="x" * 64
+    )
+    paths = [path for path in site.rglob("*") if path.is_file()]
+    assert len(paths) == 12 and len(app.files) == 13  # root aliases index.html
+    for path in paths:
+        reply, raw = call(app, "/" + path.relative_to(site).as_posix())
+        assert reply["status"] == 200 and raw == path.read_bytes()
+    for path in ("/assets/public.js", "/assets/public.css", "/api/demo/scenarios"):
+        reply, _ = call(app, path)
+        assert reply["status"] == (403 if path.startswith("/api/") else 404)
+    assert manager.starts == 0
+
+
+@pytest.mark.parametrize(
+    "authorization", [None, "Bearer wrong", "bearer " + "x" * 64, "Basic " + "x" * 64]
+)
+def test_staging_execution_rejects_missing_wrong_and_wrong_scheme_credentials(
+    manager, public_site, authorization
+):
+    app = PublicApplication(
+        manager,
+        public_site,
+        "http://127.0.0.1:8778",
+        execution_mode="STAGING",
+        operator_key="x" * 64,
+    )
+    headers = {} if authorization is None else {"HTTP_AUTHORIZATION": authorization}
+    for method in ("GET", "HEAD", "POST", "PUT", "OPTIONS"):
+        reply, _ = call(
+            app, "/api/demo/verifications", method, b'{"scenario":"POSITIVE_CANDIDATE"}', **headers
+        )
+        assert reply["status"] == 403
+    assert manager.starts == 0 and manager.active is None and manager.process is None

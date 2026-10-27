@@ -12,7 +12,8 @@ COPY frontend/ frontend/
 COPY docs/phase4/ docs/phase4/
 COPY deploy/azure/build_public_payload.py /build_public_payload.py
 ARG SOURCE_SHA
-RUN python frontend/build_public_console.py --output-dir /app/site \
+RUN python frontend/build_console.py --output-dir /app/reference-site \
+    && python frontend/build_public_console.py --output-dir /app/site \
     && python /build_public_payload.py --root /app/candidate --sha "$SOURCE_SHA" --output /app/source-manifest.json
 
 FROM python:3.12.15-slim-bookworm@sha256:57d96f71de145a98e7ceca18ee4ade77bba4103a33a72dfaea026b23625c6bf0
@@ -31,6 +32,7 @@ RUN printf 'releasegate:x:43343:\n' >> /etc/group \
 COPY --from=build /opt/venv /opt/venv
 COPY --from=build /app/candidate /app/candidate
 COPY --from=build /app/site /app/site
+COPY --from=build /app/reference-site /app/reference-site
 COPY --from=build /app/source-manifest.json /app/source-manifest.json
 COPY deploy/azure/public_gunicorn.py /app/gunicorn.conf.py
 COPY deploy/azure/hosted_acceptance.py /app/qa/hosted_acceptance.py

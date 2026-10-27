@@ -45,6 +45,9 @@ STATIC = (
     "evidence/research-results.json",
     "build-manifest.json",
 )
+REFERENCE_STATIC = tuple(
+    name for name in STATIC if name not in {"assets/public.css", "assets/public.js"}
+)
 
 
 def now():
@@ -440,7 +443,7 @@ class PublicApplication:
             raise ValueError("STAGING_OPERATOR_KEY_REQUIRED")
         self.execution_mode, self.operator_key = execution_mode, operator_key
         self.files = {}
-        for name in STATIC:
+        for name in REFERENCE_STATIC if execution_mode == "STAGING" else STATIC:
             path = Path(site) / name
             if path.is_symlink() or not path.is_file():
                 raise ValueError("PUBLIC_STATIC_FILE_UNUSABLE")
@@ -580,7 +583,7 @@ def create_app():
         operator_key = (Path(control) / "operator.key").read_text("utf-8")
     return PublicApplication(
         manager,
-        root / "site",
+        root / ("reference-site" if mode == "STAGING" else "site"),
         os.environ["PUBLIC_ORIGIN"],
         accepted=os.environ.get("PUBLIC_LIVE_ACCEPTED") == "1",
         execution_mode=mode,

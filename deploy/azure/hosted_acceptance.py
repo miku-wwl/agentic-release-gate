@@ -129,7 +129,7 @@ def security():
     summary = parse_junit(junit.read_bytes())
     assert (
         code == 0
-        and summary["passed"] >= 35
+        and summary["passed"] >= 40
         and not any(summary[k] for k in ("failed", "errors", "skipped"))
     )
     events = []
