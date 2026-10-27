@@ -33,5 +33,5 @@ feature coverage. Real check trials and policy-only fixtures remain distinct.
 See [baseline audit](phase4/00-baseline-audit.md),
 [research method](phase4/01-research-methodology.md),
 [lifecycle matrix](phase4/07-devsecops-lifecycle-matrix.md) and
-[final handoff](phase4/14-final-handoff.md). Dated Phase 1/2/2.5 handoffs and the
+[final handoff](phase4/14-final-handoff.md). The dated security review and the
 GitLab initialization README are historical records, not current qualification.

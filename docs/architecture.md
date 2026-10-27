@@ -80,7 +80,7 @@ its independent history and upstream. Runner inventory access returned 403, but
 successful hosted jobs independently prove shared-runner execution. Project Duo
 remote/foundational flows and workflow-runner availability are enabled. Actual
 execution proves this review was available; no paid tier or credit balance is inferred.
-See [the SHA-bound qualification record](phase2-unified-handoff.md).
+See [the SHA-bound qualification record](phase4/15-post-merge-qualification.md).
 
 | Capability | Official support | Competition project validation |
 |---|---|---|
@@ -140,8 +140,7 @@ Phase 1.1 qualifies `agentic-intent-gate` v0.2.0 at
 and Python `>=3.13,<3.14` requirement were checked independently. A fresh non-editable
 Git installation in a separate 3.13 environment verified package version, exact
 source commit and installed public imports. The v0.1.0 licensing concern in the
-historical Phase 1 handoff no longer blocks this new release. See
-[feasibility evidence](runtime-feasibility.md).
+historical Phase 1 handoff no longer blocks this new release.
 
 Keep the application and CI on 3.12 for the next milestone. Its existing metadata
 already permits 3.13; no requirement or dependency check needs to be bypassed.
