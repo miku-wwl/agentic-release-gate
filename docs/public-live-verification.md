@@ -145,8 +145,8 @@ inputs. It excludes Git history, private artifacts, credentials and environment
 files. The original static Dockerfile and image digest remain available.
 
 ```powershell
+powershell -File deploy/azure/build_public.ps1
 $sourceSha = git rev-parse HEAD
-docker build --platform linux/amd64 -f deploy/azure/Dockerfile.public --build-arg SOURCE_SHA=$sourceSha -t docker.io/minglai/releasegate-demo:$sourceSha .
 docker run -d --name releasegate-public-local --cpus 0.5 --memory 1g --pids-limit 64 --read-only --tmpfs /tmp:rw,noexec,nosuid,size=128m --cap-drop ALL --security-opt no-new-privileges -e PUBLIC_ORIGIN=http://127.0.0.1:8778 -p 127.0.0.1:8778:8080 docker.io/minglai/releasegate-demo:$sourceSha
 docker exec releasegate-public-local python -m pytest -q frontend/tests/test_public.py -p no:cacheprovider
 python deploy/azure/public_smoke.py http://127.0.0.1:8778 --output .artifacts/public-live/container-evidence

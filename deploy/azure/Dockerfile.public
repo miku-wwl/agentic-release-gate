@@ -24,8 +24,8 @@ LABEL org.opencontainers.image.title="ReleaseGate public fixed-scenario verifica
       com.releasegate.deployment-mode="PUBLIC_FIXED_SCENARIO_VERIFICATION"
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONPATH=/app/candidate/src \
     PATH=/opt/venv/bin:/usr/local/bin:/usr/bin:/bin PUBLIC_LIVE_ACCEPTED=0
-RUN groupadd --gid 10001 releasegate \
-    && useradd --uid 10001 --gid 10001 --no-create-home --shell /usr/sbin/nologin releasegate
+RUN printf 'releasegate:x:10001:\n' >> /etc/group \
+    && printf 'releasegate:x:10001:10001:ReleaseGate:/nonexistent:/usr/sbin/nologin\n' >> /etc/passwd
 COPY --from=build /opt/venv /opt/venv
 COPY --from=build /app/candidate /app/candidate
 COPY --from=build /app/site /app/site
