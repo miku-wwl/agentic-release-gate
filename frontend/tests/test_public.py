@@ -296,9 +296,16 @@ def test_worker_failures_cannot_become_allow(candidate, monkeypatch, failure):
 )
 def test_linux_network_filter_is_inherited_by_child():
     code = """from releasegate.public_worker import isolate_worker
-import json,os,pathlib,resource,subprocess,sys,tempfile,time
+import json,os,pathlib,resource,socket,subprocess,sys,tempfile,time
 assert os.getuid() != 0
+baseline = socket.socket()
+baseline.close()
+before = dict(line.split(':',1) for line in
+              pathlib.Path('/proc/self/status').read_text().splitlines() if ':' in line)
 assert isolate_worker() == "LINUX_SECCOMP_NETWORK_DENIED"
+after = dict(line.split(':',1) for line in
+             pathlib.Path('/proc/self/status').read_text().splitlines() if ':' in line)
+assert int(after['Seccomp_filters']) > int(before['Seccomp_filters'])
 assert resource.getrlimit(resource.RLIMIT_NPROC) == (32, 32)
 probe = '''import json,os,pathlib,resource,socket,sys,time
 directory = pathlib.Path(sys.argv[1])
@@ -350,7 +357,7 @@ assert child['uid'] == os.getuid() != 0
 assert child['nproc'] == [32,32] and child['seccomp'] == '2'
 assert child['no_new_privs'] == '1'
 assert int(child['cap_eff'],16) == 0
-print(json.dumps({'test':'inherited_network_denial','parent_pid':os.getpid(),'child':child,'child_exit':process.returncode,'child_alive_confirmed':True,'socket_denied':True,'socket_errno':1}))
+print(json.dumps({'test':'inherited_network_denial','parent_pid':os.getpid(),'child':child,'child_exit':process.returncode,'child_alive_confirmed':True,'socket_denied':True,'socket_errno':1,'baseline_socket_created':True,'filters_before':int(before['Seccomp_filters']),'filters_after':int(after['Seccomp_filters'])}))
 """
     # Root-based CI must run the actual isolation probe as a non-root child,
     # just like the shipped image. Keep every kernel/capability assertion.
