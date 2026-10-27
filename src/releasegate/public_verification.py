@@ -24,7 +24,7 @@ from uuid import UUID, uuid4
 from releasegate.advisory import SECRET
 from releasegate.evidence import read_json
 from releasegate.policy import SHA
-from releasegate.public_security import enable_subreaper, reap_group
+from releasegate.public_security import enable_subreaper, entry_guard, reap_group
 from releasegate.public_worker import FIXTURE, SCENARIOS, verify_bundle
 
 MAX_OUTPUT = 512 * 1024
@@ -564,6 +564,16 @@ def create_app():
     mode = os.environ.get("PUBLIC_EXECUTION_MODE", "STAGING")
     control = os.environ.get("RELEASEGATE_CONTROL_DIR")
     operator_key = None
+    if mode != "LOCKED":
+        if not control:
+            raise RuntimeError("INSTANCE_ADMISSION_REQUIRED")
+        admission = read_json(Path(control) / "admission.json")
+        if (
+            admission.get("status") != "PASS"
+            or admission.get("candidate_sha") != manager.manifest["candidate_sha"]
+        ):
+            raise RuntimeError("INSTANCE_ADMISSION_IDENTITY_MISMATCH")
+        entry_guard()
     if mode == "STAGING":
         if not control:
             raise RuntimeError("STAGING_OPERATOR_CONTROL_UNAVAILABLE")

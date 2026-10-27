@@ -46,8 +46,9 @@ def security():
     enable_subreaper()
     admission = read_json(CONTROL / "admission.json")
     assert admission["status"] == "PASS"
-    assert all(int(snapshot(1)[field], 16) == 0 for field in ("CapEff", "CapPrm", "CapInh"))
-    assert snapshot(1)["NoNewPrivs"] == "1"
+    server_identity = snapshot(admission["identity"]["Pid"])
+    assert all(int(server_identity[field], 16) == 0 for field in ("CapEff", "CapPrm", "CapInh"))
+    assert server_identity["NoNewPrivs"] == "1"
     for name in ("/app/candidate/.write-probe", "/opt/venv/.write-probe"):
         try:
             descriptor = os.open(name, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
@@ -146,7 +147,7 @@ def security():
         "revision": os.environ.get("CONTAINER_APP_REVISION", "LOCAL"),
         "source_sha": metadata["candidate_sha"],
         "identity": identity,
-        "server_identity": snapshot(1),
+        "server_identity": server_identity,
         "boot_admission": admission,
         "tests": summary,
         "hosted_events": events,
