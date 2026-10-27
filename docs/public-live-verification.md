@@ -101,6 +101,13 @@ public sanitized records remain in instance memory.
 | Retained history | At most 10 runs, at most one hour |
 
 The global limits do not use client IP, X-Forwarded-For or client-chosen identity.
+The image uses project-specific non-root UID/GID 43343. Linux RLIMIT_NPROC counts
+threads per real UID, not per container PID namespace. A common UID can collide
+with unrelated workloads on the same kernel. The dedicated UID avoids the
+observed local collision while retaining the exact worker soft/hard limit of 32;
+it does not raise CPU, memory, replicas, or the process budget. A crowded UID can
+still cause fail-closed verification failure; startup and actual hosted runs must
+be tested in the target environment. Local container cgroup PID limit remains 64.
 API fetches, static requests and error routes share the request limiter; the cheap
 health check is exempt. A fixed trusted origin restricts browser POSTs, while
 scenario, concurrency and cost controls independently apply to every client.

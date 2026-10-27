@@ -5,9 +5,11 @@ import importlib.util
 import io
 import json
 import os
+import signal
 import subprocess
 import sys
 import threading
+import time
 from pathlib import Path
 
 import pytest
@@ -294,40 +296,97 @@ def test_worker_failures_cannot_become_allow(candidate, monkeypatch, failure):
 )
 def test_linux_network_filter_is_inherited_by_child():
     code = """from releasegate.public_worker import isolate_worker
-import subprocess,sys
+import json,os,pathlib,resource,subprocess,sys
 assert isolate_worker() == "LINUX_SECCOMP_NETWORK_DENIED"
-probe = "import socket; socket.socket()"
+assert resource.getrlimit(resource.RLIMIT_NPROC) == (32, 32)
+probe = '''import json,os,pathlib,resource,socket
+status = dict(
+    line.split(':', 1)
+    for line in pathlib.Path('/proc/self/status').read_text().splitlines() if ':' in line
+)
+print(json.dumps({
+    'pid':os.getpid(),'ppid':os.getppid(),'uid':os.getuid(),
+    'nproc':resource.getrlimit(resource.RLIMIT_NPROC),'threads':status['Threads'].strip(),
+    'seccomp':status['Seccomp'].strip(),'cap_eff':status['CapEff'].strip()
+}),flush=True)
+socket.socket()
+'''
 result = subprocess.run([sys.executable, "-c", probe], capture_output=True)
 assert result.returncode != 0 and b"Operation not permitted" in result.stderr
+child = json.loads(result.stdout)
+assert child['pid'] != os.getpid() and child['ppid'] == os.getpid()
+assert child['nproc'] == [32,32] and child['seccomp'] == '2'
+assert int(child['cap_eff'],16) == 0
+print(json.dumps({'test':'inherited_network_denial','parent_pid':os.getpid(),'child':child,'child_exit':result.returncode,'socket_denied':True}))
 """
     result = subprocess.run(
         [sys.executable, "-c", code], capture_output=True, timeout=10, check=False
     )
     assert result.returncode == 0, result.stderr.decode()
+    print(result.stdout.decode().strip())
 
 
 @pytest.mark.skipif(
     sys.platform != "linux", reason="Linux process groups are verified inside the production image"
 )
 def test_actual_total_timeout_kills_owned_descendant(candidate, monkeypatch, tmp_path):
-    manager = PublicManager(*candidate, timeout=0.4, cooldown=0)
+    manager = PublicManager(*candidate, timeout=5, cooldown=0)
     real_popen = subprocess.Popen
     pidfile = tmp_path / "child.pid"
+    child_code = (
+        "import json,os,pathlib,time; "
+        f"marker=pathlib.Path({str(pidfile)!r}); temporary=marker.with_suffix('.ready'); "
+        "temporary.write_text(json.dumps("
+        "{'pid':os.getpid(),'ppid':os.getppid(),'pgid':os.getpgrp()})); "
+        "temporary.replace(marker); time.sleep(60)"
+    )
     code = (
-        "import subprocess,sys,time,pathlib; "
-        "child=subprocess.Popen([sys.executable,'-c','import time;time.sleep(30)']); "
-        f"pathlib.Path({str(pidfile)!r}).write_text(str(child.pid)); time.sleep(30)"
+        "import subprocess,sys,time; "
+        f"child=subprocess.Popen([sys.executable,'-c',{child_code!r}]); time.sleep(60)"
     )
 
     def launch(_command, **kwargs):
         return real_popen([sys.executable, "-c", code], **kwargs)
 
     monkeypatch.setattr("releasegate.public_verification.subprocess.Popen", launch)
-    run = manager.start("POSITIVE_CANDIDATE")
-    manager.thread.join(10)
-    assert manager.get(run["run_id"])["status"] == "TIMED_OUT"
-    child = int(pidfile.read_text())
-    stat = Path(f"/proc/{child}/stat")
-    assert not stat.exists() or stat.read_text().split()[2] == "Z"
-    assert manager.get(run["run_id"])["policy_decision"] == "DENY"
-    manager.close()
+    try:
+        started = time.monotonic()
+        run = manager.start("POSITIVE_CANDIDATE")
+        # Acknowledgment is written by the actual descendant, not its launcher.
+        # Observe it alive before the unchanged watchdog mechanism times out.
+        while not pidfile.exists() and time.monotonic() - started < 4:
+            time.sleep(0.02)
+        assert pidfile.exists(), "Descendant did not acknowledge before the test deadline"
+        child = json.loads(pidfile.read_text())
+        process = manager.process
+        assert process is not None and process.poll() is None
+        assert child["ppid"] == process.pid == child["pgid"]
+        assert child["pgid"] != os.getpgrp()
+        stat = Path(f"/proc/{child['pid']}/stat")
+        assert stat.exists() and stat.read_text().split()[2] != "Z"
+        os.kill(child["pid"], 0)
+        ready_ms = round((time.monotonic() - started) * 1000)
+        manager.thread.join(10)
+        result = manager.get(run["run_id"])
+        assert result["status"] == "TIMED_OUT"
+        assert process.returncode == -signal.SIGKILL
+        assert not stat.exists() or stat.read_text().split()[2] == "Z"
+        assert result["policy_decision"] == "DENY" and result["next_gate"] is None
+        assert result["execution_authorized"] is False
+        assert 5000 <= result["duration_ms"] < 11000
+        print(
+            json.dumps(
+                {
+                    "test": "owned_group_timeout",
+                    "parent_pid": process.pid,
+                    "child": child,
+                    "child_ready_ms": ready_ms,
+                    "duration_ms": result["duration_ms"],
+                    "parent_exit": process.returncode,
+                    "child_not_running": True,
+                    "decision": result["policy_decision"],
+                }
+            )
+        )
+    finally:
+        manager.close()
