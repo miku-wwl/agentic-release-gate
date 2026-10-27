@@ -297,6 +297,7 @@ def test_worker_failures_cannot_become_allow(candidate, monkeypatch, failure):
 def test_linux_network_filter_is_inherited_by_child():
     code = """from releasegate.public_worker import isolate_worker
 import json,os,pathlib,resource,subprocess,sys
+assert os.getuid() != 0
 assert isolate_worker() == "LINUX_SECCOMP_NETWORK_DENIED"
 assert resource.getrlimit(resource.RLIMIT_NPROC) == (32, 32)
 probe = '''import json,os,pathlib,resource,socket
@@ -315,12 +316,20 @@ result = subprocess.run([sys.executable, "-c", probe], capture_output=True)
 assert result.returncode != 0 and b"Operation not permitted" in result.stderr
 child = json.loads(result.stdout)
 assert child['pid'] != os.getpid() and child['ppid'] == os.getpid()
+assert child['uid'] == os.getuid() != 0
 assert child['nproc'] == [32,32] and child['seccomp'] == '2'
 assert int(child['cap_eff'],16) == 0
 print(json.dumps({'test':'inherited_network_denial','parent_pid':os.getpid(),'child':child,'child_exit':result.returncode,'socket_denied':True}))
 """
+    # Root-based CI must run the actual isolation probe as a non-root child,
+    # just like the shipped image. Keep every kernel/capability assertion.
+    credentials = {"user": 43343, "group": 43343, "extra_groups": []} if os.geteuid() == 0 else {}
     result = subprocess.run(
-        [sys.executable, "-c", code], capture_output=True, timeout=10, check=False
+        [sys.executable, "-c", code],
+        capture_output=True,
+        timeout=10,
+        check=False,
+        **credentials,
     )
     assert result.returncode == 0, result.stderr.decode()
     print(result.stdout.decode().strip())
