@@ -1,13 +1,15 @@
 """Parse CSS syntax with pinned tinycss2; run in an isolated QA tool environment."""
 
 import json
+import sys
 from pathlib import Path
 
 import tinycss2
 
 root = Path(__file__).resolve().parent
 errors = []
-counts = {"stylesheets": 1, "qualified_rules": 0, "at_rules": 0, "declarations": 0}
+sources = [Path(value) for value in sys.argv[1:]] or [root / "assets/console.css"]
+counts = {"stylesheets": len(sources), "qualified_rules": 0, "at_rules": 0, "declarations": 0}
 
 
 def inspect_rules(rules):
@@ -31,8 +33,12 @@ def inspect_rules(rules):
                     counts["declarations"] += 1
 
 
-source = (root / "assets/console.css").read_text(encoding="utf-8")
-inspect_rules(tinycss2.parse_stylesheet(source, skip_comments=True, skip_whitespace=True))
+for source in sources:
+    inspect_rules(
+        tinycss2.parse_stylesheet(
+            source.read_text(encoding="utf-8"), skip_comments=True, skip_whitespace=True
+        )
+    )
 print(
     json.dumps(
         {

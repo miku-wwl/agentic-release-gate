@@ -12,6 +12,9 @@ dependencies = ["defusedxml==0.7.1"]
 
 [project.optional-dependencies]
 dev = ["pytest==8.4.2", "bandit==1.8.6", "ruff==0.13.3", "PyYAML==6.0.3"]
+public = [
+    "gunicorn==26.2.0 ; sys_platform != 'win32'",
+]
 
 [project.scripts]
 releasegate = "releasegate.cli:main"
