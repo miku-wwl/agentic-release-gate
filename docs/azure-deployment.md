@@ -1,8 +1,25 @@
 # ReleaseGate Azure static showcase
 
-**State: prepared locally; not deployed.** The Azure resource group, Container Apps
-environment, Container App, public image tag, digest and HTTPS URL are pending.
-Do not treat this document as evidence of a live Azure deployment.
+**State: deployed and publicly verified on 27 October 2026.** The public showcase
+is running on Azure Container Apps. It is a static, read-only build from source
+commit `9d4a7618809de126200230f5d6970022c8459c1d`; it does not contain the local
+Live Verification Console or production executor.
+
+| Deployment evidence | Verified value |
+|---|---|
+| Public URL | <https://releasegate-public-demo.yellowtree-4e6734d2.australiaeast.azurecontainerapps.io> |
+| Source revision | `9d4a7618809de126200230f5d6970022c8459c1d` |
+| Docker Hub image | `docker.io/minglai/releasegate-demo:9d4a7618809de126200230f5d6970022c8459c1d` |
+| Docker Hub manifest digest | `sha256:994d6b794bae2a85fa0aab3ed830106516dc10f672f75ab7b6c7eb7dabc882fd` |
+| Resource group | `rg-releasegate-hackathon26` (`australiaeast`) |
+| Container Apps environment | `acae-releasegate-hackathon26` |
+| Container App | `releasegate-public-demo` |
+| Public HTTPS / anonymous read-only checks | PASS |
+| Production execution | DISABLED |
+| Human Approval Gate | Required and unexecuted |
+
+The deployment branch is local-only. No GitHub or GitLab branches, pipelines,
+merge requests, or pull requests were changed as part of Azure deployment.
 
 ## Architecture and trust boundary
 
@@ -21,12 +38,13 @@ execution route.
 
 ## Registry and source identity
 
-The intended public image repository is
+The public image repository is
 [`docker.io/minglai/releasegate-demo`](https://hub.docker.com/r/minglai/releasegate-demo).
-The Docker Hub Personal plan lists public repositories at no charge; image pull
-limits and fair-use rules still apply. The published image tag will be the exact
-40-character source commit SHA and its registry digest will be recorded after push.
-No `latest` tag is used for deployment.
+The public image is tagged with the exact 40-character source commit SHA shown
+above. Docker Hub returned the recorded digest, and the tag/digest were verified
+through the unauthenticated registry API and an anonymous pull. No `latest` tag is
+used for deployment. Docker Personal currently lists unlimited public repositories
+with fair-use terms; image pull limits still apply.
 
 The Python 3.12 builder and unprivileged NGINX runtime use pinned linux/amd64
 manifest digests in `deploy/azure/Dockerfile`. The build checks the source evidence
@@ -34,7 +52,7 @@ hashes through the existing console builder before emitting the site.
 
 ## Azure target and cost
 
-The requested deployment profile is:
+The deployed profile is:
 
 | Setting | Value |
 |---|---|
@@ -49,10 +67,17 @@ Azure Container Apps publishes a subscription-shared monthly Consumption grant
 (180,000 vCPU-seconds, 360,000 GiB-seconds and 2 million requests). Usage beyond
 the grant is billed at the subscription's applicable rate. The grant is not a
 per-app spend cap; other workloads may consume it, and public traffic can increase
-active usage. A `$5` budget alert is notification only, not a hard charge ceiling.
-Actual cost remains unverified until Cost Management billing data is available.
+active usage. The task's `$5` risk budget is not a hard charge ceiling. If a budget
+alert is configured, it is notification-only; the CLI returned no subscription
+budget for this deployment. Actual cost remains unverified until Cost Management
+billing data is available.
 
-The intended architecture has no always-on replica, dedicated profile, ACR, VM,
+The Azure resource group was inspected after deployment and contains exactly the
+Container Apps environment and the Container App listed above. The environment
+reports only the Consumption workload profile and has no configured log
+destination or Log Analytics configuration. The app has no configured environment
+variables, Azure secrets, managed identity, or registry credentials. No always-on
+replica, dedicated profile, ACR, VM,
 Log Analytics workspace, database, NAT Gateway, public IP, Front Door or separate
 monitoring resource. Docker Hub Public is used instead of a paid Azure registry.
 
@@ -106,26 +131,40 @@ the target resource names, the regional support and the current spending-limit a
 free-grant conditions. Pin every CLI call to that verified subscription. Never use
 `az containerapp up`; it may create registry or monitoring resources implicitly.
 
-After publishing and anonymously pulling the exact SHA-tagged public image, create
-only the dedicated resource group, Consumption environment (`--logs-destination
-none`) and Container App using the target settings above. Set insecure ingress to
-false so Azure's managed HTTPS endpoint redirects or rejects plain HTTP. Record the
-actual HTTPS FQDN, source SHA, image digest, resource inventory and TLS/browser test
-results here only after they are independently verified.
+The deployment used the dedicated resource group, Consumption environment
+(`--logs-destination none`) and Container App with the target settings above.
+Insecure ingress is false. Azure's HTTPS endpoint returned HTTP 200 with TLS
+verification enabled; plain HTTP returned a redirect to HTTPS. The live app
+configuration reports external ingress, port 8080, 0.5 CPU, 1.0 GiB, minimum 0 and
+maximum 1 replica.
 
 ## Public verification and billing
 
-Use `deploy/azure/smoke_test.py https://<verified-fqdn>` from outside the container.
-Separately verify TLS, HTTP-to-HTTPS behavior, cold-start recovery, mobile layout,
-response headers, 404 behavior, and that `/.env`, `/.git/config`, `/artifacts/`,
-`/api/runs`, and cancellation paths neither expose data nor execute work.
+The smoke test was run anonymously against the deployed HTTPS URL and passed all
+five pages, three assets, three evidence JSON resources, ALLOW/DENY fixtures,
+read-only mode, security headers, and denial of sensitive paths, unknown routes,
+and write/API methods. Browser automation passed all five pages at 1920×1080,
+390×844 and 320×800, exercised ALLOW→DENY navigation and mobile navigation, and
+reported no horizontal overflow or JavaScript page errors. Screenshots are in the
+local ignored folder `.artifacts/azure/browser-qa/`.
+
+Scale-to-zero and recovery were verified end to end: after Azure Monitor showed
+zero requests across the idle interval, the management-plane replica list returned
+an empty list. A subsequent TLS-verified HTTPS `GET /healthz` returned HTTP 200
+with `ssl_verify_result=0` in 1.56 seconds, and Azure then reported a new ready
+replica created at `2026-10-27T08:15:10Z`. This confirms the configured min-0 app
+can wake on an anonymous request and serve after scale-to-zero. It is one observed
+cold start, not a latency guarantee.
 Report `PUBLIC_SHOWCASE` independently from `LIVE_TEST_EXECUTION_ON_AZURE`, which
 remains `NOT_IMPLEMENTED`.
 
-In Azure Portal, inspect the subscription's Cost Management cost analysis and
-budgets. A budget alert is a notification; it does not stop every charge. Report
-actual cost only when the billable usage data has arrived. No automatic deletion is
-scheduled.
+The current billing balance was queried before resource creation, but the Azure CLI
+did not return actual `pretaxCost`/currency values for billable usage, and no cost
+records were available to validate the deployment charge. **Actual deployment cost
+verification is pending billing data.** No subscription budget was returned by the
+CLI query. Consumption free grants are shared at subscription scope and are not a
+hard spend limit; actual charges depend on total subscription usage and traffic.
+No automatic deletion is scheduled.
 
 ## Manual retirement after the hackathon
 
