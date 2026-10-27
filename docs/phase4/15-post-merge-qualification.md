@@ -88,8 +88,7 @@ artifact must be marked NOT_INDEPENDENTLY_VERIFIED and cannot support a PASS.
 ## E. Phase 5 remains unrecorded
 
 **PHASE5_VIDEO_STATUS=NOT_RECORDED.** Use ChatGPT Desktop Work and the latest
-installed `codex-iab-video-recording` skill; see the
-[recording handoff](12-video-capture-instructions.md). Target 155–170 seconds,
+installed `codex-iab-video-recording` skill. Target 155–170 seconds,
 English narration, 1080p/30fps export, genuine browser actions and visible pointer
 and click indicators grounded only in real events. Record source resolution/fps
 separately. No recording, final video visual acceptance, publication or submission

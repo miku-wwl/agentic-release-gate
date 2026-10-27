@@ -39,8 +39,7 @@ remains applicable. No new Flow invocation is part of this milestone.
 
 Production execution is disabled. ALLOW means eligible for the next gate, never execution authorization. The pinned shared
 Runtime v0.2.0 is MIT licensed and verified separately on Python 3.13. Its execution
-integration belongs to a separately authorized persistent-execution milestone; see
-[feasibility](docs/runtime-feasibility.md).
+integration belongs to a separately authorized persistent-execution milestone.
 
 ## Run locally
 
@@ -109,9 +108,6 @@ through AI Catalog; the file alone does not install a flow. See [Duo setup and l
 
 - [Architecture and trust boundaries](docs/architecture.md)
 - [Hackathon requirements](docs/hackathon-requirements.md)
-- [Implementation and Phase 2 plan](docs/implementation-plan.md)
-- [Phase 1 handoff and actual verification](docs/phase1-handoff.md)
-- [Phase 1.1 Runtime compatibility update](docs/phase1.1-handoff.md)
 
 MIT licensed. AGENTS.md is preserved. Phase 4.2 uses normal reviewed MR/PR merges; production execution remains disabled.
 
@@ -120,8 +116,7 @@ MIT licensed. AGENTS.md is preserved. Phase 4.2 uses normal reviewed MR/PR merge
 The new [read-only Decision Console](frontend/README.md) is a separate static
 frontend with Overview, Positive/Negative DEMO FIXTURE navigation, Evidence Chain,
 bounded Research and original Audit Trail sources. It preserves Policy and all
-139 mandatory identities. [Phase 4.3 architecture and handoff](docs/phase4.3/console-handoff.md)
-and [local visual QA](docs/phase4.3/qa-report.md) explain its reference-data scope.
+139 mandatory identities.
 The reviewed static showcase is published separately on
 [GitHub Pages](https://miku-wwl.github.io/agentic-release-gate/). It displays static
 reference evidence, not live localhost execution. Changes to the public payload
@@ -154,7 +149,6 @@ mandatory application identities; Phase 4 adds mandatory coverage for new featur
 - [Threat model and limits](docs/phase4/03-threat-model-and-validity.md)
 - [Review report](docs/phase4/06-human-review-experience.md)
 - [Lifecycle coverage](docs/phase4/07-devsecops-lifecycle-matrix.md)
-- [New video storyboard](docs/phase4/09-video-storyboard.md) — materials only; recording pending
 
 Phase 4.2 uses a GitLab-main-based feature branch and normal MR, then a separate
 GitHub-history-based mirror PR. GitLab initialization history, MR !2, all policy
