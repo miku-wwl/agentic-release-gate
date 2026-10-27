@@ -20,8 +20,16 @@ try {
     tar -xf $archivePath -C $buildContext
     if ($LASTEXITCODE -ne 0) { throw 'Source extraction failed' }
     $image = $Repository + ':' + $sourceSha
-    docker build --platform linux/amd64 --progress=plain --file (Join-Path $buildContext 'deploy/azure/Dockerfile.public') --build-arg SOURCE_SHA=$sourceSha --tag $image $buildContext 2>&1 | Tee-Object -FilePath (Join-Path $artifactRoot ('build-' + $sourceSha + '.log'))
-    if ($LASTEXITCODE -ne 0) { throw 'Docker build failed' }
+    $savedErrorPreference = $ErrorActionPreference
+    try {
+        # Docker writes normal build progress to stderr. Windows PowerShell 5.1
+        # turns that into error records; use its exit code as the success test.
+        $ErrorActionPreference = 'Continue'
+        docker build --platform linux/amd64 --progress=plain --file (Join-Path $buildContext 'deploy/azure/Dockerfile.public') --build-arg SOURCE_SHA=$sourceSha --tag $image $buildContext 2>&1 | ForEach-Object { "$_" } | Tee-Object -FilePath (Join-Path $artifactRoot ('build-' + $sourceSha + '.log'))
+        $dockerExit = $LASTEXITCODE
+    }
+    finally { $ErrorActionPreference = $savedErrorPreference }
+    if ($dockerExit -ne 0) { throw 'Docker build failed' }
     Write-Output "BUILT_IMAGE=$image"
 }
 finally { Pop-Location }
