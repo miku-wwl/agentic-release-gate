@@ -19,7 +19,12 @@ const routes = ["/", "/decision-explorer.html", "/evidence-chain.html", "/resear
 const runs = [];
 
 async function ready() {
-  await page.locator("#public-mode").filter({hasText: /LIVE VERIFICATION|VERIFICATION PREVIEW/}).waitFor({timeout: 90000});
+  // The established 320px layout hides this decorative topbar badge. Its
+  // backend-populated text remains a readiness signal; visible panels and
+  // production-boundary visibility are checked separately from readiness.
+  await page.locator("#public-mode").filter({hasText: /LIVE VERIFICATION|VERIFICATION PREVIEW/}).waitFor({state: "attached", timeout: 30000});
+  assert.equal(await page.locator(".topbar-boundary").isVisible(), true);
+  if (page.viewportSize().width >= 360) assert.equal(await page.locator("#public-mode").isVisible(), true);
 }
 async function validate(run) {
   assert.equal(run.status, "COMPLETED");

@@ -132,6 +132,10 @@
   });
   byId("run-verification")?.addEventListener("click", async () => {
     byId("run-verification").disabled = true;
+    current = null;
+    byId("live-result").hidden = true;
+    put("live-status", "REQUESTING");
+    put("live-notice", "Requesting a fresh verification. No result is assumed.");
     byId("live-evidence").hidden = true;
     try {
       const run = await request("/api/demo/verifications", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({scenario: selected})});

@@ -36,6 +36,14 @@
 .live-history-list article { display: flex; flex-direction: column; gap: 7px; min-width: 0; padding: 18px; background: var(--canvas); border-radius: 10px; }
 .live-history-list span { color: var(--muted); font-size: .9rem; overflow-wrap: anywhere; }
 .live-history-list button { background: none; border: 0; text-align: left; padding: 0; }
+.topbar-boundary { display: flex; }
+@media (max-width: 700px) {
+  .topbar { height: auto; min-height: 90px; padding: 12px 20px; flex-wrap: wrap; gap: 8px 12px; }
+  .topbar > p { flex: 1; }
+  .topbar-status { display: flex; width: 100%; justify-content: space-between; gap: 8px; }
+  .topbar-boundary { display: flex; font-size: .75rem; }
+  .topbar-status .pill { font-size: .62rem; padding: 5px 7px; }
+}
 @media (max-width: 1000px) { .live-chain { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 600px) {
   .live-scenarios, .live-result-top { grid-template-columns: 1fr; }
