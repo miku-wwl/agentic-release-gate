@@ -296,30 +296,61 @@ def test_worker_failures_cannot_become_allow(candidate, monkeypatch, failure):
 )
 def test_linux_network_filter_is_inherited_by_child():
     code = """from releasegate.public_worker import isolate_worker
-import json,os,pathlib,resource,subprocess,sys
+import json,os,pathlib,resource,subprocess,sys,tempfile,time
 assert os.getuid() != 0
 assert isolate_worker() == "LINUX_SECCOMP_NETWORK_DENIED"
 assert resource.getrlimit(resource.RLIMIT_NPROC) == (32, 32)
-probe = '''import json,os,pathlib,resource,socket
+probe = '''import json,os,pathlib,resource,socket,sys,time
+directory = pathlib.Path(sys.argv[1])
 status = dict(
     line.split(':', 1)
     for line in pathlib.Path('/proc/self/status').read_text().splitlines() if ':' in line
 )
-print(json.dumps({
+identity = {
     'pid':os.getpid(),'ppid':os.getppid(),'uid':os.getuid(),
+    'gid':os.getgid(),
     'nproc':resource.getrlimit(resource.RLIMIT_NPROC),'threads':status['Threads'].strip(),
-    'seccomp':status['Seccomp'].strip(),'cap_eff':status['CapEff'].strip()
-}),flush=True)
+    'seccomp':status['Seccomp'].strip(),'cap_eff':status['CapEff'].strip(),
+    'no_new_privs':status['NoNewPrivs'].strip()
+}
+temporary = directory / 'ready.tmp'
+temporary.write_text(json.dumps(identity))
+temporary.replace(directory / 'ready.json')
+deadline = time.monotonic() + 8
+while not (directory / 'go').exists():
+    if time.monotonic() > deadline:
+        raise RuntimeError('Parent did not confirm live child')
+    time.sleep(.01)
 socket.socket()
 '''
-result = subprocess.run([sys.executable, "-c", probe], capture_output=True)
-assert result.returncode != 0 and b"Operation not permitted" in result.stderr
-child = json.loads(result.stdout)
+with tempfile.TemporaryDirectory() as temporary:
+    directory = pathlib.Path(temporary)
+    process = subprocess.Popen(
+        [sys.executable, '-c', probe, temporary],
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE
+    )
+    try:
+        deadline = time.monotonic() + 5
+        while not (directory / 'ready.json').exists() and time.monotonic() < deadline:
+            time.sleep(.01)
+        assert (directory / 'ready.json').exists()
+        child = json.loads((directory / 'ready.json').read_text())
+        assert process.poll() is None and process.pid == child['pid']
+        os.kill(child['pid'], 0)
+        (directory / 'go').write_text('parent confirmed actual live child')
+        stdout, stderr = process.communicate(timeout=5)
+        assert process.returncode != 0 and b'Operation not permitted' in stderr
+        assert b'[Errno 1]' in stderr
+    finally:
+        if process.poll() is None:
+            process.kill()
+            process.wait(timeout=5)
 assert child['pid'] != os.getpid() and child['ppid'] == os.getpid()
 assert child['uid'] == os.getuid() != 0
 assert child['nproc'] == [32,32] and child['seccomp'] == '2'
+assert child['no_new_privs'] == '1'
 assert int(child['cap_eff'],16) == 0
-print(json.dumps({'test':'inherited_network_denial','parent_pid':os.getpid(),'child':child,'child_exit':result.returncode,'socket_denied':True}))
+print(json.dumps({'test':'inherited_network_denial','parent_pid':os.getpid(),'child':child,'child_exit':process.returncode,'child_alive_confirmed':True,'socket_denied':True,'socket_errno':1}))
 """
     # Root-based CI must run the actual isolation probe as a non-root child,
     # just like the shipped image. Keep every kernel/capability assertion.
@@ -327,7 +358,7 @@ print(json.dumps({'test':'inherited_network_denial','parent_pid':os.getpid(),'ch
     result = subprocess.run(
         [sys.executable, "-c", code],
         capture_output=True,
-        timeout=10,
+        timeout=15,
         check=False,
         **credentials,
     )
@@ -379,7 +410,7 @@ def test_actual_total_timeout_kills_owned_descendant(candidate, monkeypatch, tmp
         result = manager.get(run["run_id"])
         assert result["status"] == "TIMED_OUT"
         assert process.returncode == -signal.SIGKILL
-        assert not stat.exists() or stat.read_text().split()[2] == "Z"
+        assert not stat.exists(), "Owned descendant must be reaped, not left as a zombie"
         assert result["policy_decision"] == "DENY" and result["next_gate"] is None
         assert result["execution_authorized"] is False
         assert 5000 <= result["duration_ms"] < 11000
@@ -393,9 +424,50 @@ def test_actual_total_timeout_kills_owned_descendant(candidate, monkeypatch, tmp
                     "duration_ms": result["duration_ms"],
                     "parent_exit": process.returncode,
                     "child_not_running": True,
+                    "child_absent": True,
                     "decision": result["policy_decision"],
                 }
             )
         )
     finally:
         manager.close()
+
+
+def test_staging_blocks_anonymous_metadata_evidence_and_execution(manager, public_site):
+    key = "x" * 64
+    app = PublicApplication(
+        manager,
+        public_site,
+        "http://127.0.0.1:8778",
+        execution_mode="STAGING",
+        operator_key=key,
+    )
+    for path in (
+        "/api/demo/scenarios",
+        "/api/demo/verifications",
+        "/api/demo/verifications/" + "a" * 36 + "/evidence",
+    ):
+        reply, _ = call(app, path)
+        assert reply["status"] == 403
+    reply, _ = call(app, "/api/demo/verifications", "POST", b'{"scenario":"POSITIVE_CANDIDATE"}')
+    assert reply["status"] == 403 and manager.starts == 0
+    reply, _ = call(app, "/api/demo/scenarios", HTTP_AUTHORIZATION="Bearer wrong")
+    assert reply["status"] == 403
+    reply, _ = call(app, "/api/demo/scenarios", HTTP_AUTHORIZATION="Bearer " + key)
+    assert reply["status"] == 200
+    reply, _ = call(
+        app,
+        "/api/demo/verifications",
+        "POST",
+        b'{"scenario":"SECURITY_HIGH","command":"id"}',
+        HTTP_AUTHORIZATION="Bearer " + key,
+    )
+    assert reply["status"] == 400 and manager.starts == 0
+    reply, _ = call(app, "/healthz")
+    assert reply["status"] == 200
+
+
+def test_locked_api_stays_closed_without_bootstrap(manager, public_site):
+    app = PublicApplication(manager, public_site, "http://127.0.0.1:8778", execution_mode="LOCKED")
+    reply, _ = call(app, "/api/demo/scenarios", HTTP_AUTHORIZATION="Bearer " + "x" * 64)
+    assert reply["status"] == 403 and manager.starts == 0

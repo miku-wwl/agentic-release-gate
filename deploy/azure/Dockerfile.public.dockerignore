@@ -46,5 +46,6 @@
 !deploy/azure/
 !deploy/azure/build_public_payload.py
 !deploy/azure/public_gunicorn.py
+!deploy/azure/hosted_acceptance.py
 !deploy/azure/Dockerfile.public
 !deploy/azure/Dockerfile.public.dockerignore

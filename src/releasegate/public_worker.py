@@ -19,6 +19,7 @@ from releasegate.evidence import (
     write_json,
 )
 from releasegate.policy import evaluate
+from releasegate.public_security import snapshot
 
 SCENARIOS = ("POSITIVE_CANDIDATE", "SECURITY_HIGH")
 FIXTURE = (
@@ -187,6 +188,7 @@ def execute(directory):
         "execution_origin": "PUBLIC_CONTAINER_EXECUTION",
         "policy_context_origin": "local-working-tree",
         "network_isolation": isolation,
+        "worker_security": snapshot(),
         "scan_only_fixture_executed": False,
         "actual_steps": steps,
         "execution_events": events,

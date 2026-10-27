@@ -3,6 +3,7 @@
 import atexit
 import copy
 import hashlib
+import hmac
 import json
 import math
 import mimetypes
@@ -23,6 +24,7 @@ from uuid import UUID, uuid4
 from releasegate.advisory import SECRET
 from releasegate.evidence import read_json
 from releasegate.policy import SHA
+from releasegate.public_security import enable_subreaper, reap_group
 from releasegate.public_worker import FIXTURE, SCENARIOS, verify_bundle
 
 MAX_OUTPUT = 512 * 1024
@@ -127,6 +129,7 @@ class PublicManager:
         if not SHA.fullmatch(manifest.get("candidate_sha", "")):
             raise ValueError("PINNED_CANDIDATE_REQUIRED")
         verify_bundle(self.candidate, self.manifest)
+        enable_subreaper()
         self.timeout, self.cooldown, self.daily_quota = timeout, cooldown, daily_quota
         self.lock = threading.RLock()
         self.runs = {}
@@ -266,6 +269,7 @@ class PublicManager:
         else:
             process.kill()
         process.wait(timeout=5)
+        reap_group(process.pid)
 
     def _execute(self, run_id):
         item = self.runs[run_id]
@@ -420,12 +424,21 @@ class PublicManager:
 
 
 class PublicApplication:
-    def __init__(self, manager, site, origin, *, accepted=False):
+    def __init__(
+        self, manager, site, origin, *, accepted=False, execution_mode="PUBLIC", operator_key=None
+    ):
         self.manager = manager
         self.origin = origin.rstrip("/")
         if not re.fullmatch(r"https://[a-z0-9.-]+|http://127\.0\.0\.1:[0-9]+", self.origin):
             raise ValueError("TRUSTED_PUBLIC_ORIGIN_REQUIRED")
         self.accepted = accepted
+        if execution_mode not in {"STAGING", "PUBLIC", "LOCKED"}:
+            raise ValueError("INVALID_EXECUTION_MODE")
+        if execution_mode == "STAGING" and (
+            not isinstance(operator_key, str) or len(operator_key) != 64
+        ):
+            raise ValueError("STAGING_OPERATOR_KEY_REQUIRED")
+        self.execution_mode, self.operator_key = execution_mode, operator_key
         self.files = {}
         for name in STATIC:
             path = Path(site) / name
@@ -455,6 +468,12 @@ class PublicApplication:
                 code, value = 200, {"status": "ok", "production_execution": "DISABLED"}
             else:
                 self.manager.allow_request()
+                if path.startswith("/api/demo/") and self.execution_mode != "PUBLIC":
+                    authorization = env.get("HTTP_AUTHORIZATION", "")
+                    if self.execution_mode != "STAGING" or not hmac.compare_digest(
+                        authorization, "Bearer " + self.operator_key
+                    ):
+                        raise Rejected(403, "Pre-release API is operator-only")
                 if method not in {"GET", "HEAD", "POST"}:
                     raise Rejected(405, "Method unavailable")
                 if method == "POST":
@@ -542,9 +561,18 @@ def create_app():
     root = Path("/app")
     manager = PublicManager(root / "candidate", read_json(root / "source-manifest.json"))
     atexit.register(manager.close)
+    mode = os.environ.get("PUBLIC_EXECUTION_MODE", "STAGING")
+    control = os.environ.get("RELEASEGATE_CONTROL_DIR")
+    operator_key = None
+    if mode == "STAGING":
+        if not control:
+            raise RuntimeError("STAGING_OPERATOR_CONTROL_UNAVAILABLE")
+        operator_key = (Path(control) / "operator.key").read_text("utf-8")
     return PublicApplication(
         manager,
         root / "site",
         os.environ["PUBLIC_ORIGIN"],
         accepted=os.environ.get("PUBLIC_LIVE_ACCEPTED") == "1",
+        execution_mode=mode,
+        operator_key=operator_key,
     )

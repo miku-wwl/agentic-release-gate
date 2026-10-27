@@ -168,6 +168,43 @@ API, raw-evidence and DOM/geometry assertions. No success response is mocked.
 
 ## Azure change and rollback
 
+### Hosted admission and protected pre-release
+
+The image now starts through `releasegate.public_bootstrap`. Before opening any
+HTTP listener, it requires UID/GID 43343, zero effective/permitted/inheritable
+capabilities, sets the irreversible inherited `PR_SET_NO_NEW_PRIVS` bit, and runs
+the two genuine kernel acceptance tests. Their network test acknowledges a live
+child before authorizing its real socket syscall; their watchdog test requires
+the child to disappear, not remain a zombie. An unprivileged Linux subreaper
+adopts/reaps only the owned process group. Admission failure stops the container.
+This occurs on every cold instance, independently of Docker run flags.
+
+The Worker itself installs its seccomp BPF through `prctl` after no-new-privileges,
+and applies hard rlimits. No custom Docker seccomp profile or elevated capability
+is required. Hosted acceptance must prove these calls work on Azure; local flags
+are never represented as Azure settings. The image's root-owned source and virtual
+environment are not writable by UID 43343. Temporary generated files remain
+writable; Azure's whole root filesystem is not claimed to be read-only.
+
+The trusted execution mode defaults to `STAGING`. In this mode every demo API
+read/write requires a cryptographically random, per-instance operator key. The
+bootstrap writes it to a private 0700 directory/0600 file. It is never included
+in image layers, source, CLI arguments, public responses or logs. Anonymous calls
+are denied even on a temporary revision hostname. An authenticated Azure exec
+session runs `/app/qa/hosted_acceptance.py security` then `business`; that script
+reads the private key internally and prints only sanitized acceptance evidence.
+`LOCKED` mode has no execution API at all. Only a trusted revision configuration
+can select `PUBLIC`, after hosted gates pass. This operator key never authorizes
+production release or human approval.
+
+The existing static revision retains 100% canonical-host traffic during staging.
+The new revision starts at zero canonical-host traffic, with the original image
+and revision preserved. Revision labels have separate HTTPS routes; their APIs
+remain operator-protected. No extra Container App or service is required. Each
+revision retains min 0/max 1 and the same CPU/memory; inactive prior revisions have
+no running replica. Multiple active revisions can transiently coexist during an
+explicit staged rollout; no always-on replica is introduced.
+
 Reuse the existing Consumption app/hostname, 0.5 CPU, 1 GiB, min 0/max 1 and no
 logging destination. Set `PUBLIC_ORIGIN` to the verified HTTPS origin. Leave
 `PUBLIC_LIVE_ACCEPTED=0` during deployment acceptance: the UI says VERIFICATION

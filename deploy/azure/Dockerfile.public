@@ -23,7 +23,7 @@ LABEL org.opencontainers.image.title="ReleaseGate public fixed-scenario verifica
       org.opencontainers.image.licenses="MIT" \
       com.releasegate.deployment-mode="PUBLIC_FIXED_SCENARIO_VERIFICATION"
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONPATH=/app/candidate/src \
-    PATH=/opt/venv/bin:/usr/local/bin:/usr/bin:/bin PUBLIC_LIVE_ACCEPTED=0
+    PATH=/opt/venv/bin:/usr/local/bin:/usr/bin:/bin PUBLIC_LIVE_ACCEPTED=0 PUBLIC_EXECUTION_MODE=STAGING
 # Project-specific UID avoids per-real-UID RLIMIT_NPROC accounting collisions
 # with unrelated workloads using the common UID 10001 on the same kernel.
 RUN printf 'releasegate:x:43343:\n' >> /etc/group \
@@ -33,8 +33,9 @@ COPY --from=build /app/candidate /app/candidate
 COPY --from=build /app/site /app/site
 COPY --from=build /app/source-manifest.json /app/source-manifest.json
 COPY deploy/azure/public_gunicorn.py /app/gunicorn.conf.py
+COPY deploy/azure/hosted_acceptance.py /app/qa/hosted_acceptance.py
 USER 43343:43343
 WORKDIR /app/candidate
-RUN PUBLIC_ORIGIN=http://127.0.0.1:8080 gunicorn --check-config --config /app/gunicorn.conf.py 'releasegate.public_verification:create_app()'
+RUN PUBLIC_ORIGIN=http://127.0.0.1:8080 PUBLIC_EXECUTION_MODE=LOCKED gunicorn --check-config --config /app/gunicorn.conf.py 'releasegate.public_verification:create_app()'
 EXPOSE 8080
-CMD ["gunicorn", "--config", "/app/gunicorn.conf.py", "releasegate.public_verification:create_app()"]
+CMD ["python", "-m", "releasegate.public_bootstrap"]
